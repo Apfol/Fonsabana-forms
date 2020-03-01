@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>formulario fonsabana</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <div class="table-responsive" style="padding: 1%;">
+        <form>
+            <div class="form-row">
+                <div class="col-md-3"><img class="img-fluid img-fluid" src="assets/img/logo-fonsabana.png" style="padding: 0;padding-right: 0;padding-left: 20%;"></div>
+                <div class="col-md-6">
+                    <h2 class="text-center" style="padding-top: 40px;">Formulario de afiliación asociado</h2>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-row">
+                        <div class="col">
+                            <p class="text-center">Fecha de elaboración: <br>11 de septiembre de 2019.</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <p class="text-center">Versión 7</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" colspan="3">FECHA DILIGENCIAMIENTO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Día<input class="form-control" type="number"></td>
+                                    <td>Mes<input class="form-control" type="text"></td>
+                                    <td>Año<input class="form-control" type="number"></td>
+                                </tr>
+                                <tr></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">REFERIDO POR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>&nbsp;<input class="form-control" type="text"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">RADICADO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>&nbsp;<input class="form-control" type="text"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-xl-4">
+                    <p class="text-center">El formulario se diligencia con motivo de:</p>
+                </div>
+                <div class="col">
+                    <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1" name="reason"><label class="form-check-label" for="formCheck-1">Vinculación</label></div>
+                </div>
+                <div class="col">
+                    <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-2" name="reason"><label class="form-check-label" for="formCheck-2">Reingreso</label></div>
+                </div>
+                <div class="col">
+                    <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-3" name="reason"><label class="form-check-label" for="formCheck-3">Actualización de datos</label></div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" colspan="22">DATOS PERSONALES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="10">Nombres completos<input class="form-control" type="text"></td>
+                                    <td colspan="6">Primer apellido<input class="form-control" type="text"></td>
+                                    <td colspan="6">Segundo apellido<input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Tipo de documento
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <p>C.C</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="documentType"></div>
+                                            <div class="col">
+                                                <p>C.E</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="documentType"></div>
+                                        </div>
+                                    </td>
+                                    <td colspan="4">Lugar de expedición<input class="form-control" type="text"></td>
+                                    <td colspan="3">Fecha de expedición<input class="form-control" type="date"></td>
+                                    <td colspan="3">Número<input class="form-control" type="text"></td>
+                                    <td colspan="3">Nacionalidad<input class="form-control" type="text"></td>
+                                    <td colspan="2">Estado civil<input class="form-control" type="text"></td>
+                                    <td colspan="2">RH<input class="form-control" type="text"></td>
+                                    <td colspan="2"># de Hijos<input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Fecha de nacimiento</td>
+                                    <td>Día<input class="form-control" type="number"></td>
+                                    <td>Mes<input class="form-control" type="text"></td>
+                                    <td>Año<input class="form-control" type="number"></td>
+                                    <td colspan="7">Municipio<input class="form-control" type="text"></td>
+                                    <td colspan="6">Departamento<input class="form-control" type="text"></td>
+                                    <td colspan="4">Sexo
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <p>Femenino</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="sex"></div>
+                                            <div class="col">
+                                                <p>Masculino</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="sex"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="13">Nivel de escolaridad
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <p>Primaria</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="scholarship"></div>
+                                            <div class="col">
+                                                <p>Bachiller</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="scholarship"></div>
+                                            <div class="col">
+                                                <p>Técnico</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="scholarship"></div>
+                                            <div class="col">
+                                                <p>Universitario</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="scholarship"></div>
+                                            <div class="col">
+                                                <p>Especialización</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="scholarship"></div>
+                                            <div class="col">
+                                                <p>Maestría</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="scholarship"></div>
+                                            <div class="col">
+                                                <p>Doctorado</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="scholarship"></div>
+                                        </div>
+                                    </td>
+                                    <td colspan="8">Profesión<input class="form-control" type="text"></td>
+                                    <td>Estrato<input class="form-control" type="number"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="10">Dirección de residencia<input class="form-control" type="text"></td>
+                                    <td colspan="6">Municipio<input class="form-control" type="text"></td>
+                                    <td colspan="6">Departamento<input class="form-control" type="text"></td>
+                                </tr>
+                                <tr colspan="6">
+                                    <td colspan="6">Teléfono de residencia<input class="form-control" type="tel"></td>
+                                    <td colspan="6">Teléfono de celular<input class="form-control" type="tel"></td>
+                                    <td colspan="10">Correo electrónico personal<input class="form-control" type="email"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" colspan="22">INFORMACIÓN LABORAL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="10">Empresa donde labora<input class="form-control" type="text"></td>
+                                    <td colspan="6">Dependencia<input class="form-control" type="text"></td>
+                                    <td colspan="6">Cargo<input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Fecha de ingreso</td>
+                                    <td colspan="1">Día<input class="form-control" type="number"></td>
+                                    <td colspan="1">Mes<input class="form-control" type="text"></td>
+                                    <td colspan="1">Año<input class="form-control" type="number"></td>
+                                    <td colspan="8">Tipo de contrato<input class="form-control" type="text"></td>
+                                    <td colspan="8">Correo electrónico laboral<input class="form-control" type="email"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">Dirección<input class="form-control" type="text"></td>
+                                    <td colspan="3">Teléfono<input class="form-control" type="tel"></td>
+                                    <td colspan="2">Ext.<input class="form-control" type="number"></td>
+                                    <td colspan="6">Municipio<input class="form-control" type="text"></td>
+                                    <td colspan="6">Departamento<input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="14">Ocupación
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <p>Empleado</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="occupation"></div>
+                                            <div class="col">
+                                                <p>Pensionado</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="occupation"></div>
+                                            <div class="col">
+                                                <p>Estudiante</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="occupation"></div>
+                                            <div class="col">
+                                                <p>Independiente</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="occupation"></div>
+                                            <div class="col">
+                                                <p>Hogar</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="occupation"></div>
+                                            <div class="col">
+                                                <p>Rentista de capial</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="occupation"></div>
+                                        </div>
+                                    </td>
+                                    <td colspan="8">Sector económico
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <p>Económico</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="economicSector"></div>
+                                            <div class="col">
+                                                <p>Privado</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="economicSector"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="22">Actividad económica
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <p>Educación</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col">
+                                                <p>Comercio</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col">
+                                                <p>Construcción</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col">
+                                                <p>Inmobiliario</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col">
+                                                <p>Agricultura</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col">
+                                                <p>Comunicaciones</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col">
+                                                <p>Ganadería</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col">
+                                                <p>Industrial</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col">
+                                                <p>Salud</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col">
+                                                <p>Transporte</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col">
+                                                <p>Energético</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col">
+                                                <p>Minero</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col">
+                                                <p>Financiero</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col">
+                                                <p>Turismo</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col">
+                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-6" name="economicActivity"><label class="form-check-label" for="formCheck-6">Sin ánimo de lucro</label></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="9">Cuenta bancario No.<input class="form-control" type="text"></td>
+                                    <td colspan="4">Tipo de cuenta
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <p>Ahorros</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="accountType"></div>
+                                            <div class="col">
+                                                <p>Corriente</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="accountType"></div>
+                                        </div>
+                                    </td>
+                                    <td colspan="9">Banco<input class="form-control" type="text"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" colspan="22">DATOS DEL CONYUGE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="10">Nombres completos<input class="form-control" type="text"></td>
+                                    <td colspan="6">Primer Apellido<input class="form-control" type="text"></td>
+                                    <td colspan="6">Segundo Apellido<input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="12">Nivel de escolaridad
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <p>Primaria</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="partnerScholarship"></div>
+                                            <div class="col">
+                                                <p>Bachiller</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="partnerScholarship"></div>
+                                            <div class="col">
+                                                <p>Técnico</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="partnerScholarship"></div>
+                                            <div class="col">
+                                                <p>Universitario</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="partnerScholarship"></div>
+                                            <div class="col">
+                                                <p>Especialización</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="partnerScholarship"></div>
+                                            <div class="col">
+                                                <p>Maestría</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="partnerScholarship"></div>
+                                            <div class="col">
+                                                <p>Doctorado</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="partnerScholarship"></div>
+                                        </div>
+                                    </td>
+                                    <td colspan="10">Profesión<input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="10">Empresa donde labora<input class="form-control" type="text"></td>
+                                    <td colspan="6">Dependencia<input class="form-control" type="text"></td>
+                                    <td colspan="6">Cargo<input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">Dirección<input class="form-control" type="text"></td>
+                                    <td colspan="6">Municipio<input class="form-control" type="text"></td>
+                                    <td colspan="5">Correo electrónico<input class="form-control" type="text"></td>
+                                    <td colspan="5">Teléfono<input class="form-control" type="text"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" colspan="22">INFORMACIÓN FINANCIERA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="11">Sueldo o ingreso mensual<input class="form-control" type="text"></td>
+                                    <td colspan="11">Activo<input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="11">Otros ingresos<input class="form-control" type="text"></td>
+                                    <td colspan="11">Pasivo<input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="11">Egresos mensuales<input class="form-control" type="text"></td>
+                                    <td colspan="11">Patrimonio<input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="22">Concepto otros ingresos<input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">Vivienda
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <p>Propia</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="living-place"></div>
+                                            <div class="col">
+                                                <p>Arriendo</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="living-place"></div>
+                                            <div class="col">
+                                                <p>Familiar</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="living-place"></div>
+                                        </div>
+                                    </td>
+                                    <td colspan="5">Dirección<input class="form-control" type="text"></td>
+                                    <td colspan="6">Valor comercial<input class="form-control" type="text"></td>
+                                    <td colspan="5">Saldo hipoteca<input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">Vehiculo automotor
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <p>Automovil</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="vehicle-type"></div>
+                                            <div class="col">
+                                                <p>Moto</p>
+                                            </div>
+                                            <div class="col"><input type="radio" name="vehicle-type"></div>
+                                        </div>
+                                    </td>
+                                    <td colspan="3">Marca<input class="form-control" type="text"></td>
+                                    <td colspan="2">Modelo<input class="form-control" type="text"></td>
+                                    <td colspan="6">Valor comercial<input class="form-control" type="text"></td>
+                                    <td colspan="5">Saldo hipoteca<input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="11">Otras propiedades<input class="form-control" type="text"></td>
+                                    <td colspan="11">Valor comercial<input class="form-control" type="text"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" colspan="22">OPERACIONES EN MONEDA EXTRANJERA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="10">¿Realiza transacciones en moneda extranjera?
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-4" name="coin-transactions"><label class="form-check-label" for="formCheck-4">Sí</label></div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-5" name="coin-transactions"><label class="form-check-label" for="formCheck-5">No</label></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="6">¿Con cuáles paises?<input class="form-control" type="text"></td>
+                                    <td colspan="6">¿Tipo de moneda?<input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="10">¿Posee cuentas en moneda extranjera?
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-4" name="coin-account"><label class="form-check-label" for="formCheck-4">Sí</label></div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-5" name="coin-account"><label class="form-check-label" for="formCheck-5">No</label></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="3">No cuenta<input class="form-control" type="text"></td>
+                                    <td colspan="3">Banco<input class="form-control" type="text"></td>
+                                    <td colspan="3">Ciudad<input class="form-control" type="text"></td>
+                                    <td colspan="3">País<input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="10">¿Es usted sujeto de obligaciones tributarias en otro país o grupo de paises?
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-4" name="tax-obligations"><label class="form-check-label" for="formCheck-4">Sí</label></div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-5" name="tax-obligations"><label class="form-check-label" for="formCheck-5">No</label></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="12">¿Cuáles?<input class="form-control" type="text"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" colspan="22">PERSONA POLÍTICA O PÚBLICAMENTE EXPUESTA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="11">¿Goza usted de reconocimiento público o político?
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-4" name="public-recognition"><label class="form-check-label" for="formCheck-4">Sí</label></div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-5" name="public-recognition"><label class="form-check-label" for="formCheck-5">No</label></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="11">¿En los últimos años ha ocupado algún cargo público?
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-4" name="public-office"><label class="form-check-label" for="formCheck-4">Sí</label></div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-5" name="public-office"><label class="form-check-label" for="formCheck-5">No</label></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">Cargo público<input class="form-control" type="text"></td>
+                                    <td colspan="5">Duración en el cargo<input class="form-control" type="text"></td>
+                                    <td colspan="11">¿Por su cargo o actividad administra recursos públicos?
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-4" name="public-resources"><label class="form-check-label" for="formCheck-4">Sí</label></div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-5" name="public-resources"><label class="form-check-label" for="formCheck-5">No</label></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="11">¿Existe algún vínculo entre usted y una persona considerada política o públicamente expuesta?
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-4" name="social-bond"><label class="form-check-label" for="formCheck-4">Sí</label></div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-5" name="social-bond"><label class="form-check-label" for="formCheck-5">No</label></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="11"><br>EN CASO DE RESPONDER SI A LA PREGUNTA ANTERIOR POR FAVOR RESPONDA<br></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="11">¿Tipo de relación?<input class="form-control" type="text"></td>
+                                    <td colspan="6">Nombre<input class="form-control" type="text"></td>
+                                    <td colspan="6">Cédula<input class="form-control" type="text"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" colspan="22">REFERENCIAS PERSONALES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Nombres y apellidos</td>
+                                    <td>Dirección</td>
+                                    <td>Municipio</td>
+                                    <td>Teléfono fijo y/o celular</td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-control" type="text"></td>
+                                    <td><input class="form-control" type="text"></td>
+                                    <td><input class="form-control" type="text"></td>
+                                    <td><input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-control" type="text"></td>
+                                    <td><input class="form-control" type="text"></td>
+                                    <td><input class="form-control" type="text"></td>
+                                    <td><input class="form-control" type="text"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" colspan="22">DECLARACIÓN DE VOLUNTAD</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="22"><p class="text-justify" >Yo <input type="text"> de Nacionalidad <input type="text"> y nacido el <input
+                                                type="text"> del mes de <input type="text"> del año <input type="text">
+                                            en <input type="text"> identificado(a) con C.C No. <input type="text">
+                                            expedida en <input type="text"> declaro bajo juramento que es
+                                            mi libre deseo y voluntad que de acuerdo a la ley en caso de fallecimiento,
+                                            mis aportes, ahorros y cualquier seguro a que tenga derecho sean entregados
+                                            a las personas a continuación
+                                            referidas:
+                                        </p></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"></td>
+                                    <td colspan="6">Identificación</td>
+                                    <td colspan="5">Parentesco</td>
+                                    <td colspan="6">Porcentaje</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"><input class="form-control" type="text"></td>
+                                    <td colspan="6"><input class="form-control" type="text"></td>
+                                    <td colspan="6"><input class="form-control" type="text"></td>
+                                    <td colspan="6"><input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"><input class="form-control" type="text"></td>
+                                    <td colspan="6"><input class="form-control" type="text"></td>
+                                    <td colspan="6"><input class="form-control" type="text"></td>
+                                    <td colspan="6"><input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"><input class="form-control" type="text"></td>
+                                    <td colspan="6"><input class="form-control" type="text"></td>
+                                    <td colspan="6"><input class="form-control" type="text"></td>
+                                    <td colspan="6"><input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"><input class="form-control" type="text"></td>
+                                    <td colspan="6"><input class="form-control" type="text"></td>
+                                    <td colspan="6"><input class="form-control" type="text"></td>
+                                    <td colspan="6"><input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"><input class="form-control" type="text"></td>
+                                    <td colspan="6"><input class="form-control" type="text"></td>
+                                    <td colspan="6"><input class="form-control" type="text"></td>
+                                    <td colspan="6"><input class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="22">En el caso de la devolución de aportes y ahorros dejo a salvo las normas que rigen el derecho sucesoral.<br></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" colspan="22">DOCUMENTACIÓN REQUERIDA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="11">Fotocopia de la cédula de ciudadanía del asociado por ambas caras<br></td>
+                                    <td colspan="11"><button class="btn btn-secondary" type="button">Subir cédula</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" colspan="22">AUTORIZACIÓN DE DESCUENTO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p>Me permito autorizar a ustedes efectuar los siguientes descuentos de mi sueldo con destino al FONDO DE EMPLEADOS DE LA SABANA.<br></p><p>1. La suma de <input type="text"> por una sola vez, correspondiente a mi cuota de afiliación a la entidad</p><p>2. Descontar mensualmente el <input type="text"> % de mi sueldo básico a partir de la fecha, con ajuste por exceso o defecto a la cantidad del ciento próximo. De acuerdo a lo contemplado
+en el artículo 30 del estatuto vigente</p>
+                                        <p>3. La cuota mensual correspondiente al Fondo de Bienestar. La cual se podrá ajustar de acuerdo con lo que determine la Asamblea del Fondo de Empleados.<br></p>
+                                        <p>4. Acepto de acuerdo con la ley los descuentos por nómina que determine la Asamblea de la Entidad y los ajustes respectivos.<br></p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" colspan="22">AUTORIZACIONES EXPECIALES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-justify"><br>1) Autorizo a FONSABANA a enviar los documentos correspondientes, ya sea extractos, rendimientos de cuentas, u otra información relacionada con el manejo de mis productos o servicios, o cualquier información que
+                                        considere pertinente, por correo electrónico a la cuenta registrada en el formulario de afiliación o a la dirección de notificación registrada en el presente formulario o a la que indique por comunicación escrita.
+                                        Manifiesto que estas son direcciones válidas, reales y me comprometo a actualizar la información de contacto aquí relacionada cada vez que cambie o cuando me sea solicitado. 2) Autorizo a todas las áreas de FONSABANA,
+                                        para el desarrollo de su actividad comercial, a recolectar, recaudar, almacenar, usar, circular, suprimir, procesar, compilar, intercambiar, dar tratamiento, actualizar y disponer de los datos que han sido suministrados
+                                        y que se han incorporado a distintas bases o bancos de datos, o en repositorios electrónicos de todo tipo con los que cuenta FONSABANA.3) Autorizo a FONSABANA, para que reporte, procese, solicite y consulte mi información
+                                        comercial y financiera en las centrales de riesgo que para tales efectos cumplan con dicha labor, así como la de mi representante legal, apoderado y/u ordenante. 4) Autorizo a FONSABANA a compartir mi información
+                                        comercial y financiera a terceros con los cuales posea un vínculo contractual de cualquier índole, siempre y cuando estos terceros cuenten con los medios electrónicos y controles idóneos para brindar seguridad a
+                                        la información, y siempre que el tratamiento que estos terceros le den a la información esté relacionado con las actividades que correspondan a la gestión de la entidad. 5) Autorizo a cancelar los productos o servicios
+                                        que mantenga en FONSABANA, en caso de infracción de cualquiera de los numerales contenidos en este documento, eximiendo a FONSABANA de toda responsabilidad que se derive por información errónea, falsa o inexacta
+                                        que yo hubiere proporcionado en este documento o de violación del mismo. 6) Declaro que conozco y cumpliré las normas que obligan a actualizar mis datos personales e información financiera al menos una vez por año.
+                                        7) No admitiré que terceros efectúen depósitos a mis productos con recursos provenientes de actividades ilícitas contempladas en el Código Penal Colombiano o en cualquier norma que lo modifique o adicione, ni efectuaré
+                                        transacciones o actividades a favor de personas relacionadas con las mismas. 8) Conozco que los canales establecidos para ejercer en cualquier momento los derechos que me asisten, en especial: conocer la información,
+                                        solicitar la actualización, rectificación y/o supresión o revocar el consentimiento otorgado para el tratamiento de datos personales, será a través de: forma personal, comunicación escrita o al correo electrónico
+                                        fonsabana@fonsabana.com.co. 9) Declaro que los recursos que se deriven de la relación comercial entre FONSABANA y yo no se destinarán a la financiación del terrorismo, grupos terroristas o actividades terroristas.
+                                        10) Declaro que no he sido declarado responsable jurídicamente por la comisión de delitos contra la administración pública cuya pena sea privación de la libertad o que afecten el patrimonio del estado o por delitos
+                                        relacionados con la pertenencia, promoción o financiación de grupos ilegales, delitos de lesa humanidad, narcotráfico en Colombia o en el exterior, o soborno trasnacional. <br><br></td>
+                                </tr>
+                                <tr></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" colspan="22">DECLARACIÓN DE ORIGEN DE FONDOS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p>Declaro bajo la gravedad de juramento que los recursos que entrego no provienen de ninguna actividad ilícita de las contempladas en el Código Penal Colombiano o en cualquier norma que lo modifique o adicione. <br></p>
+                                        <p>Los recursos que entrego provienen de las siguientes fuentes: <br></p>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <p>Salarios y remuneraciones</p>
+                                            </div>
+                                            <div class="col"><input type="checkbox"></div>
+                                            <div class="col">
+                                                <p>Honorarios</p>
+                                            </div>
+                                            <div class="col"><input type="checkbox"></div>
+                                            <div class="col">
+                                                <p>Pensión</p>
+                                            </div>
+                                            <div class="col"><input type="checkbox"></div>
+                                            <div class="col">
+                                                <p>Actividad económica</p>
+                                            </div>
+                                            <div class="col"><input type="checkbox"></div>
+                                            <div class="col">
+                                                <p>Otros</p>
+                                            </div>
+                                            <div class="col"><input type="checkbox"></div>
+                                            <div class="col">
+                                                <p>¿Cuáles?</p>
+                                            </div>
+                                            <div class="col-xl-3"><input class="form-control" type="text"></div>
+                                        </div>
+                                        <p>Se hace constar que la presente autorización no constituye por parte de FONSABANA acto contrario a la ley y que, en su correcta utilización, de acuerdo con lo previsto en este formulario, no es en ningún caso violatoria
+                                            de mis derechos constitucionales o legales o de los cuales quiera de los autorizados u ordenantes registrados<br></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Al presentar esta solicitud de ingreso al Fondo de Empleados, declaro que acepto y me someto a los Estatutos y Reglamentos del Fondo de Empleados de La Sabana.<br></p><p>Por ello firmo a los <input type="text"> días del mes de <input type="text"> del año <input type="text">.</p>
+                                        <div class="form-row">
+                                            <div class="col text-center"><button class="btn btn-secondary text-center" type="button">Subir firma con número de cédula</button></div>
+                                            <div class="col text-center"><button class="btn btn-secondary" type="button">Subir huella Indice Derecho</button></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col"></div>
+                <div class="col text-center"><button class="btn btn-primary" type="button" style="width: 90%;">Imprimir</button></div>
+                <div class="col text-center"><button class="btn btn-primary" type="button" style="width: 90%;">Enviar por correo electrónico</button></div>
+                <div class="col"></div>
+            </div>
+        </form>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
