@@ -219,16 +219,20 @@
                                     <td>Estrato<input id="stratum" class="form-control" type="number"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="10">Dirección de residencia<input class="form-control" type="text">
+                                    <td colspan="10">Dirección de residencia<input id="home" class="form-control"
+                                            type="text">
                                     </td>
-                                    <td colspan="6">Municipio<input class="form-control" type="text"></td>
-                                    <td colspan="6">Departamento<input class="form-control" type="text"></td>
+                                    <td colspan="6">Municipio<input id="homeTown" class="form-control" type="text"></td>
+                                    <td colspan="6">Departamento<input id="homeDepartment" class="form-control"
+                                            type="text"></td>
                                 </tr>
                                 <tr colspan="6">
-                                    <td colspan="6">Teléfono de residencia<input class="form-control" type="tel"></td>
-                                    <td colspan="6">Teléfono de celular<input class="form-control" type="tel"></td>
-                                    <td colspan="10">Correo electrónico personal<input class="form-control"
-                                            type="email"></td>
+                                    <td colspan="6">Teléfono de residencia<input id="homeTel" class="form-control"
+                                            type="tel"></td>
+                                    <td colspan="6">Teléfono de celular<input id="homeCel" class="form-control"
+                                            type="tel"></td>
+                                    <td colspan="10">Correo electrónico personal<input id="personalEmail"
+                                            class="form-control" type="email"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -246,25 +250,32 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td colspan="10">Empresa donde labora<input class="form-control" type="text"></td>
-                                    <td colspan="6">Dependencia<input class="form-control" type="text"></td>
-                                    <td colspan="6">Cargo<input class="form-control" type="text"></td>
+                                    <td colspan="10">Empresa donde labora<input id="company" class="form-control"
+                                            type="text"></td>
+                                    <td colspan="6">Dependencia<input id="dependence" class="form-control" type="text">
+                                    </td>
+                                    <td colspan="6">Cargo<input id="position" class="form-control" type="text"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">Fecha de ingreso</td>
-                                    <td colspan="1">Día<input class="form-control" type="number"></td>
-                                    <td colspan="1">Mes<input class="form-control" type="text"></td>
-                                    <td colspan="1">Año<input class="form-control" type="number"></td>
-                                    <td colspan="8">Tipo de contrato<input class="form-control" type="text"></td>
-                                    <td colspan="8">Correo electrónico laboral<input class="form-control" type="email">
+                                    <td colspan="1">Día<input id="entryDay" class="form-control" type="number"></td>
+                                    <td colspan="1">Mes<input id="entryMonth" class="form-control" type="text"></td>
+                                    <td colspan="1">Año<input id="entryYear" class="form-control" type="number"></td>
+                                    <td colspan="8">Tipo de contrato<input id="contractType" class="form-control"
+                                            type="text"></td>
+                                    <td colspan="8">Correo electrónico laboral<input id="laboralEmail"
+                                            class="form-control" type="email">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="5">Dirección<input class="form-control" type="text"></td>
-                                    <td colspan="3">Teléfono<input class="form-control" type="tel"></td>
-                                    <td colspan="2">Ext.<input class="form-control" type="number"></td>
-                                    <td colspan="6">Municipio<input class="form-control" type="text"></td>
-                                    <td colspan="6">Departamento<input class="form-control" type="text"></td>
+                                    <td colspan="5">Dirección<input id="laborDirection" class="form-control"
+                                            type="text"></td>
+                                    <td colspan="3">Teléfono<input id="laborTel" class="form-control" type="tel"></td>
+                                    <td colspan="2">Ext.<input id="laborExt" class="form-control" type="number"></td>
+                                    <td colspan="6">Municipio<input id="laborTown" class="form-control" type="text">
+                                    </td>
+                                    <td colspan="6">Departamento<input id="laborDepartment" class="form-control"
+                                            type="text"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="14">Ocupación
@@ -272,27 +283,32 @@
                                             <div class="col">
                                                 <p>Empleado</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="occupation"></div>
+                                            <div class="col"><input value="Empleado" type="radio" name="occupation">
+                                            </div>
                                             <div class="col">
                                                 <p>Pensionado</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="occupation"></div>
+                                            <div class="col"><input value="Pensionado" type="radio" name="occupation">
+                                            </div>
                                             <div class="col">
                                                 <p>Estudiante</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="occupation"></div>
+                                            <div class="col"><input value="Estudiante" type="radio" name="occupation">
+                                            </div>
                                             <div class="col">
                                                 <p>Independiente</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="occupation"></div>
+                                            <div class="col"><input value="Independiente" type="radio"
+                                                    name="occupation"></div>
                                             <div class="col">
                                                 <p>Hogar</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="occupation"></div>
+                                            <div class="col"><input value="Hogar" type="radio" name="occupation"></div>
                                             <div class="col">
-                                                <p>Rentista de capial</p>
+                                                <p>Rentista de capital</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="occupation"></div>
+                                            <div class="col"><input value="Rentista de capital" type="radio"
+                                                    name="occupation"></div>
                                         </div>
                                     </td>
                                     <td colspan="8">Sector económico
@@ -300,11 +316,13 @@
                                             <div class="col">
                                                 <p>Económico</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="economicSector"></div>
+                                            <div class="col"><input value="Económico" type="radio"
+                                                    name="economicSector"></div>
                                             <div class="col">
                                                 <p>Privado</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="economicSector"></div>
+                                            <div class="col"><input value="Privado" type="radio" name="economicSector">
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -314,83 +332,101 @@
                                             <div class="col">
                                                 <p>Educación</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col"><input value="Educación" type="radio"
+                                                    name="economicActivity"></div>
                                             <div class="col">
                                                 <p>Comercio</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col"><input value="Comercio" type="radio"
+                                                    name="economicActivity"></div>
                                             <div class="col">
                                                 <p>Construcción</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col"><input value="Construcción" type="radio"
+                                                    name="economicActivity"></div>
                                             <div class="col">
                                                 <p>Inmobiliario</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col"><input value="Inmobiliario" type="radio"
+                                                    name="economicActivity"></div>
                                             <div class="col">
                                                 <p>Agricultura</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col"><input value="Agricultura" type="radio"
+                                                    name="economicActivity"></div>
                                             <div class="col">
                                                 <p>Comunicaciones</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col"><input value="Comunicaciones" type="radio"
+                                                    name="economicActivity"></div>
                                             <div class="col">
                                                 <p>Ganadería</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col"><input value="Ganadería" type="radio"
+                                                    name="economicActivity"></div>
                                             <div class="col">
                                                 <p>Industrial</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col"><input value="Industrial" type="radio"
+                                                    name="economicActivity"></div>
                                             <div class="col">
                                                 <p>Salud</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col"><input value="Salud" type="radio" name="economicActivity">
+                                            </div>
                                             <div class="col">
                                                 <p>Transporte</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col"><input value="Transporte" type="radio"
+                                                    name="economicActivity"></div>
                                             <div class="col">
                                                 <p>Energético</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col"><input value="Energético" type="radio"
+                                                    name="economicActivity"></div>
                                             <div class="col">
                                                 <p>Minero</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col"><input value="Minero" type="radio" name="economicActivity">
+                                            </div>
                                             <div class="col">
                                                 <p>Financiero</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col"><input value="Financiero" type="radio"
+                                                    name="economicActivity"></div>
                                             <div class="col">
                                                 <p>Turismo</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="economicActivity"></div>
+                                            <div class="col"><input value="Turismo" type="radio"
+                                                    name="economicActivity"></div>
                                             <div class="col">
-                                                <div class="form-check"><input class="form-check-input" type="radio"
-                                                        id="formCheck-6" name="economicActivity"><label
-                                                        class="form-check-label" for="formCheck-6">Sin ánimo de
+                                                <div class="form-check"><input value="Sin ánimo de lucro"
+                                                        class="form-check-input" type="radio" id="formCheck-6"
+                                                        name="economicActivity"><label class="form-check-label"
+                                                        for="formCheck-6">Sin ánimo de
                                                         lucro</label></div>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="9">Cuenta bancario No.<input class="form-control" type="text"></td>
+                                    <td colspan="9">Cuenta bancario No.<input id="bankAccount" class="form-control"
+                                            type="text"></td>
                                     <td colspan="4">Tipo de cuenta
                                         <div class="form-row">
                                             <div class="col">
                                                 <p>Ahorros</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="accountType"></div>
+                                            <div class="col"><input value="Ahorros" type="radio" name="accountType">
+                                            </div>
                                             <div class="col">
                                                 <p>Corriente</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="accountType"></div>
+                                            <div class="col"><input value="Corriente" type="radio" name="accountType">
+                                            </div>
                                         </div>
                                     </td>
-                                    <td colspan="9">Banco<input class="form-control" type="text"></td>
+                                    <td colspan="9">Banco<input id="bank" class="form-control" type="text"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -408,9 +444,33 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td colspan="10">Nombres completos<input class="form-control" type="text"></td>
-                                    <td colspan="6">Primer Apellido<input class="form-control" type="text"></td>
-                                    <td colspan="6">Segundo Apellido<input class="form-control" type="text"></td>
+                                    <td colspan="10">Nombres completos<input id="partnerName" class="form-control"
+                                            type="text"></td>
+                                    <td colspan="6">Primer Apellido<input id="partnerFirstSurname" class="form-control"
+                                            type="text"></td>
+                                    <td colspan="6">Segundo Apellido<input id="partnerSecondSurname"
+                                            class="form-control" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="7">Tipo de documento
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <p>C.C</p>
+                                            </div>
+                                            <div class="col"><input type="radio" value="C.C" name="partnerDocumentType">
+                                            </div>
+                                            <div class="col">
+                                                <p>C.E</p>
+                                            </div>
+                                            <div class="col"><input type="radio" value="C.E" name="partnerDocumentType">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="8">Número<input id="partnerDocumentNumber" class="form-control"
+                                            type="text">
+                                    </td>
+                                    <td colspan="7">Fecha de nacimiento<input id="partnerBornDate" class="form-control"
+                                            type="date"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="12">Nivel de escolaridad
@@ -418,45 +478,60 @@
                                             <div class="col">
                                                 <p>Primaria</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="partnerScholarship"></div>
+                                            <div class="col"><input value="Primaria" type="radio"
+                                                    name="partnerScholarship"></div>
                                             <div class="col">
                                                 <p>Bachiller</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="partnerScholarship"></div>
+                                            <div class="col"><input value="Bachiller" type="radio"
+                                                    name="partnerScholarship"></div>
                                             <div class="col">
                                                 <p>Técnico</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="partnerScholarship"></div>
+                                            <div class="col"><input value="Técnico" type="radio"
+                                                    name="partnerScholarship"></div>
                                             <div class="col">
                                                 <p>Universitario</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="partnerScholarship"></div>
+                                            <div class="col"><input value="Universitario" type="radio"
+                                                    name="partnerScholarship"></div>
                                             <div class="col">
                                                 <p>Especialización</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="partnerScholarship"></div>
+                                            <div class="col"><input value="Especialización" type="radio"
+                                                    name="partnerScholarship"></div>
                                             <div class="col">
                                                 <p>Maestría</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="partnerScholarship"></div>
+                                            <div class="col"><input value="Maestría" type="radio"
+                                                    name="partnerScholarship"></div>
                                             <div class="col">
                                                 <p>Doctorado</p>
                                             </div>
-                                            <div class="col"><input type="radio" name="partnerScholarship"></div>
+                                            <div class="col"><input value="Doctorado" type="radio"
+                                                    name="partnerScholarship"></div>
                                         </div>
                                     </td>
-                                    <td colspan="10">Profesión<input class="form-control" type="text"></td>
+                                    <td colspan="10">Profesión<input id="partnerProfession" class="form-control"
+                                            type="text"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="10">Empresa donde labora<input class="form-control" type="text"></td>
-                                    <td colspan="6">Dependencia<input class="form-control" type="text"></td>
-                                    <td colspan="6">Cargo<input class="form-control" type="text"></td>
+                                    <td colspan="10">Empresa donde labora<input id="partnerCompany" class="form-control"
+                                            type="text"></td>
+                                    <td colspan="6">Dependencia<input id="partnerDependency" class="form-control"
+                                            type="text"></td>
+                                    <td colspan="6">Cargo<input id="partnerPosition" class="form-control" type="text">
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="6">Dirección<input class="form-control" type="text"></td>
-                                    <td colspan="6">Municipio<input class="form-control" type="text"></td>
-                                    <td colspan="5">Correo electrónico<input class="form-control" type="text"></td>
-                                    <td colspan="5">Teléfono<input class="form-control" type="text"></td>
+                                    <td colspan="6">Dirección<input id="partnerAddress" class="form-control"
+                                            type="text"></td>
+                                    <td colspan="6">Municipio<input id="partnerTown" class="form-control" type="text">
+                                    </td>
+                                    <td colspan="5">Correo electrónico<input id="partnerEmail" class="form-control"
+                                            type="text"></td>
+                                    <td colspan="5">Teléfono<input id="partnerTel" class="form-control" type="text">
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -989,7 +1064,7 @@
             <div class="form-row">
                 <div class="col"></div>
                 <div class="col text-center"><button id="print" class="btn btn-primary" type="button"
-                        style="width: 90%;">Imprimir</button></div>
+                        style="width: 90%;">Descargar</button></div>
                 <div class="col text-center"><button class="btn btn-primary" type="button" style="width: 90%;">Enviar
                         por correo electrónico</button></div>
                 <div class="col"></div>

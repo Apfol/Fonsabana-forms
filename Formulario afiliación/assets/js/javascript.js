@@ -14,7 +14,8 @@ function demoFromHTML() {
     var doc = new jsPDF();
     // It can parse html:
     //doc.autoTable({ html: '#my-table' })
-    var date = new Date($("#expeditonDate").val());
+    var expeditionDate = $("#expeditonDate").val().split('-');
+    var partnerBornDate = $("#partnerBornDate").val().split('-');
     // Or use javascript directly:
     doc.autoTable({
         theme: 'plain',
@@ -26,22 +27,22 @@ function demoFromHTML() {
             [{ content: 'El formulario se diligencia con motivo de: ' + getSelected("reason"), styles: { fillColor: [242, 242, 242] }, colSpan: 16 }],
             [{ content: 'DATOS PERSONALES', styles: { fillColor: [200, 200, 200], halign: 'center' }, colSpan: 16 }],
             [{ content: 'Nombres completos: ' + $("#names").val(), colSpan: 6 }, { content: 'Primer apellido: ' + $("#firstSurname").val(), colSpan: 6 }, { content: 'Segundo apellido: ' + $("#secondSurname").val(), colSpan: 4 }],
-            [{ content: 'Tipo de documento: ' + getSelected("documentType"), colSpan: 4, rowSpan: 2 }, { content: 'Numero: ' + $("#documentNumber").val(), colSpan: 2, rowSpan: 2 }, { content: 'Fecha de expedición: ' + date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear(), colSpan: 2, rowSpan: 2 }, { content: 'Lugar de expedición: ' + $("#expeditionPlace").val(), colSpan: 2, rowSpan: 2 }, { content: 'Nacionalidad: ' + $("#nationality").val(), colSpan: 2, rowSpan: 2 }, { content: 'Estado civil: ' + $("#civilStatus").val(), colSpan: 2, rowSpan: 2 }, { content: 'RH: ' + $("#rh").val(), colSpan: 2 }],
+            [{ content: 'Tipo de documento: ' + getSelected("documentType"), colSpan: 4, rowSpan: 2 }, { content: 'Numero: ' + $("#documentNumber").val(), colSpan: 2, rowSpan: 2 }, { content: 'Fecha de expedición: ' + expeditionDate[2] + "/" + expeditionDate[1] + "/" + expeditionDate[0], colSpan: 2, rowSpan: 2 }, { content: 'Lugar de expedición: ' + $("#expeditionPlace").val(), colSpan: 2, rowSpan: 2 }, { content: 'Nacionalidad: ' + $("#nationality").val(), colSpan: 2, rowSpan: 2 }, { content: 'Estado civil: ' + $("#civilStatus").val(), colSpan: 2, rowSpan: 2 }, { content: 'RH: ' + $("#rh").val(), colSpan: 2 }],
             [{ content: '# Hijos: ' + $("#sonsNumber").val(), colSpan: 2 }],
             [{ content: 'Fecha de nacimiento', colSpan: 2 }, { content: 'Día: ' + $("#bornDay").val(), colSpan: 2 }, { content: 'Mes: ' + $("#bornMonth").val(), colSpan: 2 }, { content: 'Año: ' + $("#bornYear").val(), colSpan: 2 }, { content: 'Municipio: ' + $("#bornTown").val(), colSpan: 4 }, { content: 'Departamento: ' + $("#bornDepartment").val(), colSpan: 2 }, { content: 'Sexo:\n' + getSelected("sex"), colSpan: 2 }],
             [{ content: 'Nivel de escolaridad: ' + getSelected("scholarship"), colSpan: 6 }, { content: 'Profesión: ' + $("#profession").val(), colSpan: 6 }, { content: 'Estrato: ' + $("#stratum").val(), colSpan: 4 }],
-            [{ content: 'Residencia: ', colSpan: 6 }, { content: 'Municipio: ', colSpan: 6 }, { content: 'Departamento: ', colSpan: 4 }],
-            [{ content: 'Teléfono residencia: ', colSpan: 4 }, { content: 'Teléfono celular: ', colSpan: 4 }, { content: 'Correo electrónico personal: ', colSpan: 8 }],
+            [{ content: 'Residencia: ' + $("#home").val(), colSpan: 6 }, { content: 'Municipio: ' + $("#homeTown").val(), colSpan: 6 }, { content: 'Departamento: ' + $("#homeDepartment").val(), colSpan: 4 }],
+            [{ content: 'Teléfono residencia: ' + $("#homeTel").val(), colSpan: 4 }, { content: 'Teléfono celular: ' + $("#homeCel").val(), colSpan: 4 }, { content: 'Correo electrónico personal: ' + $("#personalEmail").val(), colSpan: 8 }],
             [{ content: 'INFORMACIÓN LABORAL', styles: { fillColor: [200, 200, 200], halign: 'center' }, colSpan: 16 }],
-            [{ content: 'Empresa donde laboral: ', colSpan: 6 }, { content: 'Dependencia: ', colSpan: 6 }, { content: 'Cargo: ', colSpan: 4 }],
-            [{ content: 'Fecha de ingreso: ', colSpan: 2 }, { content: 'Día: ', colSpan: 2 }, { content: 'Mes: ', colSpan: 2 }, { content: 'Año: ', colSpan: 2 }, { content: 'Tipo de contrato: ', colSpan: 2 }, { content: 'Correo electrónico laboral: ', colSpan: 6 }],
-            [{ content: 'Dirección: ', colSpan: 6 }, { content: 'Teléfono: ', colSpan: 2 }, { content: 'Ext: ', colSpan: 2 }, { content: 'Municipio: ', colSpan: 3 }, { content: 'Departamento: ', colSpan: 3 }],
-            [{ content: 'Ocupación: ', colSpan: 8 }, { content: 'Sector económico: ', colSpan: 8 }],
-            [{ content: 'Actividad económica: ', colSpan: 16 }],
-            [{ content: 'Cuenta bancario No: ', colSpan: 6 }, { content: 'Tipo de cuenta: ', colSpan: 4 }, { content: 'Banco: ', colSpan: 6 }],
+            [{ content: 'Empresa donde laboral: ' + $("#company").val(), colSpan: 6 }, { content: 'Dependencia: ' + $("#dependence").val(), colSpan: 6 }, { content: 'Cargo: ' + $("#position").val(), colSpan: 4 }],
+            [{ content: 'Fecha de ingreso: ', colSpan: 2 }, { content: 'Día: ' + $("#entryDay").val(), colSpan: 2 }, { content: 'Mes: ' + $("#entryMonth").val(), colSpan: 2 }, { content: 'Año: ' + $("#entryYear").val(), colSpan: 2 }, { content: 'Tipo de contrato: ' + $("#contractType").val(), colSpan: 2 }, { content: 'Correo electrónico laboral: ' + $("#laboralEmail").val(), colSpan: 6 }],
+            [{ content: 'Dirección: ' + $("#laborDirection").val(), colSpan: 6 }, { content: 'Teléfono: ' + $("#laborTel").val(), colSpan: 2 }, { content: 'Ext: ' + $("#laborExt").val(), colSpan: 2 }, { content: 'Municipio: ' + $("#laborTown").val(), colSpan: 3 }, { content: 'Departamento: ' + $("#laborDepartment").val(), colSpan: 3 }],
+            [{ content: 'Ocupación: ' + getSelected("occupation"), colSpan: 8 }, { content: 'Sector económico: ' + getSelected("economicSector"), colSpan: 8 }],
+            [{ content: 'Actividad económica: ' + getSelected("economicActivity"), colSpan: 16 }],
+            [{ content: 'Cuenta bancario No: ' + $("#bankAccount").val(), colSpan: 6 }, { content: 'Tipo de cuenta: ' + getSelected("accountType"), colSpan: 4 }, { content: 'Banco: ' + $("#bank").val(), colSpan: 6 }],
             [{ content: 'DATOS DEL CONYUGE', styles: { fillColor: [200, 200, 200], halign: 'center' }, colSpan: 16 }],
-            [{ content: 'Nombres completos: ', colSpan: 6 }, { content: 'Primer apellido: ', colSpan: 6 }, { content: 'Segundo apellido: ', colSpan: 4 }],
-            [{ content: 'Tipo de documento: ', colSpan: 4 }, { content: 'Numero: ', colSpan: 3 }, { content: 'Fecha de nacimiento', colSpan: 3 }, { content: 'Día: ', colSpan: 2 }, { content: 'Mes: ', colSpan: 2 }, { content: 'Año: ', colSpan: 2 }],
+            [{ content: 'Nombres completos: ' + $("#partnerName").val(), colSpan: 6 }, { content: 'Primer apellido: ' + $("#partnerFirstSurname").val(), colSpan: 6 }, { content: 'Segundo apellido: ' + $("#partnerSecondSurname").val(), colSpan: 4 }],
+            [{ content: 'Tipo de documento: ' + getSelected("partnerDocumentType"), colSpan: 4 }, { content: 'Numero: ' + $("#partnerDocumentNumber").val(), colSpan: 6 }, { content: 'Fecha de nacimiento:\n' + partnerBornDate[2] + "/" + partnerBornDate[1] + "/" + partnerBornDate[0], colSpan: 6 }],
             [{ content: 'Nivel de escolaridad: ', colSpan: 8 }, { content: 'Profesión: ', colSpan: 8 }],
             [{ content: 'Empresa donde laboral: ', colSpan: 6 }, { content: 'Dependencia: ', colSpan: 6 }, { content: 'Cargo: ', colSpan: 4 }],
             [{ content: 'Dirección: ', colSpan: 6 }, { content: 'Municipio: ', colSpan: 3 }, { content: 'Correo electrónico: ', colSpan: 4 }, { content: 'Teléfono: ', colSpan: 3 }],
