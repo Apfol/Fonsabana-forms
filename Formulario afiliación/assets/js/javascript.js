@@ -103,7 +103,7 @@ function demoFromHTML() {
         if ($('#' + id).is(":checked")) {
             return " X. ";
         }
-        return " . ";
+        return ". ";
     }
 
     doc.save('table.pdf')
