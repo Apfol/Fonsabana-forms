@@ -1,26 +1,72 @@
+var signatureImg, footprintImg;
+
 document.getElementById('print').onclick = function () {
-    demoFromHTML();
+    demoFromHTML(signatureImg, footprintImg);
 };
 
-function generatePDF() {
-    var doc = new jsPDF()
+const signatureFile = $("#signatureFile");
+const signatureButton = $("#signatureButton");
+const signatureText = $("#signatureText");
 
-    doc.text('Hello world!', 10, 10)
-    doc.save('a4.pdf');
-    alert("button was clicked");
-}
+signatureButton.click(function () {
+    $("#signatureFile").click();
+});
 
-function demoFromHTML() {
+signatureFile.change(function () {
+    if (signatureFile.val()) {
+        signatureText.html(signatureFile.val().match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1]);
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                signatureImg = e.target.result;
+            }
+
+            reader.readAsDataURL(this.files[0]);
+        }
+    } else {
+        signatureText.html("Sin archivo");
+    }
+});
+
+const footprintFile = $("#footprintFile");
+const footprintButton = $("#footprintButton");
+const footprintText = $("#footprintText");
+
+footprintButton.click(function () {
+    $("#footprintFile").click();
+});
+
+footprintFile.change(function () {
+    if (footprintFile.val()) {
+        footprintText.html(footprintFile.val().match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1]);
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                footprintImg = e.target.result;
+            }
+
+            reader.readAsDataURL(this.files[0]);
+        }
+    } else {
+        footprintText.html("Sin archivo");
+    }
+});
+
+function demoFromHTML(signatureImg, footprintImg) {
     var doc = new jsPDF();
-    // It can parse html:
-    //doc.autoTable({ html: '#my-table' })
     var expeditionDate = $("#expeditonDate").val().split('-');
     var partnerBornDate = $("#partnerBornDate").val().split('-');
-    // Or use javascript directly:
+
+    var logoImg = new Image();
+    logoImg.src = 'assets/img/logo-fonsabana.png';
+    doc.addImage(logoImg, 'png', 20, 14, 50, 15);
+
     doc.autoTable({
         theme: 'plain',
         styles: { lineColor: [142, 142, 142], lineWidth: 0.1, fontSize: 8 },
-        head: [[{ content: '', colSpan: 6 }, { content: 'Formulario de afiliación Asociado', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Fecha de elaboración: 11 de septiembre de 2019. Versión 7', colSpan: 4 }]],
+        head: [[{ content: '', colSpan: 6, styles: { minCellHeight: 15 } }, { content: 'Formulario de afiliación Asociado', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Fecha de elaboración: 11 de septiembre de 2019. Versión 7', colSpan: 4 }]],
         body: [
             [{ content: 'Fecha de diligenciamiento', colSpan: 6, styles: { halign: 'center' } }, { content: 'Referido por', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Radicado', colSpan: 4, styles: { valign: 'middle', halign: 'center' } }],
             [{ content: 'Día:\n' + $("#formDay").val(), colSpan: 2 }, { content: 'Mes:\n' + $("#formMonth").val(), colSpan: 2 }, { content: 'Año:\n' + $("#formYear").val(), colSpan: 2 }, { content: $("#refered").val(), colSpan: 6 }, { content: $("#filed").val(), colSpan: 4 }],
@@ -85,10 +131,18 @@ function demoFromHTML() {
             [{ content: '1) Autorizo a FONSABANA a enviar los documentos correspondientes, ya sea extractos, rendimientos de cuentas, u otra información relacionada con el manejo de mis productos o servicios, o cualquier información que considere pertinente, por correo electrónico a la cuenta registrada en el formulario de afiliación o a la dirección de notificación registrada en el presente formulario o a la que indique por comunicación escrita. Manifiesto que estas son direcciones válidas, reales y me comprometo a actualizar la información de contacto aquí relacionada cada vez que cambie o cuando me sea solicitado. 2) Autorizo a todas las áreas de FONSABANA, para el desarrollo de su actividad comercial, a recolectar, recaudar, almacenar, usar, circular, suprimir, procesar, compilar, intercambiar, dar tratamiento, actualizar y disponer de los datos que han sido suministrados y que se han incorporado a distintas bases o bancos de datos, o en repositorios electrónicos de todo tipo con los que cuenta FONSABANA.3) Autorizo a FONSABANA, para que reporte, procese, solicite y consulte mi información comercial y financiera en las centrales de riesgo que para tales efectos cumplan con dicha labor, así como la de mi representante legal, apoderado y/u ordenante. 4) Autorizo a FONSABANA a compartir mi información comercial y financiera a terceros con los cuales posea un vínculo contractual de cualquier índole, siempre y cuando estos terceros cuenten con los medios electrónicos y controles idóneos para brindar seguridad a la información, y siempre que el tratamiento que estos terceros le den a la información esté relacionado con las actividades que correspondan a la gestión de la entidad. 5) Autorizo a cancelar los productos o servicios que mantenga en FONSABANA, en caso de infracción de cualquiera de los numerales contenidos en este documento, eximiendo a FONSABANA de toda responsabilidad que se derive por información errónea, falsa o inexacta que yo hubiere proporcionado en este documento o de violación del mismo. 6) Declaro que conozco y cumpliré las normas que obligan a actualizar mis datos personales e información financiera al menos una vez por año. 7) No admitiré que terceros efectúen depósitos a mis productos con recursos provenientes de actividades ilícitas contempladas en el Código Penal Colombiano o en cualquier norma que lo modifique o adicione, ni efectuaré transacciones o actividades a favor de personas relacionadas con las mismas. 8) Conozco que los canales establecidos para ejercer en cualquier momento los derechos que me asisten, en especial: conocer la información, solicitar la actualización, rectificación y/o supresión o revocar el consentimiento otorgado para el tratamiento de datos personales, será a través de: forma personal, comunicación escrita o al correo electrónico fonsabana@fonsabana.com.co. 9) Declaro que los recursos que se deriven de la relación comercial entre FONSABANA y yo no se destinarán a la financiación del terrorismo, grupos terroristas o actividades terroristas. 10) Declaro que no he sido declarado responsable jurídicamente por la comisión de delitos contra la administración pública cuya pena sea privación de la libertad o que afecten el patrimonio del estado o por delitos relacionados con la pertenencia, promoción o financiación de grupos ilegales, delitos de lesa humanidad, narcotráfico en Colombia o en el exterior, o soborno trasnacional. ', colSpan: 16 }],
             [{ content: 'DECLARACIÓN DE ORIGEN DE FONDOS', styles: { fillColor: [200, 200, 200], halign: 'center' }, colSpan: 16 }],
             [{ content: 'Declaro bajo la gravedad de juramento que los recursos que entrego no provienen de ninguna actividad ilícita de las contempladas en el Código Penal Colombiano o en cualquier norma que lo modifique o adicione. \nLos recursos que entrego provienen de las siguientes fuentes:\n\nSalarios y remuneraciones:' + getChecked("salaryAndRemunerations") + ' Honorarios:' + getChecked("fee") + ' Pensión:' + getChecked("pension") + ' Actividad Económica:' + getChecked("economicActivityFundOrigins") + ' Otros:' + getChecked("otherFundOrigins") + ' ¿Cuales? ' + $("#whichFundOrigins").val() + '\n\nSe hace constar que la presente autorización no constituye por parte de FONSABANA acto contrario a la ley y que, en su correcta utilización, de acuerdo con lo previsto en este documento, no es en ningún caso violatoria de mis derechos constitucionales o legales o de los cuales quiera de los autorizados u ordenantes registrados. ', colSpan: 16 }],
-            [{ content: 'Al presentar esta solicitud de ingreso al Fondo de Empleados, declaro que acepto y me someto a los Estatutos y Reglamentos del Fondo de Empleados de La Sabana\n\nPor ello firmo a los ' + $("#firmDay").val() + ' días del mes de ' + $("#firmMonth").val() + ' del año ' + $("#firmYear").val() + ' .', colSpan: 16 }],
+            [{ content: 'Al presentar esta solicitud de ingreso al Fondo de Empleados, declaro que acepto y me someto a los Estatutos y Reglamentos del Fondo de Empleados de La Sabana\n\nPor ello firmo a los ' + $("#firmDay").val() + ' días del mes de ' + $("#firmMonth").val() + ' del año ' + $("#firmYear").val() + ' .\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\tFirma y No. C.C.\t\t\t\t\t\t\t\t\tHuella Indice derecho', colSpan: 16 }],
             // ...
         ],
-    })
+    });
+
+    var firmaImg = new Image();
+    firmaImg.src = signatureImg;
+    doc.addImage(firmaImg, 'png', 40, 155, 50, 15);
+
+    var firmaImg = new Image();
+    firmaImg.src = footprintImg;
+    doc.addImage(firmaImg, 'png', 130, 145, 30, 30);
 
     function getSelected(name) {
         var radios = $('input[name=' + name + ']');
@@ -103,8 +157,8 @@ function demoFromHTML() {
         if ($('#' + id).is(":checked")) {
             return " X. ";
         }
-        return ". ";
+        return " . ";
     }
 
-    doc.save('table.pdf')
+    doc.save('table.pdf');
 }

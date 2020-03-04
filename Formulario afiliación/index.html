@@ -1087,11 +1087,36 @@
                                         <p>Por ello firmo a los <input id="firmDay" type="text"> días del mes de <input
                                                 id="firmMonth" type="text">
                                             del año <input id="firmYear" type="text">.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
                                         <div class="form-row">
-                                            <div class="col text-center"><button class="btn btn-secondary text-center"
-                                                    type="button">Subir firma con número de cédula</button></div>
-                                            <div class="col text-center"><button class="btn btn-secondary"
-                                                    type="button">Subir huella Indice Derecho</button></div>
+                                            <div class="col text-center"><input id="signatureFile" type="file"
+                                                    hidden="hidden"><button id="signatureButton"
+                                                    class="btn btn-secondary text-center" type="button">Subir firma con
+                                                    número de cédula</button><span id="signatureText"
+                                                    class="file-name">Sin archivo</span>
+                                            </div>
+                                            <div class="col text-center"><input id="footprintFile" type="file"
+                                                    hidden="hidden"><button id="footprintButton"
+                                                    class="btn btn-secondary" type="button">Subir huella Indice
+                                                    Derecho</button><span id="footprintText" class="file-name">Sin
+                                                    archivo</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <br><br>
+                                        <div class="form-row">
+                                            <div class="col"></div>
+                                            <div class="col text-center"><button id="print" class="btn btn-primary"
+                                                    type="button" style="width: 90%;">Descargar</button></div>
+                                            <div class="col text-center"><button class="btn btn-primary" type="button"
+                                                    style="width: 90%;">Enviar
+                                                    por correo electrónico</button></div>
+                                            <div class="col"></div>
                                         </div>
                                     </td>
                                 </tr>
@@ -1099,14 +1124,6 @@
                         </table>
                     </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="col"></div>
-                <div class="col text-center"><button id="print" class="btn btn-primary" type="button"
-                        style="width: 90%;">Descargar</button></div>
-                <div class="col text-center"><button class="btn btn-primary" type="button" style="width: 90%;">Enviar
-                        por correo electrónico</button></div>
-                <div class="col"></div>
             </div>
         </form>
     </div>
