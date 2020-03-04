@@ -45,9 +45,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Día<input id="formDay" class="form-control" type="number"></td>
-                                    <td>Mes<input id="formMonth" class="form-control" type="text"></td>
-                                    <td>Año<input id="formYear" class="form-control" type="number"></td>
+                                    <td>&nbsp;<input id="formDate" class="form-control" type="date"></td>
                                 </tr>
                                 <tr></tr>
                             </tbody>
@@ -154,14 +152,12 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Fecha de nacimiento</td>
-                                    <td>Día<input id="bornDay" class="form-control" type="number"></td>
-                                    <td>Mes<input id="bornMonth" class="form-control" type="text"></td>
-                                    <td>Año<input id="bornYear" class="form-control" type="number"></td>
+                                    <td colspan="6">Fecha de nacimiento<input id="bornDate" class="form-control"
+                                            type="date"></td>
                                     <td colspan="7">Municipio<input id="bornTown" class="form-control" type="text"></td>
                                     <td colspan="6">Departamento<input id="bornDepartment" class="form-control"
                                             type="text"></td>
-                                    <td colspan="4">Sexo
+                                    <td colspan="3">Sexo
                                         <div class="form-row">
                                             <div class="col">
                                                 <p>Femenino</p>
@@ -257,10 +253,8 @@
                                     <td colspan="6">Cargo<input id="position" class="form-control" type="text"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3">Fecha de ingreso</td>
-                                    <td colspan="1">Día<input id="entryDay" class="form-control" type="number"></td>
-                                    <td colspan="1">Mes<input id="entryMonth" class="form-control" type="text"></td>
-                                    <td colspan="1">Año<input id="entryYear" class="form-control" type="number"></td>
+                                    <td colspan="6">Fecha de ingreso<input id="entryDate" class="form-control"
+                                            type="date"></td>
                                     <td colspan="8">Tipo de contrato<input id="contractType" class="form-control"
                                             type="text"></td>
                                     <td colspan="8">Correo electrónico laboral<input id="laboralEmail"
@@ -314,10 +308,10 @@
                                     <td colspan="8">Sector económico
                                         <div class="form-row">
                                             <div class="col">
-                                                <p>Económico</p>
+                                                <p>Público</p>
                                             </div>
-                                            <div class="col"><input value="Económico" type="radio"
-                                                    name="economicSector"></div>
+                                            <div class="col"><input value="Público" type="radio" name="economicSector">
+                                            </div>
                                             <div class="col">
                                                 <p>Privado</p>
                                             </div>
@@ -452,7 +446,7 @@
                                             class="form-control" type="text"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="7">Tipo de documento
+                                    <td colspan="7">Tipo documento
                                         <div class="form-row">
                                             <div class="col">
                                                 <p>C.C</p>
@@ -616,8 +610,8 @@
                                     </td>
                                     <td colspan="6">Valor comercial<input id="vehicleCost" class="form-control"
                                             type="text"></td>
-                                    <td colspan="5">Saldo hipoteca<input id="vehicleMortgageBalance"
-                                            class="form-control" type="text"></td>
+                                    <td colspan="5">Saldo prenda<input id="vehicleMortgageBalance" class="form-control"
+                                            type="text"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="11">Otras propiedades<input id="otherProperties" class="form-control"
@@ -919,8 +913,11 @@
                                 <tr>
                                     <td colspan="11">Fotocopia de la cédula de ciudadanía del asociado por ambas
                                         caras<br></td>
-                                    <td colspan="11"><button class="btn btn-secondary" type="button">Subir
-                                            cédula</button></td>
+                                    <td colspan="11"><input id="identificationCardFile" type="file"
+                                            hidden="hidden"><button id="identificationCardButton"
+                                            class=" btn btn-secondary" type="button">Subir
+                                            cédula</button><span id="identificationCardText" class="file-name">Sin
+                                            archivo</span></td>
                                 </tr>
                             </tbody>
                         </table>

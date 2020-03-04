@@ -1,4 +1,4 @@
-var signatureImg, footprintImg;
+var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
     demoFromHTML(signatureImg, footprintImg);
@@ -9,7 +9,7 @@ const signatureButton = $("#signatureButton");
 const signatureText = $("#signatureText");
 
 signatureButton.click(function () {
-    $("#signatureFile").click();
+    signatureFile.click();
 });
 
 signatureFile.change(function () {
@@ -34,7 +34,7 @@ const footprintButton = $("#footprintButton");
 const footprintText = $("#footprintText");
 
 footprintButton.click(function () {
-    $("#footprintFile").click();
+    footprintFile.click();
 });
 
 footprintFile.change(function () {
@@ -54,10 +54,38 @@ footprintFile.change(function () {
     }
 });
 
+const identificationCardFile = $("#identificationCardFile");
+const identificationCardButton = $("#identificationCardButton");
+const identificationCardText = $("#identificationCardText");
+
+identificationCardButton.click(function () {
+    identificationCardFile.click();
+});
+
+identificationCardFile.change(function () {
+    if (identificationCardFile.val()) {
+        identificationCardText.html(identificationCardFile.val().match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1]);
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                identificationCardDoc = e.target.result;
+            }
+
+            reader.readAsDataURL(this.files[0]);
+        }
+    } else {
+        identificationCardText.html("Sin archivo");
+    }
+});
+
 function demoFromHTML(signatureImg, footprintImg) {
     var doc = new jsPDF();
     var expeditionDate = $("#expeditonDate").val().split('-');
     var partnerBornDate = $("#partnerBornDate").val().split('-');
+    var formDate = $("#formDate").val().split('-');
+    var bornDate = $("#bornDate").val().split('-');
+    var entryDate = $("#entryDate").val().split('-');
 
     var logoImg = new Image();
     logoImg.src = 'assets/img/logo-fonsabana.png';
@@ -66,22 +94,22 @@ function demoFromHTML(signatureImg, footprintImg) {
     doc.autoTable({
         theme: 'plain',
         styles: { lineColor: [142, 142, 142], lineWidth: 0.1, fontSize: 8 },
-        head: [[{ content: '', colSpan: 6, styles: { minCellHeight: 15 } }, { content: 'Formulario de afiliación Asociado', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Fecha de elaboración: 11 de septiembre de 2019. Versión 7', colSpan: 4 }]],
+        head: [[{ content: '', colSpan: 6, styles: { minCellHeight: 15 } }, { content: 'Formulario de afiliación Asociado', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Fecha de elaboración: 11 de septiembre de 2019. Versión 7', colSpan: 4, styles: { valign: 'middle' } }]],
         body: [
             [{ content: 'Fecha de diligenciamiento', colSpan: 6, styles: { halign: 'center' } }, { content: 'Referido por', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Radicado', colSpan: 4, styles: { valign: 'middle', halign: 'center' } }],
-            [{ content: 'Día:\n' + $("#formDay").val(), colSpan: 2 }, { content: 'Mes:\n' + $("#formMonth").val(), colSpan: 2 }, { content: 'Año:\n' + $("#formYear").val(), colSpan: 2 }, { content: $("#refered").val(), colSpan: 6 }, { content: $("#filed").val(), colSpan: 4 }],
+            [{ content: formDate[2] + "/" + formDate[1] + "/" + formDate[0], colSpan: 6, styles: { halign: 'center' } }, { content: $("#refered").val(), colSpan: 6, styles: { halign: 'center' } }, { content: $("#filed").val(), colSpan: 4, styles: { halign: 'center' } }],
             [{ content: 'El formulario se diligencia con motivo de: ' + getSelected("reason"), styles: { fillColor: [242, 242, 242] }, colSpan: 16 }],
             [{ content: 'DATOS PERSONALES', styles: { fillColor: [200, 200, 200], halign: 'center' }, colSpan: 16 }],
             [{ content: 'Nombres completos: ' + $("#names").val(), colSpan: 6 }, { content: 'Primer apellido: ' + $("#firstSurname").val(), colSpan: 6 }, { content: 'Segundo apellido: ' + $("#secondSurname").val(), colSpan: 4 }],
             [{ content: 'Tipo de documento: ' + getSelected("documentType"), colSpan: 4, rowSpan: 2 }, { content: 'Numero: ' + $("#documentNumber").val(), colSpan: 2, rowSpan: 2 }, { content: 'Fecha de expedición: ' + expeditionDate[2] + "/" + expeditionDate[1] + "/" + expeditionDate[0], colSpan: 2, rowSpan: 2 }, { content: 'Lugar de expedición: ' + $("#expeditionPlace").val(), colSpan: 2, rowSpan: 2 }, { content: 'Nacionalidad: ' + $("#nationality").val(), colSpan: 2, rowSpan: 2 }, { content: 'Estado civil: ' + $("#civilStatus").val(), colSpan: 2, rowSpan: 2 }, { content: 'RH: ' + $("#rh").val(), colSpan: 2 }],
             [{ content: '# Hijos: ' + $("#sonsNumber").val(), colSpan: 2 }],
-            [{ content: 'Fecha de nacimiento', colSpan: 2 }, { content: 'Día: ' + $("#bornDay").val(), colSpan: 2 }, { content: 'Mes: ' + $("#bornMonth").val(), colSpan: 2 }, { content: 'Año: ' + $("#bornYear").val(), colSpan: 2 }, { content: 'Municipio: ' + $("#bornTown").val(), colSpan: 4 }, { content: 'Departamento: ' + $("#bornDepartment").val(), colSpan: 2 }, { content: 'Sexo:\n' + getSelected("sex"), colSpan: 2 }],
+            [{ content: 'Fecha de nacimiento:\n ' + bornDate[2] + "/" + bornDate[1] + "/" + bornDate[0], colSpan: 5 }, { content: 'Municipio: ' + $("#bornTown").val(), colSpan: 4 }, { content: 'Departamento: ' + $("#bornDepartment").val(), colSpan: 4 }, { content: 'Sexo:\n' + getSelected("sex"), colSpan: 3 }],
             [{ content: 'Nivel de escolaridad: ' + getSelected("scholarship"), colSpan: 6 }, { content: 'Profesión: ' + $("#profession").val(), colSpan: 6 }, { content: 'Estrato: ' + $("#stratum").val(), colSpan: 4 }],
             [{ content: 'Residencia: ' + $("#home").val(), colSpan: 6 }, { content: 'Municipio: ' + $("#homeTown").val(), colSpan: 6 }, { content: 'Departamento: ' + $("#homeDepartment").val(), colSpan: 4 }],
             [{ content: 'Teléfono residencia: ' + $("#homeTel").val(), colSpan: 4 }, { content: 'Teléfono celular: ' + $("#homeCel").val(), colSpan: 4 }, { content: 'Correo electrónico personal: ' + $("#personalEmail").val(), colSpan: 8 }],
             [{ content: 'INFORMACIÓN LABORAL', styles: { fillColor: [200, 200, 200], halign: 'center' }, colSpan: 16 }],
             [{ content: 'Empresa donde laboral: ' + $("#company").val(), colSpan: 6 }, { content: 'Dependencia: ' + $("#dependence").val(), colSpan: 6 }, { content: 'Cargo: ' + $("#position").val(), colSpan: 4 }],
-            [{ content: 'Fecha de ingreso: ', colSpan: 2 }, { content: 'Día: ' + $("#entryDay").val(), colSpan: 2 }, { content: 'Mes: ' + $("#entryMonth").val(), colSpan: 2 }, { content: 'Año: ' + $("#entryYear").val(), colSpan: 2 }, { content: 'Tipo de contrato: ' + $("#contractType").val(), colSpan: 2 }, { content: 'Correo electrónico laboral: ' + $("#laboralEmail").val(), colSpan: 6 }],
+            [{ content: 'Fecha de ingreso', colSpan: 2 }, { content: 'Día: ' + entryDate[2], colSpan: 2 }, { content: 'Mes: ' + entryDate[1], colSpan: 2 }, { content: 'Año: ' + entryDate[0], colSpan: 2 }, { content: 'Tipo de contrato: ' + $("#contractType").val(), colSpan: 2 }, { content: 'Correo electrónico laboral: ' + $("#laboralEmail").val(), colSpan: 6 }],
             [{ content: 'Dirección: ' + $("#laborDirection").val(), colSpan: 6 }, { content: 'Teléfono: ' + $("#laborTel").val(), colSpan: 2 }, { content: 'Ext: ' + $("#laborExt").val(), colSpan: 2 }, { content: 'Municipio: ' + $("#laborTown").val(), colSpan: 3 }, { content: 'Departamento: ' + $("#laborDepartment").val(), colSpan: 3 }],
             [{ content: 'Ocupación: ' + getSelected("occupation"), colSpan: 8 }, { content: 'Sector económico: ' + getSelected("economicSector"), colSpan: 8 }],
             [{ content: 'Actividad económica: ' + getSelected("economicActivity"), colSpan: 16 }],
@@ -142,7 +170,13 @@ function demoFromHTML(signatureImg, footprintImg) {
 
     var firmaImg = new Image();
     firmaImg.src = footprintImg;
-    doc.addImage(firmaImg, 'png', 130, 145, 30, 30);
+    doc.addImage(firmaImg, 'png', 130, 140, 30, 30);
+
+    doc.setPage(2);
+    doc.addImage(logoImg, 'png', 20, 14.2, 50, 14);
+
+    doc.setPage(3);
+    doc.addImage(logoImg, 'png', 20, 14.2, 50, 14);
 
     function getSelected(name) {
         var radios = $('input[name=' + name + ']');
