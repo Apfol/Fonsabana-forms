@@ -196,3 +196,35 @@ function demoFromHTML(signatureImg, footprintImg) {
 
     doc.save('table.pdf');
 }
+
+// $("#sendEmailButton").click(function () {
+//     Email.send({
+//         SecureToken: "6874c43b-3056-4bc8-97be-7247d965a022",
+//         To: 'andresfabi90@gmail.com',
+//         From: "chang.andres@hotmail.com",
+//         Subject: "This is the subject",
+//         Body: "And this is the body"
+//     }).then(
+//         message => alert(message)
+//     );
+// });
+
+var myform = $("form#form");
+$("#sendEmailButton").click(function (event) {
+    event.preventDefault();
+
+    // Change to your service ID, or keep using the default service
+    var service_id = "default_service";
+    var template_id = "template_ZcOvT9xJ";
+
+    myform.find("#sendEmailButton").text("Enviando...");
+    emailjs.sendForm(service_id, template_id, myform[0])
+        .then(function () {
+            alert("¡Correo enviado!");
+            myform.find("#sendEmailButton").text("Enviar por correo electrónico");
+        }, function (err) {
+            alert("¡Fallo al enviar!\r\n Respuesta:\n " + JSON.stringify(err));
+            myform.find("#sendEmailButton").text("Enviar por correo electrónico");
+        });
+    return false;
+});
