@@ -1,7 +1,8 @@
 var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
-    demoFromHTML(signatureImg, footprintImg);
+    var doc = demoFromHTML(signatureImg, footprintImg);
+    doc.save('table.pdf');
 };
 
 const signatureFile = $("#signatureFile");
@@ -193,38 +194,45 @@ function demoFromHTML(signatureImg, footprintImg) {
         }
         return " . ";
     }
-
-    doc.save('table.pdf');
+    return doc;
 }
 
-// $("#sendEmailButton").click(function () {
-//     Email.send({
-//         SecureToken: "6874c43b-3056-4bc8-97be-7247d965a022",
-//         To: 'andresfabi90@gmail.com',
-//         From: "chang.andres@hotmail.com",
-//         Subject: "This is the subject",
-//         Body: "And this is the body"
-//     }).then(
-//         message => alert(message)
-//     );
-// });
+$("#sendEmailButton").click(function () {
+    var doc = demoFromHTML(signatureImg, footprintImg);
+    var files = document.getElementById('identificationCardFile').files;
+    $("#sendEmailButton").text("Enviando...");
+    getBase64(files[0]).then((data) => {
+        Email.send({
+            SecureToken: "785ccc29-2210-4806-bc5e-3576e0d769e9",
+            To: ['chang.andres@hotmail.com', $("#personalEmail").val(), $("#laboralEmail").val()],
+            From: "andresfabi90@gmail.com",
+            Subject: "Nuevo Formulario Asociado - " + $("#names").val() + " " + $("#firstSurname").val(),
+            Body: $("#names").val() + " " + $("#firstSurname").val() + " te acaba de enviar su Formulario Asociado Digilenciado.",
+            Attachments: [
+                {
+                    name: "Formulario.pdf",
+                    data: doc.output('datauri')
+                },
+                {
+                    name: identificationCardFile.val().match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1],
+                    data: data
+                }]
+        }).then(
+            message => {
+                $("#sendEmailButton").text("Enviar por correo electrónico");
+                alert(message)
+            }
 
-var myform = $("form#form");
-$("#sendEmailButton").click(function (event) {
-    event.preventDefault();
+        );
+    });
 
-    // Change to your service ID, or keep using the default service
-    var service_id = "default_service";
-    var template_id = "template_ZcOvT9xJ";
-
-    myform.find("#sendEmailButton").text("Enviando...");
-    emailjs.sendForm(service_id, template_id, myform[0])
-        .then(function () {
-            alert("¡Correo enviado!");
-            myform.find("#sendEmailButton").text("Enviar por correo electrónico");
-        }, function (err) {
-            alert("¡Fallo al enviar!\r\n Respuesta:\n " + JSON.stringify(err));
-            myform.find("#sendEmailButton").text("Enviar por correo electrónico");
-        });
-    return false;
 });
+
+function getBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
