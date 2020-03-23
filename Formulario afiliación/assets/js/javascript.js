@@ -3,7 +3,7 @@ var signatureImg, footprintImg, identificationCardDoc;
 document.getElementById('print').onclick = function () {
     try {
         var doc = demoFromHTML(signatureImg, footprintImg);
-        doc.save('table.pdf');
+        doc.save('Formulario Asociado.pdf');
     } catch (err) {
         alert("Error al generar el documento, verifica que subiste toda la información requerida");
     }
@@ -215,7 +215,7 @@ $("#sendEmailButton").click(function () {
                 Body: $("#names").val() + " " + $("#firstSurname").val() + " te acaba de enviar su Formulario Asociado Digilenciado.",
                 Attachments: [
                     {
-                        name: "Formulario.pdf",
+                        name: "Formulario Asociado.pdf",
                         data: doc.output('datauri')
                     },
                     {

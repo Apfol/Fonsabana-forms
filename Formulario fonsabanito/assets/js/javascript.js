@@ -1,8 +1,12 @@
 var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
-    var doc = demoFromHTML(signatureImg, footprintImg);
-    doc.save('table.pdf');
+    try {
+        var doc = demoFromHTML(signatureImg, footprintImg);
+        doc.save('Formulario Fonsabanito.pdf');
+    } catch (err) {
+        alert("Error al generar el documento, verifica que subiste toda la información requerida");
+    }
 };
 
 const signatureFile = $("#signatureFile");
@@ -125,27 +129,30 @@ function demoFromHTML(signatureImg, footprintImg) {
 }
 
 $("#sendEmailButton").click(function () {
-    var doc = demoFromHTML(signatureImg, footprintImg);
-    $("#sendEmailButton").text("Enviando...");
-    Email.send({
-        SecureToken: "785ccc29-2210-4806-bc5e-3576e0d769e9",
-        To: ['chang.andres@hotmail.com'],
-        From: "andresfabi90@gmail.com",
-        Subject: "Nuevo Formulario Asociado - " + $("#names").val() + " " + $("#firstSurname").val(),
-        Body: $("#names").val() + " " + $("#firstSurname").val() + " te acaba de enviar su Formulario Asociado Digilenciado.",
-        Attachments: [
-            {
-                name: "Formulario.pdf",
-                data: doc.output('datauri')
-            }]
-    }).then(
-        message => {
-            $("#sendEmailButton").text("Enviar por correo electrónico");
-            alert(message)
-        }
+    try {
+        var doc = demoFromHTML(signatureImg, footprintImg);
+        $("#sendEmailButton").text("Enviando...");
+        Email.send({
+            SecureToken: "785ccc29-2210-4806-bc5e-3576e0d769e9",
+            To: ['chang.andres@hotmail.com'],
+            From: "andresfabi90@gmail.com",
+            Subject: "Nuevo Formulario Asociado - " + $("#names").val() + " " + $("#firstSurname").val(),
+            Body: $("#names").val() + " " + $("#firstSurname").val() + " te acaba de enviar su Formulario Asociado Digilenciado.",
+            Attachments: [
+                {
+                    name: "Formulario Fonsabanito.pdf",
+                    data: doc.output('datauri')
+                }]
+        }).then(
+            message => {
+                $("#sendEmailButton").text("Enviar por correo electrónico");
+                alert(message)
+            }
 
-    );
-
+        );
+    } catch (err) {
+        alert("Error al generar el documento, verifica que subiste toda la información requerida");
+    }
 });
 
 function getBase64(file) {
