@@ -1,8 +1,12 @@
 var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
-    var doc = demoFromHTML(signatureImg, footprintImg);
-    doc.save('table.pdf');
+    try {
+        var doc = demoFromHTML(signatureImg, footprintImg);
+        doc.save('table.pdf');
+    } catch (err) {
+        alert("Error al generar el documento, verifica que subiste toda la información requerida");
+    }
 };
 
 const signatureFile = $("#signatureFile");
@@ -198,34 +202,36 @@ function demoFromHTML(signatureImg, footprintImg) {
 }
 
 $("#sendEmailButton").click(function () {
-    var doc = demoFromHTML(signatureImg, footprintImg);
-    var files = document.getElementById('identificationCardFile').files;
-    $("#sendEmailButton").text("Enviando...");
-    getBase64(files[0]).then((data) => {
-        Email.send({
-            SecureToken: "785ccc29-2210-4806-bc5e-3576e0d769e9",
-            To: ['chang.andres@hotmail.com', $("#personalEmail").val(), $("#laboralEmail").val()],
-            From: "andresfabi90@gmail.com",
-            Subject: "Nuevo Formulario Asociado - " + $("#names").val() + " " + $("#firstSurname").val(),
-            Body: $("#names").val() + " " + $("#firstSurname").val() + " te acaba de enviar su Formulario Asociado Digilenciado.",
-            Attachments: [
-                {
-                    name: "Formulario.pdf",
-                    data: doc.output('datauri')
-                },
-                {
-                    name: identificationCardFile.val().match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1],
-                    data: data
-                }]
-        }).then(
-            message => {
-                $("#sendEmailButton").text("Enviar por correo electrónico");
-                alert(message)
-            }
-
-        );
-    });
-
+    try {
+        var doc = demoFromHTML(signatureImg, footprintImg);
+        var files = document.getElementById('identificationCardFile').files;
+        $("#sendEmailButton").text("Enviando...");
+        getBase64(files[0]).then((data) => {
+            Email.send({
+                SecureToken: "785ccc29-2210-4806-bc5e-3576e0d769e9",
+                To: ['chang.andres@hotmail.com', $("#personalEmailToSend").val(), $("#laboralEmailToSend").val()],
+                From: "andresfabi90@gmail.com",
+                Subject: "Nuevo Formulario Asociado - " + $("#names").val() + " " + $("#firstSurname").val(),
+                Body: $("#names").val() + " " + $("#firstSurname").val() + " te acaba de enviar su Formulario Asociado Digilenciado.",
+                Attachments: [
+                    {
+                        name: "Formulario.pdf",
+                        data: doc.output('datauri')
+                    },
+                    {
+                        name: identificationCardFile.val().match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1],
+                        data: data
+                    }]
+            }).then(
+                message => {
+                    $("#sendEmailButton").text("Enviar formulario");
+                    alert(message)
+                }
+            );
+        });
+    } catch (err) {
+        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+    }
 });
 
 function getBase64(file) {
