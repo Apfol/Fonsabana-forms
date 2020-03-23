@@ -5,7 +5,7 @@ document.getElementById('print').onclick = function () {
         var doc = demoFromHTML(signatureImg, footprintImg);
         doc.save('Formulario Asociado.pdf');
     } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida");
+        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
     }
 };
 

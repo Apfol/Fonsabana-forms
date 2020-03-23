@@ -5,7 +5,7 @@ document.getElementById('print').onclick = function () {
         var doc = demoFromHTML(signatureImg, footprintImg);
         doc.save('Formulario Fonsabanito.pdf');
     } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida");
+        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
     }
 };
 
@@ -151,7 +151,7 @@ $("#sendEmailButton").click(function () {
 
         );
     } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida");
+        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
     }
 });
 
