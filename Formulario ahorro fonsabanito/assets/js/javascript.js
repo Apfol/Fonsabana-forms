@@ -3,7 +3,7 @@ var signatureImg, footprintImg, identificationCardDoc;
 document.getElementById('print').onclick = function () {
     try {
         var doc = demoFromHTML(signatureImg, footprintImg);
-        doc.save('table.pdf');
+        doc.save('Formulario Fonsabanito.pdf');
     } catch (err) {
         alert("Error al generar el documento, verifica que subiste toda la información requerida.");
     }
@@ -60,14 +60,57 @@ footprintFile.change(function () {
 });
 
 function demoFromHTML(signatureImg, footprintImg) {
-    var doc = new jsPDF({
-        format: 'a4',
+    var doc = new jsPDF();
+
+    var logoImg = new Image();
+    logoImg.src = 'assets/img/logo-fonsabana.png';
+    doc.addImage(logoImg, 'png', 16, 16, 50, 16);
+
+    var fonsabanitoImg = new Image();
+    fonsabanitoImg = 'assets/img/fonsabanito.jpg';
+    doc.addImage(fonsabanitoImg, 'jpg', 167, 15.5, 30, 18);
+
+    doc.autoTable({
+        theme: 'plain',
+        styles: { lineColor: [142, 142, 142], lineWidth: 0.1, fontSize: 8 },
+        head: [[{ content: '', colSpan: 4, styles: { minCellHeight: 20 } }, { content: 'FONDO DE EMPLEADOS DE LA SABANA "FONSABANA" \n\n FORMULARIO DE AFILIACIÓN FONSABANITO', colSpan: 3, styles: { valign: 'middle', halign: 'center' } }, { content: 'VERSIÓN 4.\n\n ABRIL 09 DE 2018', colSpan: 2, styles: { valign: 'middle', halign: 'center' } }, { content: '', colSpan: 3, styles: { minCellHeight: 15 } }]],
+        body: [
+            [{ content: 'Fecha de solicitud: ' + $("#formDate").val(), colSpan: 3 }, { content: 'Mi nombre completo y apellidos de Fonsabanito son:\n' + $("#namesAndSurnames").val(), colSpan: 9 }],
+            [{ content: 'Tipo de documento: ' + getSelected("documentType"), colSpan: 3 }, { content: 'Mi número es: ' + $("#documentNumber").val(), colSpan: 9 }],
+            [{ content: 'Sexo: ' + getSelected("sex"), colSpan: 4 }, { content: 'Fecha de nacimiento: ' + $("#bornDate").val(), colSpan: 4 }, { content: 'Lugar de nacimiento: ' + $("#bornTown").val(), colSpan: 4 }],
+            [{ content: 'Mi dirección es: ' + $("#home").val(), colSpan: 6 }, { content: 'Barrio: ' + $("#homeTown").val(), colSpan: 6 }],
+            [{ content: 'Ciudad: ' + $("#city").val(), colSpan: 6 }, { content: 'Departamento: ' + $("#department").val(), colSpan: 6 }],
+            [{ content: 'Mi teléfono es: ' + $("#phone").val(), colSpan: 6 }, { content: 'Mi correo electrónico es: ' + $("#email").val(), colSpan: 6 }],
+            [{ content: '', styles: { fillColor: [200, 200, 200], halign: 'center' }, colSpan: 16 }],
+            [{ content: 'El nombre de mi papá es: ' + $("#fatherName").val(), colSpan: 6 }, { content: 'Su cédula es: ' + $("#fatherDocumentNumber").val(), colSpan: 6 }],
+            [{ content: 'Empresa donde trabaja mi papá: ' + $("#fatherBusiness").val(), colSpan: 6 }, { content: 'Su teléfono de oficina es: ' + $("#fatherPhone").val(), colSpan: 6 }],
+            [{ content: 'El nombre de mi mamá es: ' + $("#motherName").val(), colSpan: 6 }, { content: 'Su cédula es: ' + $("#motherDocumentNumber").val(), colSpan: 6 }],
+            [{ content: 'Empresa donde trabaja mi mamá: ' + $("#motherBusiness").val(), colSpan: 6 }, { content: 'Su teléfono de oficina es: ' + $("#motherPhone").val(), colSpan: 6 }],
+            [{ content: '', styles: { fillColor: [200, 200, 200], halign: 'center' }, colSpan: 16 }],
+            [{ content: 'Mi colegio es: ' + $("#school").val(), colSpan: 6 }, { content: 'Mi curso es: ' + $("#course").val(), colSpan: 6 }],
+            [{ content: 'Los deportes que más me gustan son: ' + $("#sport1").val() + ", " + $("#sport2").val() + ", " + $("#sport3").val() + ".", colSpan: 12 }],
+            [{ content: 'Mis pasatiempos favoritos son: ' + $("#hobby1").val() + ", " + $("#hobby2").val() + ", " + $("#hobby3").val() + ".", colSpan: 12 }],
+            [{ content: 'Asociado a Fonsabana: ' + $("#fonsabanaAssociate").val(), colSpan: 6 }, { content: 'Cédula: ' + $("#fonsabanaDocumentNumber").val(), colSpan: 6 }],
+            [{ content: 'Empresa donde trabaja: ' + $("#fonsabanaBusiness").val(), colSpan: 6 }, { content: 'Parentesco: ' + $("#fonsabanaRelationship").val(), colSpan: 6 }],
+            [{ content: '\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\tFirma\t\t\t\t\t\t\t\t\t\t\t\t\tHuella', colSpan: 12 }],
+        ],
     });
+
+    var firmaImg = new Image();
+    firmaImg.src = signatureImg;
+    doc.addImage(firmaImg, 'png', 36, 178, 50, 15);
+
+    var firmaImg = new Image();
+    firmaImg.src = footprintImg;
+    doc.addImage(firmaImg, 'png', 133, 163, 30, 30);
+
+    doc.addPage();
+    doc.setPage(2);
 
     var logoImg = new Image();
     logoImg.src = 'assets/img/logo-fonsabana.png';
     doc.addImage(logoImg, 'png', 20, 14, 50, 20);
-    var formDate = $("#formDate").val().split('-');
+    var formDate = $("#formDateSaving").val().split('-');
 
     doc.autoTable({
         theme: 'plain',
@@ -109,7 +152,7 @@ function demoFromHTML(signatureImg, footprintImg) {
     doc.setFontType("bold");
     doc.text(20, 180, "DECLARACIÓN VOLUNTARIA DE ORIGEN DE FONDOS");
     doc.setFontType("normal");
-    doc.text(20, 185, "Declaro que: el origen de los fondos que manejaré en la cuenta solicitada provienen del giro ordinario de actividades lícitas, y mi ocupación económica no es ni se relaciona con la actividad profesional de compra o venta de divisas. Igualmente declaro que el origen de mis recursos proceden del desarrollo de la(s) siguiente (s) actividad (es), ____________________________________________________ ______________________________________________________________________________________ _ ",
+    doc.text(20, 185, "Declaro que: el origen de los fondos que manejaré en la cuenta solicitada provienen del giro ordinario de actividades lícitas, y mi ocupación económica no es ni se relaciona con la actividad profesional de compra o venta de divisas. Igualmente declaro que el origen de mis recursos proceden del desarrollo de la(s) siguiente (s) actividad (es), " + $("#activities").val() + ".",
         { maxWidth: 170, align: "justify" });
     doc.text(20, 210, "Me obligo a no prestar mi cuenta y a no permitir que terceros efectúen depósitos o transferencias a mi cuenta y a no hacer pagos o transferencias desde mi cuenta a desconocidos. También declaro que la información que suministro es veraz, completa, la he proporcionado sin reticencia y si el Fondo lo solicita me obligo a entregar la información, documentos y explicaciones pertinentes. Cualquier inexactitud al respecto o al verme sindicado o involucrado por cualquier autoridad, en investigaciones relacionadas con el lavado de activos o enriquecimiento ilícito, faculta al Fondo para dar por terminado sin explicaciones el presente contrato.",
         { maxWidth: 170, align: "justify" });
@@ -142,18 +185,18 @@ $("#sendEmailButton").click(function () {
         $("#sendEmailButton").text("Enviando...");
         Email.send({
             SecureToken: "785ccc29-2210-4806-bc5e-3576e0d769e9",
-            To: ['chang.andres@hotmail.com', $("#personalEmailToSend").val(), $("#laboralEmailToSend").val()],
+            To: ['chang.andres@hotmail.com'],
             From: "andresfabi90@gmail.com",
             Subject: "Nuevo Formulario Asociado - " + $("#names").val() + " " + $("#firstSurname").val(),
             Body: $("#names").val() + " " + $("#firstSurname").val() + " te acaba de enviar su Formulario Asociado Digilenciado.",
             Attachments: [
                 {
-                    name: "Formulario.pdf",
+                    name: "Formulario Fonsabanito.pdf",
                     data: doc.output('datauri')
                 }]
         }).then(
             message => {
-                $("#sendEmailButton").text("Enviar formulario");
+                $("#sendEmailButton").text("Enviar por correo electrónico");
                 alert(message)
             }
 
@@ -161,7 +204,6 @@ $("#sendEmailButton").click(function () {
     } catch (err) {
         alert("Error al generar el documento, verifica que subiste toda la información requerida.");
     }
-
 });
 
 function getBase64(file) {

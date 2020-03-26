@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Formulario Disminución - Aumento de Aportes - Fonsabana</title>
+    <title>Formulario Fonsabanito - Fonsabana</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -13,10 +13,214 @@
     <script type="text/javascript" src="assets/js/mandrill.min.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js">
     </script>
+
 </head>
 
 <body>
     <div class="table-responsive" style="padding: 1%;">
+        <div class="form-row">
+            <div class="col-md-3"><img class="img-fluid img-fluid" src="assets/img/logo-fonsabana.png"
+                    style="padding: 0;padding-right: 0;padding-left: 20%;"></div>
+            <div class="col-md-6">
+                <h2 class="text-center" style="padding-top: 40px;">Formulario de afiliación Fonsabanito</h2>
+            </div>
+            <div class="col-md-3">
+                <div class="form-row">
+                    <div class="col">
+                        <p class="text-center"><br>Versión 4</p>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <p class="text-center">Abril 09 de 2018</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-3">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="3">FECHA DE SOLICITUD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>&nbsp;<input id="formDate" class="form-control" type="date"></td>
+                            </tr>
+                            <tr></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">MI NOMBRE COMPLETO Y APELLIDOS FONSABANITO SON:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>&nbsp;<input id="namesAndSurnames" class="form-control" type="text"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div id="personalData" class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Tipo de documento
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <p>R.C</p>
+                                        </div>
+                                        <div class="col"><input type="radio" value="R.C" name="documentType"></div>
+                                        <div class="col">
+                                            <p>T.I</p>
+                                        </div>
+                                        <div class="col"><input type="radio" value="T.I" name="documentType"></div>
+                                        <div class="col">
+                                            <p>C.C</p>
+                                        </div>
+                                        <div class="col"><input type="radio" value="C.C" name="documentType"></div>
+                                        <div class="col">
+                                            <p>C.E</p>
+                                        </div>
+                                        <div class="col"><input type="radio" value="C.E" name="documentType"></div>
+                                    </div>
+                                </td>
+                                <td colspan="19">Número<input id="documentNumber" class="form-control" type="text">
+                                </td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Sexo
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <p>Femenino</p>
+                                        </div>
+                                        <div class="col"><input value="Femenio" type="radio" name="sex"></div>
+                                        <div class="col">
+                                            <p>Masculino</p>
+                                        </div>
+                                        <div class="col"><input value="Masculino" type="radio" name="sex"></div>
+                                    </div>
+                                </td>
+                                <td colspan="8">Fecha de nacimiento<input id="bornDate" class="form-control"
+                                        type="date"></td>
+                                <td colspan="11">Lugar de nacimiento<input id="bornTown" class="form-control"
+                                        type="text"></td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="10">Mi dirección es: <input id="home" class="form-control" type="text">
+                                </td>
+                                <td colspan="11">Barrio<input id="homeTown" class="form-control" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10">Ciudad <input id="city" class="form-control" type="text">
+                                </td>
+                                <td colspan="11">Departamento<input id="department" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="10">Mi teléfono es: <input id="phone" class="form-control" type="text">
+                                </td>
+                                <td colspan="11">Mi correo electrónico es:<input id="email" class="form-control"
+                                        type="text"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="22"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10">El nombre de mi papá es: <input id="fatherName" class="form-control"
+                                        type="text">
+                                </td>
+                                <td colspan="11">Su cédula es:<input id="fatherDocumentNumber" class="form-control"
+                                        type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="10">Empresa donde trabaja mi papá: <input id="fatherBusiness"
+                                        class="form-control" type="text">
+                                </td>
+                                <td colspan="11">Su teléfono de oficina es:<input id="fatherPhone" class="form-control"
+                                        type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="10">El nombre de mi mamá es: <input id="motherName" class="form-control"
+                                        type="text">
+                                </td>
+                                <td colspan="11">Su cédula es:<input id="motherDocumentNumber" class="form-control"
+                                        type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="10">Empresa donde trabaja mi mamá: <input id="motherBusiness"
+                                        class="form-control" type="text">
+                                </td>
+                                <td colspan="11">Su teléfono de oficina es:<input id="motherPhone" class="form-control"
+                                        type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="22"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10">Mi colegio es: <input id="school" class="form-control" type="text">
+                                </td>
+                                <td colspan="11">Mi curso es:<input id="course" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="22">Los deportes que más me gustan son: <br> <br><input id="sport1"
+                                        class="form-control" type="text">
+                                    <br>
+                                    <input id="sport2" class="form-control" type="text">
+                                    <br>
+                                    <input id="sport3" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="22">Mis pasatiempos favoritos son: <br> <br><input id="hobby1"
+                                        class="form-control" type="text">
+                                    <br>
+                                    <input id="hobby2" class="form-control" type="text">
+                                    <br>
+                                    <input id="hobby3" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="10">Asociado a Fonsabana <input id="fonsabanaAssociate"
+                                        class="form-control" type="text">
+                                </td>
+                                <td colspan="11">Cédula<input id="fonsabanaDocumentNumber" class="form-control"
+                                        type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="10">Empresa donde trabaja <input id="fonsabanaBusiness"
+                                        class="form-control" type="text">
+                                </td>
+                                <td colspan="11">Parentesco<input id="fonsabanaRelationship" class="form-control"
+                                        type="text">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
         <div class="form-row">
             <div class="col-md-3"><img class="img-fluid img-fluid" src="assets/img/logo-fonsabana.png"
                     style="padding: 0;padding-right: 0;padding-left: 20%;"></div>
@@ -47,7 +251,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>&nbsp;<input id="formDate" class="form-control" type="date"></td>
+                                <td>&nbsp;<input id="formDateSaving" class="form-control" type="date"></td>
                             </tr>
                             <tr></tr>
                         </tbody>
@@ -225,6 +429,11 @@
                                             número de cédula</button><span id="signatureText" class="file-name">Sin
                                             archivo</span>
                                     </div>
+                                    <div class="col text-center"><input id="footprintFile" type="file"
+                                            hidden="hidden"><button id="footprintButton" class="btn btn-secondary"
+                                            type="button">Subir huella Indice
+                                            Derecho</button><span id="footprintText" class="file-name">Sin
+                                            archivo</span></div>
                                 </div>
                             </td>
                         </tr>
@@ -247,24 +456,24 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Correos electrónicos a enviar</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Correo electrónico personal<input id="personalEmailToSend" class="form-control" type="email">
-                        Correo electrónico laboral<input id="laboralEmailToSend" class="form-control" type="email">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button id="sendEmailButton" type="button" class="btn btn-primary">Enviar formulario</button>
-                    </div>
+    </div>
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Correos electrónicos a enviar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Correo electrónico personal<input id="personalEmailToSend" class="form-control" type="email">
+                    Correo electrónico laboral<input id="laboralEmailToSend" class="form-control" type="email">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button id="sendEmailButton" type="button" class="btn btn-primary">Enviar formulario</button>
                 </div>
             </div>
         </div>
