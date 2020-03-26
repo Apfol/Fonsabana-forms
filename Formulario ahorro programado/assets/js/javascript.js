@@ -70,7 +70,7 @@ function demoFromHTML(signatureImg, footprintImg) {
     doc.autoTable({
         theme: 'plain',
         styles: { lineColor: [142, 142, 142], lineWidth: 0.1, fontSize: 8 },
-        head: [[{ content: '', colSpan: 6, styles: { minCellHeight: 20 } }, { content: 'SOLICITUD APERTURA AHORRO PROGRAMADO', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Versión 3 \n Enero 25 de 2018', colSpan: 4, styles: { valign: 'middle', halign: 'center' } }]],
+        head: [[{ content: '', colSpan: 6, styles: { minCellHeight: 20 } }, { content: 'SOLICITUD APERTURA AHORRO PROGRAMADO', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Versión 1 \n Julio 14 de 2015', colSpan: 4, styles: { valign: 'middle', halign: 'center' } }]],
     });
 
     doc.setFont("arial");
