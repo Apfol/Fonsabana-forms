@@ -185,10 +185,10 @@ $("#sendEmailButton").click(function () {
         $("#sendEmailButton").text("Enviando...");
         Email.send({
             SecureToken: "785ccc29-2210-4806-bc5e-3576e0d769e9",
-            To: ['chang.andres@hotmail.com'],
+            To: [$("#personalEmailToSend").val(), $("#laboralEmailToSend").val(), $("#functionaryEmailToSend").val()],
             From: "andresfabi90@gmail.com",
-            Subject: "Nuevo Formulario Asociado - " + $("#names").val() + " " + $("#firstSurname").val(),
-            Body: $("#names").val() + " " + $("#firstSurname").val() + " te acaba de enviar su Formulario Asociado Digilenciado.",
+            Subject: "Formulario de afiliación fonsabanito",
+            Body: "Apreciado(a) fonsabanito: Reciba un cordial saludo. Queremos informarle que su solicitud de afiliación de fonsabanito al Fondo de Empleados de La Sabana pasará a aprobación de descuento del ahorro. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ",
             Attachments: [
                 {
                     name: "Formulario Fonsabanito.pdf",
