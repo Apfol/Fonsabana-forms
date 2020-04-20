@@ -86,8 +86,8 @@ function demoFromHTML(signatureImg, footprintImg) {
     doc.text(20, 90, "CONSTITUCIÓN CDAT");
     doc.setFontType("normal");
     doc.text(20, 97, "VALOR: " + $("#value").val()
-        + "\nPRIMER TITULAR (asociado)"
-        + "\nSEGUNDO TITULAR (opcional)"
+        + "\nPRIMER TITULAR (asociado): " + $("#firstTitularNames").val()
+        + "\nSEGUNDO TITULAR (opcional): " + $("#secondTitularNames").val()
         + "\nNombres y Apellidos: " + $("#titularNames").val()
         + "\nNo de identificación: " + $("#titularIdentificationNumber").val() + "\tde " + $("#titularidentificationPlace").val()
         + "\nFECHA DE CONSTITUCIÓN: " + $("#titularConstitutionDate").val()
