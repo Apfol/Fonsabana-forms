@@ -132,8 +132,8 @@ $("#sendEmailButton").click(function () {
             SecureToken: "785ccc29-2210-4806-bc5e-3576e0d769e9",
             To: [$("#personalEmailToSend").val(), $("#laboralEmailToSend").val(), $("#functionaryEmailToSend").val()],
             From: "andresfabi90@gmail.com",
-            Subject: "Formulario constitución cupo crece",
-            Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de constitución cupo crece al Fondo de Empleados de La Sabana pasará a aprobación de comité de crédito y cartera. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ",
+            Subject: "Formulario constitución CDAT",
+            Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de constitución CDAT al Fondo de Empleados de La Sabana pasará a aprobación. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva.",
             Attachments: [
                 {
                     name: "Formulario.pdf",
