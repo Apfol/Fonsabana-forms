@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Formulario SOLICITUD APERTURA AHORRO PROGRAMADO - Fonsabana</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/jspdf.min.js"></script>
+    <script src="assets/js/jspdf.plugin.autotable.js"></script>
+    <script type="text/javascript" src="assets/js/mandrill.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+
+</head>
+
+<body>
+    <div class="table-responsive" style="padding: 1%;">
+        <div class="form-row">
+            <div class="col-md-3"><img class="img-fluid img-fluid" src="assets/img/logo-fonsabana.png"
+                    style="padding: 0;padding-right: 0;padding-left: 20%;"></div>
+            <div class="col-md-6">
+                <h2 class="text-center" style="padding-top: 40px;">ORDEN DE RETENCIÓN CONVENIOS</h2>
+            </div>
+            <div class="col-md-3">
+                <div class="form-row">
+                    <div class="col">
+                        <p class="text-center"><br>Versión 1</p>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <p class="text-center">Julio 14 de 2015</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col" style="padding: 0% 1% 0% 1%;">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td colspan="10">
+                                <div style="padding-left: 1%; padding-bottom: 1%; padding-top: 1%;">
+                                    YO <input id="name" type="text"> Identificado(a) con
+                                    <input id="identification" type="text"> expedida en <input id="expedition"
+                                        type="text"> autorizo al
+                                    señor pagador de <input id="payer" type="text"> para que descuente de mi
+                                    sueldo con destino al FONDO DE EMPLEADOS DE LA SABANA, la suma total de
+                                    $<input id="discount" type="text"> correspondiente a <input id="correspondense"
+                                        type="text">, descontando
+                                    dicho valor en <input id="dues" type="text"> cuotas por valor de $<input
+                                        id="dueValue" type="text">, a partir del mes
+                                    de
+                                    <input id="startMonth" type="text"> .
+                                    <br><br>Autorizo para que en el caso de retirarme de la empresa, el saldo de la
+                                    presente
+                                    obligación
+                                    que contraigo por el presente documento, se me descuente de la liquidación final de
+                                    mis prestaciones sociales, o de cualquier indemnización, bonificación o crédito
+                                    laboral que en esa oportunidad se me reconozca.
+                                    <br><br>
+                                    Para constancia, se firma en Chía a los <input id="signDay" type="text"> días
+                                    del mes de <input id="signMonth" type="text"> de <input id="signYear" type="text"> .
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <div class="form-row">
+                                    <div class="col text-center"><input id="signatureFile" type="file"
+                                            hidden="hidden"><button id="signatureButton"
+                                            class="btn btn-secondary text-center" type="button">Subir firma con
+                                            número de identificación</button><span id="signatureText"
+                                            class="file-name">Sin
+                                            archivo</span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br><br>
+                                <div class="form-row">
+                                    <div class="col"></div>
+                                    <div class="col text-center"><button id="print" class="btn btn-primary"
+                                            type="button" style="width: 90%;">Descargar</button></div>
+                                    <div class="col text-center"><button class="btn btn-primary" style="width: 90%;"
+                                            data-toggle="modal" data-target="#modal">Enviar
+                                            por correo electrónico</button></div>
+                                    <div class="col"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Correos electrónicos a enviar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Correo electrónico personal<input id="personalEmailToSend" class="form-control" type="email">
+                    Correo electrónico laboral<input id="laboralEmailToSend" class="form-control" type="email">
+                    Correo electrónico funcionario Fonsabana<input id="functionaryEmailToSend" class="form-control"
+                        type="email">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button id="sendEmailButton" type="button" class="btn btn-primary">Enviar formulario</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/javascript.js"></script>
+</body>
+
+</html>
