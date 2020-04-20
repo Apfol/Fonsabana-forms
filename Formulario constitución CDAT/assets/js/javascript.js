@@ -3,7 +3,7 @@ var signatureImg, footprintImg, identificationCardDoc;
 document.getElementById('print').onclick = function () {
     try {
         var doc = demoFromHTML(signatureImg, footprintImg);
-        doc.save('Formulario Constitución Cupo Crece.pdf');
+        doc.save('Formulario Constitución CDAT.pdf');
     } catch (err) {
         alert("Error al generar el documento, verifica que subiste toda la información requerida.");
     }
