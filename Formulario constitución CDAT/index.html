@@ -59,7 +59,7 @@
                     <tr>
                         <td colspan="4">Dirección<input id="direction" class="form-control" type="text">
                         <td colspan="3">Teléfono<input id="phone" class="form-control" type="text">
-                        <td colspan="3">Ciudad<input id="phone" class="form-control" type="text">
+                        <td colspan="3">Ciudad<input id="city" class="form-control" type="text">
                     </tr>
 
                 </tbody>
@@ -72,7 +72,7 @@
                         </tr>
                     </thead>
                     <tr>
-                        <td colspan="10">Valor: $<input id="payroll" class="form-control" type="">
+                        <td colspan="10">Valor: $<input id="value" class="form-control" type="">
                     </tr>
                     <tr>
                         <td colspan="10">
@@ -94,14 +94,12 @@
                         <td colspan="10">Nombres y Apellidos<input id="titularNames" class="form-control" type="text">
                     </tr>
                     <tr>
-                        <td colspan="5">N° Identificación<input id="titularidentificationNumber" class="form-control"
+                        <td colspan="3">N° Identificación<input id="titularIdentificationNumber" class="form-control"
                                 type="text">
-                        <td colspan="5">Lugar del documento de identificación<input id="titularidentificationNumber"
+                        <td colspan="3">Lugar del documento de identificación<input id="titularidentificationPlace"
                                 class="form-control" type="text">
-                    </tr>
-                    <tr>
-                        <td colspan="10">Fecha de constitución<input id="titularidentificationNumber"
-                                class="form-control" type="text">
+                        <td colspan="4">Fecha de constitución<input id="titularConstitutionDate" class="form-control"
+                                type="date">
                     </tr>
                     <tr>
                         <td colspan="5">Plazo
@@ -109,31 +107,31 @@
                                 <div class="col">
                                     <p>90 días</p>
                                 </div>
-                                <div class="col"><input value="Femenio" type="radio" name="sex"></div>
+                                <div class="col"><input value="90 días" type="radio" name="term"></div>
                                 <div class="col">
                                     <p>120 días</p>
                                 </div>
-                                <div class="col"><input value="Masculino" type="radio" name="sex"></div>
+                                <div class="col"><input value="120 días" type="radio" name="term"></div>
                                 <div class="col">
                                     <p>180 días</p>
                                 </div>
-                                <div class="col"><input value="Masculino" type="radio" name="sex"></div>
+                                <div class="col"><input value="180 días" type="radio" name="term"></div>
                                 <div class="col">
                                     <p>240 días</p>
                                 </div>
-                                <div class="col"><input value="Masculino" type="radio" name="sex"></div>
+                                <div class="col"><input value="240 días" type="radio" name="term"></div>
                                 <div class="col">
                                     <p>360 días</p>
                                 </div>
-                                <div class="col"><input value="Masculino" type="radio" name="sex"></div>
+                                <div class="col"><input value="360 días" type="radio" name="term"></div>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="10">
                             <div style="padding-left: 1%; padding-bottom: 1%; padding-top: 1%;">
-                                TASA DE INTERÉS PACTADA: <input id="payerQuantity" type="text">% EA <input
-                                    id="payerQuantity" type="text">% Nominal
+                                TASA DE INTERÉS PACTADA: <input id="interestRate" type="text">% EA <input id="ea"
+                                    type="text">% Nominal
                             </div>
                         </td>
                     </tr>
