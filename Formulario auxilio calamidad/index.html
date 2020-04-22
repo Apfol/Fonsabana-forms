@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Formulario Auxilio Calamidad - Fonsabana</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/jspdf.min.js"></script>
+    <script src="assets/js/jspdf.plugin.autotable.js"></script>
+    <script type="text/javascript" src="assets/js/mandrill.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+</head>
+
+<body>
+    <div class="table-responsive" style="padding: 1%;">
+        <div class="form-row">
+            <div class="col-md-3"><img class="img-fluid img-fluid" src="assets/img/logo-fonsabana.png"
+                    style="padding: 0;padding-right: 0;padding-left: 20%;"></div>
+            <div class="col-md-6">
+                <h2 class="text-center" style="padding-top: 40px;">SOLICITUD AUXILIO CALAMIDAD</h2>
+            </div>
+            <div class="col-md-3">
+                <div class="form-row">
+                    <div class="col">
+                        <p class="text-center"><br>Versión 1</p>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <p class="text-center">Octubre 5 de 2010</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="21">FECHA DE SOLICITUD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>&nbsp;<input id="formDate" class="form-control" type="date"></td>
+                            </tr>
+                            <tr></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div id="personalData" class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="22">INFORMACIÓN ASOCIADO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">Nombres y apellidos
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="10">Número de identificación<input id="documentNumber" class="form-control"
+                                        type="text">
+                                </td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Empresa
+                                    <input id="business" class="form-control" type="text">
+                                </td>
+                                <td colspan="8">Dependencia<input id="dependence" class="form-control" type="text"></td>
+                                <td colspan="10">Teléfono<input id="phone" class="form-control" type="text"></td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="21">E-Mail: <input id="mail" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="10">Entidad bancaria <input id="bank" class="form-control" type="text">
+                                </td>
+                                <td colspan="8">No. Cuenta <input id="accountNumber" class="form-control" type="text">
+                                </td>
+                                <td colspan="3">Tipo de cuenta
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <p>Ahorros</p>
+                                        </div>
+                                        <div class="col"><input value="Ahorros" type="radio" name="accountType"></div>
+                                        <div class="col">
+                                            <p>Corriente</p>
+                                        </div>
+                                        <div class="col"><input value="Corriente" type="radio" name="accountType"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="21">TIPO DE AUXILIO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding-left: 30%; padding-right: 30%;" class="text-center" colspan="3">
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <p>Nacimiento</p>
+                                        </div>
+                                        <div class="col"><input value="Ahorros" type="radio" name="helpType"></div>
+                                        <div class="col">
+                                            <p>Matrimonio</p>
+                                        </div>
+                                        <div class="col"><input value="Corriente" type="radio" name="helpType"></div>
+                                        <div class="col">
+                                            <p>Aniversario</p>
+                                        </div>
+                                        <div class="col"><input value="Corriente" type="radio" name="helpType"></div>
+                                        <div class="col">
+                                            <p>Calamidad</p>
+                                        </div>
+                                        <div class="col"><input value="Corriente" type="radio" name="helpType"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="21">Observaciones
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <br><br>
+                                <div class="form-row">
+                                    <div class="col"></div>
+                                    <div class="col text-center"><button id="print" class="btn btn-primary"
+                                            type="button" style="width: 90%;">Descargar</button></div>
+                                    <div class="col text-center"><button class="btn btn-primary" style="width: 90%;"
+                                            data-toggle="modal" data-target="#modal">Enviar
+                                            por correo electrónico</button></div>
+                                    <div class="col"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Correos electrónicos a enviar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Correo electrónico personal<input id="personalEmailToSend" class="form-control" type="email">
+                    Correo electrónico laboral<input id="laboralEmailToSend" class="form-control" type="email">
+                    Correo electrónico funcionario Fonsabana<input id="functionaryEmailToSend" class="form-control"
+                        type="email">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button id="sendEmailButton" type="button" class="btn btn-primary">Enviar formulario</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/javascript.js"></script>
+</body>
+
+</html>
