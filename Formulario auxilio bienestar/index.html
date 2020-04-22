@@ -11,9 +11,7 @@
     <script src="assets/js/jspdf.min.js"></script>
     <script src="assets/js/jspdf.plugin.autotable.js"></script>
     <script type="text/javascript" src="assets/js/mandrill.min.js"></script>
-    <script src="https://smtpjs.com/v3/smtp.js">
-    </script>
-
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 
 <body>
@@ -68,7 +66,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="11">Nombres y apellidos
-                                    <input id="documentNumber" class="form-control" type="text">
+                                    <input id="names" class="form-control" type="text">
                                 </td>
                                 <td colspan="10">Número de identificación<input id="documentNumber" class="form-control"
                                         type="text">
@@ -77,20 +75,20 @@
                             </tr>
                             <tr>
                                 <td colspan="3">Empresa
-                                    <input id="bornDate" class="form-control" type="text">
+                                    <input id="business" class="form-control" type="text">
                                 </td>
-                                <td colspan="8">Dependencia<input id="bornDate" class="form-control" type="text"></td>
-                                <td colspan="10">Teléfono<input id="bornTown" class="form-control" type="text"></td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="21">E-Mail: <input id="home" class="form-control" type="text">
+                                <td colspan="8">Dependencia<input id="dependence" class="form-control" type="text"></td>
+                                <td colspan="10">Teléfono<input id="phone" class="form-control" type="text"></td>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="10">Entidad bancaria <input id="city" class="form-control" type="text">
+                                <td colspan="21">E-Mail: <input id="mail" class="form-control" type="text">
                                 </td>
-                                <td colspan="8">No. Cuenta <input id="city" class="form-control" type="text">
+                            </tr>
+                            <tr>
+                                <td colspan="10">Entidad bancaria <input id="bank" class="form-control" type="text">
+                                </td>
+                                <td colspan="8">No. Cuenta <input id="accountNumber" class="form-control" type="text">
                                 </td>
                                 <td colspan="3">Tipo de cuenta
                                     <div class="form-row">
@@ -120,25 +118,25 @@
                                         <div class="col">
                                             <p>Nacimiento</p>
                                         </div>
-                                        <div class="col"><input value="Ahorros" type="radio" name="accountType"></div>
+                                        <div class="col"><input value="Ahorros" type="radio" name="helpType"></div>
                                         <div class="col">
                                             <p>Matrimonio</p>
                                         </div>
-                                        <div class="col"><input value="Corriente" type="radio" name="accountType"></div>
+                                        <div class="col"><input value="Corriente" type="radio" name="helpType"></div>
                                         <div class="col">
                                             <p>Aniversario</p>
                                         </div>
-                                        <div class="col"><input value="Corriente" type="radio" name="accountType"></div>
+                                        <div class="col"><input value="Corriente" type="radio" name="helpType"></div>
                                         <div class="col">
                                             <p>Calamidad</p>
                                         </div>
-                                        <div class="col"><input value="Corriente" type="radio" name="accountType"></div>
+                                        <div class="col"><input value="Corriente" type="radio" name="helpType"></div>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="21">Observaciones
-                                    <input id="documentNumber" class="form-control" type="text">
+                                    <input id="observations" class="form-control" type="text">
                                 </td>
                             </tr>
                         </tbody>
