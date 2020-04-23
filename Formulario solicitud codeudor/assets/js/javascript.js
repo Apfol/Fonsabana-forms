@@ -1,8 +1,8 @@
-var signatureImg, footprintImg, identificationCardDoc;
+var signatureImg, identificationCardImg, incomeCertificationDoc;
 
 document.getElementById('print').onclick = function () {
     try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
+        var doc = demoFromHTML(signatureImg, identificationCardImg);
         doc.save('Formulario Solicitud Crédito.pdf');
     } catch (err) {
         alert("Error al generar el documento, verifica que subiste toda la información requerida.");
@@ -19,7 +19,7 @@ signatureButton.click(function () {
 
 signatureFile.change(function () {
     if (signatureFile.val()) {
-        signatureText.html(signatureFile.val().match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1]);
+        signatureText.html("Firma." + signatureFile.val().split('.').pop());
         if (this.files && this.files[0]) {
             var reader = new FileReader();
 
@@ -34,28 +34,28 @@ signatureFile.change(function () {
     }
 });
 
-const footprintFile = $("#footprintFile");
-const footprintButton = $("#footprintButton");
-const footprintText = $("#footprintText");
+const identificationCardFile = $("#identificationCardFile");
+const identificationCardButton = $("#identificationCardButton");
+const identificationCardText = $("#identificationCardText");
 
-footprintButton.click(function () {
-    footprintFile.click();
+identificationCardButton.click(function () {
+    identificationCardFile.click();
 });
 
-footprintFile.change(function () {
-    if (footprintFile.val()) {
-        footprintText.html(footprintFile.val().match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1]);
+identificationCardFile.change(function () {
+    if (identificationCardFile.val()) {
+        identificationCardText.html("Cedula." + identificationCardFile.val().split('.').pop());
         if (this.files && this.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                footprintImg = e.target.result;
+                identificationCardImg = e.target.result;
             }
 
             reader.readAsDataURL(this.files[0]);
         }
     } else {
-        footprintText.html("Sin archivo");
+        identificationCardText.html("Sin archivo");
     }
 });
 
@@ -69,12 +69,12 @@ incomeCertificationButton.click(function () {
 
 incomeCertificationFile.change(function () {
     if (incomeCertificationFile.val()) {
-        incomeCertificationText.html(incomeCertificationFile.val().match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1]);
+        incomeCertificationText.html("Certificación." + incomeCertificationFile.val().split('.').pop());
         if (this.files && this.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                identificationCardDoc = e.target.result;
+                incomeCertificationDoc = e.target.result;
             }
 
             reader.readAsDataURL(this.files[0]);
@@ -90,33 +90,26 @@ function demoFromHTML(signatureImg, footprintImg) {
     var logoImg = new Image();
     logoImg.src = 'assets/img/logo-fonsabana.png';
     doc.addImage(logoImg, 'png', 20, 14, 50, 15);
-    var entryDate = $("#formDate").val().split('-');
 
     doc.autoTable({
         theme: 'plain',
         styles: { lineColor: [142, 142, 142], lineWidth: 0.1, fontSize: 8 },
-        head: [[{ content: '', colSpan: 6, styles: { minCellHeight: 15 } }, { content: 'SOLICITUD DE CRÉDITO', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Fecha de elaboración: Octubre 29 de 2018. Versión 03', colSpan: 4, styles: { valign: 'middle', halign: 'center' } }]],
+        head: [[{ content: '', colSpan: 6, styles: { minCellHeight: 15 } }, { content: 'SOLICITUD DE CODEUDOR', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Fecha de elaboración: Octubre 29 de 2018. Versión 03', colSpan: 4, styles: { valign: 'middle', halign: 'center' } }]],
     });
 
     doc.autoTable({
         theme: 'plain',
-        tableWidth: 45,
         fontSize: 14,
         styles: { lineColor: [142, 142, 142], lineWidth: 0.1, fontSize: 8 },
-        head: [[{ content: 'DIA', styles: { halign: 'center', minCellWidth: 15, fillColor: [242, 242, 242] } }, { content: 'MES', styles: { valign: 'middle', halign: 'center', minCellWidth: 15, fillColor: [242, 242, 242] } }, { content: 'AÑO', styles: { valign: 'middle', halign: 'center', minCellWidth: 15, fillColor: [242, 242, 242] } }]],
-        body: [[{ content: entryDate[2], styles: { halign: 'center' } }, { content: entryDate[1], styles: { halign: 'center' } }, { content: entryDate[0], styles: { halign: 'center' } }]]
+        head: [[{ content: 'SOLICITUD DE CRÉDITO A NOMBRE DE', styles: { halign: 'center', minCellWidth: 15, fillColor: [242, 242, 242] }, colSpan: 3 }]],
+        body: [[{ content: "Nombres y apellidos: " + $("#coDebtorNames").val() }, { content: "Cédula: " + $("#coDebtorIdentification").val() }, { content: "De: " + $("#coDebtorFrom").val() }]]
     });
 
     doc.autoTable({
         theme: 'plain',
         styles: { lineColor: [142, 142, 142], lineWidth: 0.1, fontSize: 8 },
-        head: [[{ content: 'INFORMACIÓN DEUDOR', colSpan: 7, styles: { halign: 'center', minCellWidth: 15, fillColor: [242, 242, 242] } }]],
-        body: [[{ content: "Valor solicitado", colSpan: 2, styles: { fillColor: [242, 242, 242], fontStyle: 'bold', halign: 'center' } }, { content: "Modalidad", colSpan: 2, styles: { fillColor: [242, 242, 242], fontStyle: 'bold', halign: 'center' } }, { content: "No. de cuotas", colSpan: 3, styles: { fillColor: [242, 242, 242], fontStyle: 'bold', halign: 'center' } }],
-        [{ content: $("#requestValue").val(), colSpan: 2 }, { content: $("#modality").val(), colSpan: 2 }, { content: $("#quotesNumber").val(), colSpan: 3 }],
-        [{ content: "Recoge créditos vigentes: " + getSelected("outstandingCredits"), colSpan: 3, styles: { fontStyle: 'bold' } }, { content: "¿Cuáles? " + $("#which").val(), colSpan: 4, styles: { fontStyle: 'bold' } }],
-        [{ content: 'Valor solicitado en letras', colSpan: 7, styles: { halign: 'center', minCellWidth: 15, fillColor: [242, 242, 242], fontStyle: 'bold' } }],
-        [{ content: $("#valueInWords").val(), colSpan: 7, styles: { halign: 'center', minCellWidth: 15 } }],
-        [{ content: "Nombres y apellidos: " + $("#names").val(), colSpan: 2 }, { content: "Cédula: " + $("#identificationNumber").val(), colSpan: 2 }, { content: "De: " + $("#identificationFrom").val(), colSpan: 3 }],
+        head: [[{ content: 'INFORMACIÓN CODEUDOR', colSpan: 7, styles: { halign: 'center', minCellWidth: 15, fillColor: [242, 242, 242] } }]],
+        body: [[{ content: "Nombres y apellidos: " + $("#names").val(), colSpan: 2 }, { content: "Cédula: " + $("#identificationNumber").val(), colSpan: 2 }, { content: "De: " + $("#identificationFrom").val(), colSpan: 3 }],
         [{ content: "Empresa donde trabaja: " + $("#business").val(), colSpan: 2 }, { content: "Dependencia: " + $("#ext").val(), colSpan: 1, styles: { cellWidth: 25 } }, { content: "Cargo: " + $("#position").val(), colSpan: 2, styles: { cellWidth: 25 } }, { content: "Fecha ingreso: " + $("#admissionDate").val(), colSpan: 2 }],
         [{ content: "Dirección residencia: " + $("#residenceDirection").val(), colSpan: 2 }, { content: getSelected("residenceType"), colSpan: 1, styles: { cellWidth: 25 } }, { content: "Ciudad: " + $("#city").val(), colSpan: 2, styles: { cellWidth: 25 } }, { content: "Teléfono: " + $("#phone").val() + "\nCelular: " + $("#cellphone").val(), colSpan: 2 }],
         [{ content: "E-mail: " + $("#email").val(), colSpan: 7 }],
@@ -142,8 +135,9 @@ function demoFromHTML(signatureImg, footprintImg) {
     });
 
     doc.setFontSize(8);
-    doc.text(20, 260, "Descripción otros ingresos: " + $("#descriptionOtherIncomes").val(), { maxWidth: 170, align: "justify" });
-    doc.text(20, 265, "*Adjuntar certificación de ingresos o desprendibles de nómina: personal y otros ingresos", { maxWidth: 170, align: "justify" });
+    doc.text(20, 230, "Descripción otros ingresos: " + $("#descriptionOtherIncomes").val(), { maxWidth: 170, align: "justify" });
+    doc.text(20, 235, "*Adjuntar certificación de ingresos o desprendibles de nómina: personal y otros ingresos", { maxWidth: 170, align: "justify" });
+    doc.text(20, 240, "*Adjuntar fotocopia de Cédula", { maxWidth: 170, align: "justify" });
 
     doc.text(180, 280, "Pag. 1 de 2");
 
@@ -155,7 +149,7 @@ function demoFromHTML(signatureImg, footprintImg) {
     doc.autoTable({
         theme: 'plain',
         styles: { lineColor: [142, 142, 142], lineWidth: 0.1, fontSize: 8 },
-        head: [[{ content: '', colSpan: 6, styles: { minCellHeight: 15 } }, { content: 'SOLICITUD DE CRÉDITO', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Fecha de elaboración: Octubre 29 de 2018. Versión 03', colSpan: 4, styles: { valign: 'middle', halign: 'center' } }]],
+        head: [[{ content: '', colSpan: 6, styles: { minCellHeight: 15 } }, { content: 'SOLICITUD DE CODEUDOR', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Fecha de elaboración: Octubre 29 de 2018. Versión 03', colSpan: 4, styles: { valign: 'middle', halign: 'center' } }]],
     });
 
     doc.autoTable({
@@ -175,16 +169,6 @@ function demoFromHTML(signatureImg, footprintImg) {
 
     doc.text(20, 105, "Certifico que la información suministrada es exacta y expresamente autorizamos a FONSABANA para que exclusivamente con fines de información financiera reporte, consulte, registre y circule información a las entidades de consulta de base de datos o cualquier entidad vigilada por las Superintendencias sobre los saldos a nuestro cargo, operaciones de crédito, estado de las obligaciones y manejo del crédito, que bajo cualquier modalidad nos hubieran otorgado o se otorgue en el futuro.",
         { maxWidth: 170, align: "justify" });
-
-    doc.setFontSize(12);
-    doc.text(15, 125, "Agradezco desembolsar el crédito en:", { maxWidth: 170, align: "justify" });
-    doc.text(20, 135, "1.");
-    doc.text(25, 135, "TITULAR " + $("#titular").val() + "\tC.C. O NIT " + $("#ccNit").val());
-    doc.text(25, 142, "BANCO " + $("#titular").val() + "\tCuenta No. " + $("#ccNit").val());
-    doc.text(25, 149, "TIPO DE CUENTA: " + getSelected("titularAccountType"));
-    doc.text(20, 156, "2.");
-    doc.text(25, 156, "CHEQUE A FAVOR DE: " + $("#check").val() + "\tC.C o NIT " + $("#ccNitCheck").val());
-    doc.text(15, 210, "FIRMAR DEUDOR");
 
     doc.setFontSize(8);
     doc.text(180, 280, "Pag. 2 de 2");
@@ -213,35 +197,43 @@ function demoFromHTML(signatureImg, footprintImg) {
 
 $("#sendEmailButton").click(function () {
     try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
+        var doc = demoFromHTML(signatureImg, identificationCardImg);
         var files = document.getElementById('incomeCertificationFile').files;
+        var iFiles = document.getElementById('identificationCardFile').files;
         $("#sendEmailButton").text("Enviando...");
-        if (files.length == 0) {
+        if (files.length == 0 || iFiles.length == 0) {
             $("#sendEmailButton").text("Enviar formulario");
             alert(message);
         }
         getBase64(files[0]).then((data) => {
-            Email.send({
-                SecureToken: "785ccc29-2210-4806-bc5e-3576e0d769e9",
-                To: [$("#personalEmailToSend").val(), $("#laboralEmailToSend").val(), $("#functionaryEmailToSend").val()],
-                From: "andresfabi90@gmail.com",
-                Subject: "Formulario solicitud de crédito",
-                Body: 'Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de crédito al Fondo de Empleados de La Sabana pasará a estudio y análisis . Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ',
-                Attachments: [
-                    {
-                        name: "Formulario Asociado.pdf",
-                        data: doc.output('datauri')
-                    },
-                    {
-                        name: incomeCertificationFile.val().match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1],
-                        data: data
-                    }]
-            }).then(
-                message => {
-                    $("#sendEmailButton").text("Enviar formulario");
-                    alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
-                }
-            );
+            getBase64(iFiles[0]).then((iden) => {
+                Email.send({
+                    SecureToken: "785ccc29-2210-4806-bc5e-3576e0d769e9",
+                    To: [$("#personalEmailToSend").val(), $("#laboralEmailToSend").val(), $("#functionaryEmailToSend").val()],
+                    From: "andresfabi90@gmail.com",
+                    Subject: "Formulario solicitud de crédito",
+                    Body: 'Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de crédito al Fondo de Empleados de La Sabana pasará a estudio y análisis . Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ',
+                    Attachments: [
+                        {
+                            name: "Formulario Asociado.pdf",
+                            data: doc.output('datauri')
+                        },
+                        {
+                            name: "Certificación." + incomeCertificationFile.val().split('.').pop(),
+                            data: data
+                        },
+                        {
+                            name: "Cédula." + identificationCardFile.val().split('.').pop(),
+                            data: iden
+                        },
+                    ]
+                }).then(
+                    message => {
+                        $("#sendEmailButton").text("Enviar formulario");
+                        alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
+                    }
+                );
+            });
         });
     } catch (err) {
         alert("Error al generar el documento, verifica que subiste toda la información requerida.");

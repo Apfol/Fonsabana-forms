@@ -19,7 +19,7 @@ signatureButton.click(function () {
 
 signatureFile.change(function () {
     if (signatureFile.val()) {
-        signatureText.html(signatureFile.val().match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1]);
+        signatureText.html("Firma." + signatureFile.val().split('.').pop());
         if (this.files && this.files[0]) {
             var reader = new FileReader();
 

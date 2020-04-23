@@ -19,7 +19,7 @@ signatureButton.click(function () {
 
 signatureFile.change(function () {
     if (signatureFile.val()) {
-        signatureText.html(signatureFile.val().match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1]);
+        signatureText.html("Firma." + signatureFile.val().split('.').pop());
         if (this.files && this.files[0]) {
             var reader = new FileReader();
 
@@ -44,7 +44,7 @@ footprintButton.click(function () {
 
 footprintFile.change(function () {
     if (footprintFile.val()) {
-        footprintText.html(footprintFile.val().match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1]);
+        footprintText.html("Huella." + footprintFile.val().split('.').pop());
         if (this.files && this.files[0]) {
             var reader = new FileReader();
 
