@@ -69,7 +69,7 @@ incomeCertificationButton.click(function () {
 
 incomeCertificationFile.change(function () {
     if (incomeCertificationFile.val()) {
-        incomeCertificationText.html("Certificación." + signatureFile.val().split('.').pop());
+        incomeCertificationText.html("Certificación." + incomeCertificationFile.val().split('.').pop());
         if (this.files && this.files[0]) {
             var reader = new FileReader();
 
