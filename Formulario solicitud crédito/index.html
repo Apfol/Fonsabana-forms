@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Formulario Solicitud Crédito - Fonsabana</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/jspdf.min.js"></script>
+    <script src="assets/js/jspdf.plugin.autotable.js"></script>
+    <script type="text/javascript" src="assets/js/mandrill.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+</head>
+
+<body>
+    <div class="table-responsive" style="padding: 1%;">
+        <div class="form-row">
+            <div class="col-md-3"><img class="img-fluid img-fluid" src="assets/img/logo-fonsabana.png"
+                    style="padding: 0;padding-right: 0;padding-left: 20%;"></div>
+            <div class="col-md-6">
+                <h2 class="text-center" style="padding-top: 40px;">SOLICITUD DE CRÉDITO</h2>
+            </div>
+            <div class="col-md-3">
+                <div class="form-row">
+                    <div class="col">
+                        <p class="text-center"><br>Versión 3</p>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <p class="text-center">Octubre 29 de 2018</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="21">FECHA DE SOLICITUD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>&nbsp;<input id="formDate" class="form-control" type="date"></td>
+                            </tr>
+                            <tr></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div id="personalData" class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="22">INFORMACIÓN DEUDOR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="7">Valor solicitado
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="7">Modalidad<input id="documentNumber" class="form-control" type="text">
+                                </td>
+                                <td colspan="6">No. de cuotas<input id="documentNumber" class="form-control"
+                                        type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Recoge créditos vigentes
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <p>Sí</p>
+                                        </div>
+                                        <div class="col"><input value="Sí" type="radio" name="accountType"></div>
+                                        <div class="col">
+                                            <p>No</p>
+                                        </div>
+                                        <div class="col"><input value="No" type="radio" name="accountType"></div>
+                                    </div>
+                                </td>
+                                <td colspan="19">Cuáles<input id="dependence" class="form-control" type="text"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="21">VALOR SOLICITADO EN LETRAS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="21">Valor solicitado en letras
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="8">Nombres y apellidos
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                                <td colspan="7">Cédula
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                                <td colspan="7">De
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">Empresa donde trabaja
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                                <td colspan="5">Dependencia - Ext.
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                                <td colspan="5">Cargo
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                                <td colspan="5">Fecha ingreso
+                                    <input id="observations" class="form-control" type="date">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">Dirección Residencia
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                                <td colspan="5">Tipo de residencia
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <p>Propia</p>
+                                        </div>
+                                        <div class="col"><input value="Propia" type="radio" name="residenceType"></div>
+                                        <div class="col">
+                                            <p>Arrendada</p>
+                                        </div>
+                                        <div class="col"><input value="Arrendada" type="radio" name="residenceType">
+                                        </div>
+                                        <div class="col">
+                                            <p>Familiar</p>
+                                        </div>
+                                        <div class="col"><input value="Familiar" type="radio" name="residenceType">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td colspan="5">Ciudad
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                                <td colspan="3">Teléfono
+                                    <input id="observations" class="form-control" type="number">
+                                </td>
+                                <td colspan="2">
+                                    Celular
+                                    <input id="observations" class="form-control" type="number">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="22">E-mail
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">Nombre cónyuge
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                                <td colspan="5">Cédula
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                                <td colspan="5">Profesión
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                                <td colspan="5">Personas a cargo
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">Empresa donde labora
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                                <td colspan="5">Cargo
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                                <td colspan="5">Antigüedad
+                                    <input id="observations" class="form-control" type="text">
+                                </td>
+                                <td colspan="5">Teléfono
+                                    <input id="observations" class="form-control" type="date">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="22">RELACIÓN DE BIENES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Dirección y teléfono
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="3">No. y fecha Esc.
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="3">No. Matrícula
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="3">Notaría
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="3">Hipoteca a
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="3">Valor hipoteca
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="4">Valor Ccial
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="22">RELACIÓN VEHÍCULOS Y MAQUINARIA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="6">Marca Modelo y Tipo
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="4">Placa
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="4">Pignorado A:
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="4">Vr. Pignoración
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="4">Vr. Ccial
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="22">INFORMACIÓN FINANCIERA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">TOTAL ACTIVO (Valor bienes) $
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="11">TOTAL PASIVO (Valor deudas) $
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="22">TOTAL Patrimonio (Activo - Pasivo) $
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="22">INGRESOS Y EGRESOS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">1. Sueldo* $
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="11">1. Arriendo o cuota vivienda $
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="11">2. Sueldo esposo (a)* $
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="11">2. Gastos de sostenimiento $
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="11">3. Otros ingresos* $
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="11">3. Pago deudas $
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="11">TOTAL INGRESOS (1+2+3)
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="11">TOTAL GASTOS (1+2+3)
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="22">Descripción otros ingresos
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="11">Certificación de ingresos o desprendibles de nómina: personal y otros
+                                    ingresos
+                                    <br></td>
+                                <td colspan="11"><input id="identificationCardFile" type="file" hidden="hidden"><button
+                                        id="identificationCardButton" class=" btn btn-secondary" type="button">Subir
+                                        certificación</button><span id="identificationCardText" class="file-name">Sin
+                                        archivo</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="22">REFERENCIAS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="7">Entidad bancaria
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="7">No. Cuenta
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="8">Sucursal
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">No Tarjeta de Crédito
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="7">Entidad
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="8">Cupo
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">Personales
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="7">Teléfono
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="8">Actividad
+                                    <input id="names" class="form-control" type="text">
+                                    <br>
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="22">
+                                    <div style="padding-left: 1%; padding-bottom: 1%; padding-top: 1%;">
+                                        Certifico que la información suministrada es exacta y expresamente autorizamos a
+                                        FONSABANA para que exclusivamente con fines de información
+                                        financiera reporte, consulte, registre y circule información a las entidades de
+                                        consulta de base de datos o cualquier entidad vigilada por las
+                                        Superintendencias sobre los saldos a nuestro cargo, operaciones de crédito,
+                                        estado de las obligaciones y manejo del crédito, que bajo cualquier
+                                        modalidad nos hubieran otorgado o se otorgue en el futuro
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="22">AGRADEZCO DESEMBOLSAR EL CRÉDITO EN:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">Titular
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="11">C.C o NIT
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="8">Banco
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="7">Cuenta No.
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="7">Tipo de cuenta
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <p>Ahorros</p>
+                                        </div>
+                                        <div class="col"><input value="Propia" type="radio" name="titularAccountType">
+                                        </div>
+                                        <div class="col">
+                                            <p>Corriente</p>
+                                        </div>
+                                        <div class="col"><input value="Arrendada" type="radio"
+                                                name="titularAccountType">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="11">Cheque a favor de:
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                                <td colspan="11">C.C o NIT
+                                    <input id="names" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="22">
+                                    <div class="form-row">
+                                        <div class="col text-center"><input id="signatureFile" type="file"
+                                                hidden="hidden"><button id="signatureButton"
+                                                class="btn btn-secondary text-center" type="button">Subir firma con
+                                                número de cédula</button><span id="signatureText" class="file-name">Sin
+                                                archivo</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <br><br>
+                                <div class="form-row">
+                                    <div class="col"></div>
+                                    <div class="col text-center"><button id="print" class="btn btn-primary"
+                                            type="button" style="width: 90%;">Descargar</button></div>
+                                    <div class="col text-center"><button class="btn btn-primary" style="width: 90%;"
+                                            data-toggle="modal" data-target="#modal">Enviar
+                                            por correo electrónico</button></div>
+                                    <div class="col"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Correos electrónicos a enviar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Correo electrónico personal<input id="personalEmailToSend" class="form-control" type="email">
+                    Correo electrónico laboral<input id="laboralEmailToSend" class="form-control" type="email">
+                    Correo electrónico funcionario Fonsabana<input id="functionaryEmailToSend" class="form-control"
+                        type="email">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button id="sendEmailButton" type="button" class="btn btn-primary">Enviar formulario</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/javascript.js"></script>
+</body>
+
+</html>
