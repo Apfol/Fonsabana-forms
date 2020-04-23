@@ -119,7 +119,7 @@ $("#sendEmailButton").click(function () {
         }).then(
             message => {
                 $("#sendEmailButton").text("Enviar por correo electrónico");
-                alert(message)
+                alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
             }
 
         );

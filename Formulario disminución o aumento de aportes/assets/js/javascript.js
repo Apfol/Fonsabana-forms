@@ -135,7 +135,7 @@ $("#sendEmailButton").click(function () {
         }).then(
             message => {
                 $("#sendEmailButton").text("Enviar formulario");
-                alert(message)
+                alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
             }
 
         );

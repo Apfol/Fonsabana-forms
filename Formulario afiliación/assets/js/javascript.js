@@ -205,6 +205,10 @@ $("#sendEmailButton").click(function () {
     try {
         var doc = demoFromHTML(signatureImg, footprintImg);
         var files = document.getElementById('identificationCardFile').files;
+        if (files.length == 0) {
+            $("#sendEmailButton").text("Enviar formulario");
+            alert(message);
+        }
         $("#sendEmailButton").text("Enviando...");
         getBase64(files[0]).then((data) => {
             Email.send({
@@ -225,7 +229,7 @@ $("#sendEmailButton").click(function () {
             }).then(
                 message => {
                     $("#sendEmailButton").text("Enviar formulario");
-                    alert(message)
+                    alert("¡Correo enviado! Comprueba en tu bandeja de entrada")
                 }
             );
         });

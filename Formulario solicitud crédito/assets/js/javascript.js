@@ -59,6 +59,31 @@ footprintFile.change(function () {
     }
 });
 
+const incomeCertificationFile = $("#incomeCertificationFile");
+const incomeCertificationButton = $("#incomeCertificationButton");
+const incomeCertificationText = $("#incomeCertificationText");
+
+incomeCertificationButton.click(function () {
+    incomeCertificationFile.click();
+});
+
+incomeCertificationFile.change(function () {
+    if (incomeCertificationFile.val()) {
+        incomeCertificationText.html(incomeCertificationFile.val().match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1]);
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                identificationCardDoc = e.target.result;
+            }
+
+            reader.readAsDataURL(this.files[0]);
+        }
+    } else {
+        incomeCertificationText.html("Sin archivo");
+    }
+});
+
 function demoFromHTML(signatureImg, footprintImg) {
     var doc = new jsPDF();
 
@@ -70,7 +95,7 @@ function demoFromHTML(signatureImg, footprintImg) {
     doc.autoTable({
         theme: 'plain',
         styles: { lineColor: [142, 142, 142], lineWidth: 0.1, fontSize: 8 },
-        head: [[{ content: '', colSpan: 6, styles: { minCellHeight: 15 } }, { content: 'Formulario de afiliación Asociado', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Fecha de elaboración: Octubre 5 de 2010. Versión 1', colSpan: 4, styles: { valign: 'middle', halign: 'center' } }]],
+        head: [[{ content: '', colSpan: 6, styles: { minCellHeight: 15 } }, { content: 'SOLICITUD DE CRÉDITO', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Fecha de elaboración: Octubre 29 de 2018. Versión 03', colSpan: 4, styles: { valign: 'middle', halign: 'center' } }]],
     });
 
     doc.autoTable({
@@ -86,28 +111,87 @@ function demoFromHTML(signatureImg, footprintImg) {
         theme: 'plain',
         styles: { lineColor: [142, 142, 142], lineWidth: 0.1, fontSize: 8 },
         head: [[{ content: 'INFORMACIÓN DEUDOR', colSpan: 7, styles: { halign: 'center', minCellWidth: 15, fillColor: [242, 242, 242] } }]],
-        body: [[{ content: "Valor solicitado: " + $("#names").val(), colSpan: 3, styles: { fillColor: [242, 242, 242] } }, { content: "Modalidad " + $("#documentNumber").val(), colSpan: 1 }, { content: "No. de cuotras " + $("#documentNumber").val(), colSpan: 1 }],]
+        body: [[{ content: "Valor solicitado", colSpan: 2, styles: { fillColor: [242, 242, 242], fontStyle: 'bold', halign: 'center' } }, { content: "Modalidad", colSpan: 2, styles: { fillColor: [242, 242, 242], fontStyle: 'bold', halign: 'center' } }, { content: "No. de cuotas", colSpan: 3, styles: { fillColor: [242, 242, 242], fontStyle: 'bold', halign: 'center' } }],
+        [{ content: $("#requestValue").val(), colSpan: 2 }, { content: $("#modality").val(), colSpan: 2 }, { content: $("#quotesNumber").val(), colSpan: 3 }],
+        [{ content: "Recoge créditos vigentes: " + getSelected("outstandingCredits"), colSpan: 3, styles: { fontStyle: 'bold' } }, { content: "¿Cuáles? " + $("#which").val(), colSpan: 4, styles: { fontStyle: 'bold' } }],
+        [{ content: 'Valor solicitado en letras', colSpan: 7, styles: { halign: 'center', minCellWidth: 15, fillColor: [242, 242, 242], fontStyle: 'bold' } }],
+        [{ content: $("#valueInWords").val(), colSpan: 7, styles: { halign: 'center', minCellWidth: 15 } }],
+        [{ content: "Nombres y apellidos: " + $("#names").val(), colSpan: 2 }, { content: "Cédula: " + $("#identificationNumber").val(), colSpan: 2 }, { content: "De: " + $("#identificationFrom").val(), colSpan: 3 }],
+        [{ content: "Empresa donde trabaja: " + $("#business").val(), colSpan: 2 }, { content: "Dependencia: " + $("#ext").val(), colSpan: 1, styles: { cellWidth: 25 } }, { content: "Cargo: " + $("#position").val(), colSpan: 2, styles: { cellWidth: 25 } }, { content: "Fecha ingreso: " + $("#admissionDate").val(), colSpan: 2 }],
+        [{ content: "Dirección residencia: " + $("#residenceDirection").val(), colSpan: 2 }, { content: getSelected("residenceType"), colSpan: 1, styles: { cellWidth: 25 } }, { content: "Ciudad: " + $("#city").val(), colSpan: 2, styles: { cellWidth: 25 } }, { content: "Teléfono: " + $("#phone").val() + "\nCelular: " + $("#cellphone").val(), colSpan: 2 }],
+        [{ content: "E-mail: " + $("#email").val(), colSpan: 7 }],
+        [{ content: "Nombre cónyuge: " + $("#spouseName").val(), colSpan: 2 }, { content: "Cédula: " + $("#spouseIdentificationNumber").val(), colSpan: 1, styles: { cellWidth: 25 } }, { content: "Profesión: " + $("#spouseProfession").val(), colSpan: 2, styles: { cellWidth: 25 } }, { content: "Personas a cargo: " + $("#spousePeople").val(), colSpan: 2 }],
+        [{ content: "Empresa donde labora: " + $("#spouseBusiness").val(), colSpan: 2 }, { content: "Cargo: " + $("#spousePosition").val(), colSpan: 1, styles: { cellWidth: 25 } }, { content: "Antigüedad: " + $("#spouseOld").val(), colSpan: 2, styles: { cellWidth: 25 } }, { content: "Teléfono: " + $("#spousePhone").val(), colSpan: 2 }],
+        [{ content: 'RELACIÓN DE BIENES', colSpan: 7, styles: { halign: 'center', minCellWidth: 15, fillColor: [242, 242, 242], fontStyle: 'bold' } }],
+        [{ content: "Dirección y teléfono", colSpan: 1, styles: { halign: 'center' } }, { content: "No y fecha Esc.", colSpan: 1, styles: { halign: 'center' } }, { content: "No Matrícula", colSpan: 1, styles: { halign: 'center' } }, { content: "Notaría", styles: { cellWidth: 20, halign: 'center' }, colSpan: 1 }, { content: "Hipoteca a", colSpan: 1, styles: { halign: 'center' } }, { content: "Vr. Hipoteca", colSpan: 1, styles: { halign: 'center' } }, { content: "Valor Ccial", colSpan: 1, styles: { halign: 'center' } }],
+        [{ content: $("#direction1").val(), colSpan: 1, styles: { halign: 'center' } }, { content: $("#esc1").val(), colSpan: 1, styles: { halign: 'center' } }, { content: $("#enrollment1").val(), colSpan: 1, styles: { halign: 'center' } }, { content: $("#notary1").val(), styles: { cellWidth: 20, halign: 'center' }, colSpan: 1 }, { content: $("#mortgage1").val(), colSpan: 1, styles: { halign: 'center' } }, { content: $("#mortgageValue1").val(), colSpan: 1, styles: { halign: 'center' } }, { content: $("#commercialValue1").val(), colSpan: 1, styles: { halign: 'center' } }],
+        [{ content: $("#direction2").val(), colSpan: 1, styles: { halign: 'center' } }, { content: $("#esc2").val(), colSpan: 1, styles: { halign: 'center' } }, { content: $("#enrollment2").val(), colSpan: 1, styles: { halign: 'center' } }, { content: $("#notary2").val(), styles: { cellWidth: 20, halign: 'center' }, colSpan: 1 }, { content: $("#mortgage2").val(), colSpan: 1, styles: { halign: 'center' } }, { content: $("#mortgageValue2").val(), colSpan: 1, styles: { halign: 'center' } }, { content: $("#commercialValue2").val(), colSpan: 1, styles: { halign: 'center' } }],
+        [{ content: 'RELACIÓN VEHÍCULOS Y MAQUINARIA', colSpan: 7, styles: { halign: 'center', minCellWidth: 15, fillColor: [242, 242, 242], fontStyle: 'bold' } }],
+        [{ content: "Marca Modelo y Tipo", colSpan: 2, styles: { halign: 'center' } }, { content: "Placa", colSpan: 1, styles: { halign: 'center' } }, { content: "Pignorado a", colSpan: 2, styles: { halign: 'center' } }, { content: "Vr. Pignoración", styles: { cellWidth: 20, halign: 'center' }, colSpan: 1 }, { content: "Vr. Ccial", colSpan: 1, styles: { halign: 'center' } }],
+        [{ content: $("#model1").val(), colSpan: 2, styles: { halign: 'center' } }, { content: $("#licensePlate1").val(), colSpan: 1, styles: { halign: 'center' } }, { content: $("#pledged1").val(), colSpan: 2, styles: { halign: 'center' } }, { content: $("#pledgedValue1").val(), styles: { cellWidth: 20, halign: 'center' }, colSpan: 1 }, { content: $("#commercialValueVehicle1").val(), colSpan: 1, styles: { halign: 'center' } }],
+        [{ content: $("#model2").val(), colSpan: 2, styles: { halign: 'center' } }, { content: $("#licensePlate2").val(), colSpan: 1, styles: { halign: 'center' } }, { content: $("#pledged2").val(), colSpan: 2, styles: { halign: 'center' } }, { content: $("#pledgedValue2").val(), styles: { cellWidth: 20, halign: 'center' }, colSpan: 1 }, { content: $("#commercialValueVehicle2").val(), colSpan: 1, styles: { halign: 'center' } }],
+        [{ content: 'INFORMACIÓN FINANCIERA ', colSpan: 7, styles: { halign: 'center', minCellWidth: 15, fillColor: [242, 242, 242], fontStyle: 'bold' } }],
+        [{ content: "TOTAL ACTIVO (valor bienes): $" + $("#actives").val(), colSpan: 4 }, { content: "TOTAL PASIVO (valor deudas): $" + $("#pasives").val(), colSpan: 3 }],
+        [{ content: "TOTAL PATRIMONIO (Activo - Pasivo): $" + $("#heritage").val(), colSpan: 7 }],
+        [{ content: 'INGRESOS Y EGRESOS', colSpan: 7, styles: { halign: 'center', minCellWidth: 15, fillColor: [242, 242, 242], fontStyle: 'bold' } }],
+        [{ content: "1. Sueldo* $" + $("#revenue").val(), colSpan: 4 }, { content: "1. Arriendo o cuota vivienda $" + $("#rent").val(), colSpan: 3 }],
+        [{ content: "2. Sueldo esposo (a)* $" + $("#spouseSalary").val(), colSpan: 4 }, { content: "2. Gastos de sostenimiento $" + $("#supportCosts").val(), colSpan: 3 }],
+        [{ content: "3. Otros ingresos* $" + $("#spouseSalary").val(), colSpan: 4 }, { content: "3. Pago deudas $" + $("#supportCosts").val(), colSpan: 3 }],
+        [{ content: "Total ingresos (1+2+3) $" + $("#totalIncomes").val(), colSpan: 4 }, { content: "Total gastos (1+2+3) $" + $("#totalCosts").val(), colSpan: 3 }],
+        ]
+    });
+
+    doc.setFontSize(8);
+    doc.text(20, 260, "Descripción otros ingresos: " + $("#descriptionOtherIncomes").val(), { maxWidth: 170, align: "justify" });
+    doc.text(20, 265, "*Adjuntar certificación de ingresos o desprendibles de nómina: personal y otros ingresos", { maxWidth: 170, align: "justify" });
+
+    doc.text(180, 280, "Pag. 1 de 2");
+
+    doc.addPage();
+    doc.setPage(2);
+
+    doc.addImage(logoImg, 'png', 20, 14, 50, 15);
+
+    doc.autoTable({
+        theme: 'plain',
+        styles: { lineColor: [142, 142, 142], lineWidth: 0.1, fontSize: 8 },
+        head: [[{ content: '', colSpan: 6, styles: { minCellHeight: 15 } }, { content: 'SOLICITUD DE CRÉDITO', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Fecha de elaboración: Octubre 29 de 2018. Versión 03', colSpan: 4, styles: { valign: 'middle', halign: 'center' } }]],
     });
 
     doc.autoTable({
         theme: 'plain',
         styles: { lineColor: [142, 142, 142], lineWidth: 0.1, fontSize: 8 },
-        head: [[{ content: 'TIPO DE AUXILIO', colSpan: 4, styles: { halign: 'center', minCellWidth: 15, fillColor: [242, 242, 242] } }]],
-        body: [[{ content: "Tipo de auxilio: " + getSelected("helpType"), colSpan: 4 }],
-        [{ content: "Observaciones: " + $("#observations").val(), colSpan: 4 }],]
+        head: [[{ content: 'REFERENCIAS', colSpan: 7, styles: { halign: 'center', minCellWidth: 15, fillColor: [242, 242, 242] } }]],
+        body: [[{ content: "Entidad bancaria", colSpan: 2, styles: { fontStyle: 'bold', halign: 'center' } }, { content: "No. Cuenta", colSpan: 2, styles: { fontStyle: 'bold', halign: 'center' } }, { content: "Sucursal", colSpan: 3, styles: { fontStyle: 'bold', halign: 'center' } }],
+        [{ content: $("#bankEntity1").val(), colSpan: 2 }, { content: $("#accountNumber1").val(), colSpan: 2 }, { content: $("#branchOffice1").val(), colSpan: 3 }],
+        [{ content: $("#bankEntity2").val(), colSpan: 2 }, { content: $("#accountNumber2").val(), colSpan: 2 }, { content: $("#branchOffice2").val(), colSpan: 3 }],
+        [{ content: "No Tarjeta de crédito", colSpan: 2, styles: { fontStyle: 'bold', halign: 'center' } }, { content: "Entidad", colSpan: 2, styles: { fontStyle: 'bold', halign: 'center' } }, { content: "Cupo", colSpan: 3, styles: { fontStyle: 'bold', halign: 'center' } }],
+        [{ content: $("#creditCard").val(), colSpan: 2 }, { content: $("#entity").val(), colSpan: 2 }, { content: $("#quota").val(), colSpan: 3 }],
+        [{ content: "Personales", colSpan: 2, styles: { fontStyle: 'bold', halign: 'center' } }, { content: "Teléfono", colSpan: 2, styles: { fontStyle: 'bold', halign: 'center' } }, { content: "Actividad", colSpan: 3, styles: { fontStyle: 'bold', halign: 'center' } }],
+        [{ content: $("#personal1").val(), colSpan: 2 }, { content: $("#phone1").val(), colSpan: 2 }, { content: $("#activity1").val(), colSpan: 3 }],
+        [{ content: $("#personal2").val(), colSpan: 2 }, { content: $("#phone2").val(), colSpan: 2 }, { content: $("#activity2").val(), colSpan: 3 }],
+        ]
     });
 
-    doc.autoTable({
-        theme: 'plain',
-        styles: { lineColor: [142, 142, 142], lineWidth: 0.1, fontSize: 8 },
-        head: [[{ content: 'ESPACIO EXCLUSIVO PARA FONSABANA', colSpan: 2, styles: { halign: 'center', minCellWidth: 15, fillColor: [242, 242, 242] } }]],
-        body: [[{ content: "Fecha de ingreso al fondo:", colSpan: 1, styles: { minCellHeight: 15 } }, { content: "Salario: $", colSpan: 1, styles: { minCellHeight: 15 } }],
-        [{ content: "Valor total del auxilio: " + $("#observations").val(), colSpan: 2, styles: { minCellHeight: 15 } }],
-        [{ content: "Aprobado por:", colSpan: 1, styles: { minCellHeight: 15 } }, { content: "Negado por:", colSpan: 1, styles: { minCellHeight: 15 } }],
-        [{ content: "Observaciones: ______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________.", colSpan: 2 }],
-        [{ content: "Firma:", colSpan: 1, styles: { minCellHeight: 15 } }, { content: "Firma:", colSpan: 1, styles: { minCellHeight: 15 } }],
-        [{ content: "Fecha de aprobación:", colSpan: 2, styles: { minCellHeight: 15 } }],]
-    });
+    doc.text(20, 105, "Certifico que la información suministrada es exacta y expresamente autorizamos a FONSABANA para que exclusivamente con fines de información financiera reporte, consulte, registre y circule información a las entidades de consulta de base de datos o cualquier entidad vigilada por las Superintendencias sobre los saldos a nuestro cargo, operaciones de crédito, estado de las obligaciones y manejo del crédito, que bajo cualquier modalidad nos hubieran otorgado o se otorgue en el futuro.",
+        { maxWidth: 170, align: "justify" });
+
+    doc.setFontSize(12);
+    doc.text(15, 125, "Agradezco desembolsar el crédito en:", { maxWidth: 170, align: "justify" });
+    doc.text(20, 135, "1.");
+    doc.text(25, 135, "TITULAR " + $("#titular").val() + "\tC.C. O NIT " + $("#ccNit").val());
+    doc.text(25, 142, "BANCO " + $("#titular").val() + "\tCuenta No. " + $("#ccNit").val());
+    doc.text(25, 149, "TIPO DE CUENTA: " + getSelected("titularAccountType"));
+    doc.text(20, 156, "2.");
+    doc.text(25, 156, "CHEQUE A FAVOR DE: " + $("#check").val() + "\tC.C o NIT" + $("#ccNitCheck").val());
+    doc.text(15, 210, "FIRMAR DEUDOR");
+
+    doc.setFontSize(8);
+    doc.text(180, 280, "Pag. 2 de 2");
+
+    var firmaImg = new Image();
+    firmaImg.src = signatureImg;
+    doc.addImage(firmaImg, 'png', 15, 190, 50, 15);
 
     function getSelected(name) {
         var radios = $('input[name=' + name + ']');
@@ -130,25 +214,35 @@ function demoFromHTML(signatureImg, footprintImg) {
 $("#sendEmailButton").click(function () {
     try {
         var doc = demoFromHTML(signatureImg, footprintImg);
+        var files = document.getElementById('incomeCertificationFile').files;
         $("#sendEmailButton").text("Enviando...");
-        Email.send({
-            SecureToken: "785ccc29-2210-4806-bc5e-3576e0d769e9",
-            To: [$("#personalEmailToSend").val(), $("#laboralEmailToSend").val(), $("#functionaryEmailToSend").val()],
-            From: "andresfabi90@gmail.com",
-            Subject: "Formulario solicitud auxilio de bienestar ",
-            Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de auxilio de bienestar al Fondo de Empleados de La Sabana pasará a comité de mercadeo. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva.",
-            Attachments: [
-                {
-                    name: "Formulario.pdf",
-                    data: doc.output('datauri')
-                }]
-        }).then(
-            message => {
-                $("#sendEmailButton").text("Enviar por correo electrónico");
-                alert(message)
-            }
-
-        );
+        if (files.length == 0) {
+            $("#sendEmailButton").text("Enviar formulario");
+            alert(message);
+        }
+        getBase64(files[0]).then((data) => {
+            Email.send({
+                SecureToken: "785ccc29-2210-4806-bc5e-3576e0d769e9",
+                To: [$("#personalEmailToSend").val(), $("#laboralEmailToSend").val(), $("#functionaryEmailToSend").val()],
+                From: "andresfabi90@gmail.com",
+                Subject: "Formulario solicitud de crédito",
+                Body: 'Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de crédito al Fondo de Empleados de La Sabana pasará a estudio y análisis . Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ',
+                Attachments: [
+                    {
+                        name: "Formulario Asociado.pdf",
+                        data: doc.output('datauri')
+                    },
+                    {
+                        name: incomeCertificationFile.val().match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1],
+                        data: data
+                    }]
+            }).then(
+                message => {
+                    $("#sendEmailButton").text("Enviar formulario");
+                    alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
+                }
+            );
+        });
     } catch (err) {
         alert("Error al generar el documento, verifica que subiste toda la información requerida.");
     }
