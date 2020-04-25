@@ -3,7 +3,7 @@ var signatureImg, footprintImg, identificationCardDoc;
 document.getElementById('print').onclick = function () {
     try {
         var doc = demoFromHTML(signatureImg, footprintImg);
-        doc.save('Formulario Caminata.pdf');
+        doc.save('Formulario Poder.pdf');
     } catch (err) {
         alert("Error al generar el documento, verifica que subiste toda la información requerida.");
     }
@@ -117,8 +117,8 @@ $("#sendEmailButton").click(function () {
             SecureToken: "785ccc29-2210-4806-bc5e-3576e0d769e9",
             To: [$("#personalEmailToSend").val(), $("#laboralEmailToSend").val(), $("#functionaryEmailToSend").val()],
             From: "andresfabi90@gmail.com",
-            Subject: "Formulario solicitud caminatas",
-            Body: "Reciba un cordial saludo. Queremos informarle que su solicitud de caminata al Fondo de Empleados de La Sabana pasará a aprobación de descuento. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva.",
+            Subject: "Formulario Poder",
+            Body: "",
             Attachments: [
                 {
                     name: "Formulario.pdf",
