@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Formulario PODER ESPECIAL - Fonsabana</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/jspdf.min.js"></script>
+    <script src="assets/js/jspdf.plugin.autotable.js"></script>
+    <script type="text/javascript" src="assets/js/mandrill.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+
+</head>
+
+<body>
+    <div class="table-responsive" style="padding: 1%;">
+        <div class="form-row">
+            <div class="col-md-3"><img class="img-fluid img-fluid" src="assets/img/logo-fonsabana.png"
+                    style="padding: 0;padding-right: 0;padding-left: 20%;"></div>
+            <div class="col-md-6">
+                <h2 class="text-center" style="padding-top: 40px;">PODER ESPECIAL</h2>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col" style="padding: 0% 1% 0% 1%;">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td colspan="10">
+                                <div style="padding-left: 1%; padding-bottom: 1%; padding-top: 1%;">
+                                    Chía, día <input id="signDay" type="text"> de mes <input id="signMonth" type="text">
+                                    del año 2020.
+                                    <br><br><br>
+                                    Señores
+                                    <br>
+                                    <div style="font-weight: bold; font-size: larger;">
+                                        FONDO DE EMPLEADOS DE LA SABANA “FONSABANA”
+                                    </div>
+                                    <br>
+                                    YO <input id="name" type="text"> mayor de edad, domiciliado y residente en
+                                    <input id="residence" type="text"> e identificado como aparece al pie de mi
+                                    firma, obrando en mi carácter de asociado de “FONSABANA”, manifiesto a ustedes que
+                                    por medio del presente escrito confiero poder especial, amplio y suficiente a
+                                    <input id="apoderado" type="text"> también mayor de edad, e identificado con cédula
+                                    de ciudadanía No. <input id="identification" type="text"> expedida en <input
+                                        id="expedition" type="text"> para que me represente en la ASAMBLEA GENERAL
+                                    ORDINARIA DE ASOCIADOS DE “FONSABANA”, que tendrá lugar el día 20 de Mayo de 2020, a
+                                    partir de las 11:30 a.m. en el auditorio Álvaro del Portillo – Ad Portas de la
+                                    Universidad de La Sabana, Campus Universidad de La Sabana, Autopista norte, Puente
+                                    del común Chía - Cundinamarca. En caso de no celebrarse la Asamblea, en la fecha
+                                    señalada, el presente poder se extiende a las nuevas convocatorias.
+                                    <br><br>
+                                    Mi apoderado queda facultado para participar con voto en dicha Asamblea.
+                                    <br><br>
+                                    Se otorga este poder en la ciudad de <input id="city" type="text"> a los
+                                    <input id="power" type="text"> días del mes de <input id="powerMonth" type="text">
+                                    de 2020.
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <div class="form-row">
+                                    <div class="col text-center"><input id="signatureFile" type="file"
+                                            hidden="hidden"><button id="signatureButton"
+                                            class="btn btn-secondary text-center" type="button">Subir firma del
+                                            poderante con
+                                            número de identificación (Formato de imagen. Ej: JPG, PNG,
+                                            etc.)</button><span id="signatureText" class="file-name">Sin
+                                            archivo</span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-row">
+                                    <div class="col text-center"><input id="signatureAFile" type="file"
+                                            hidden="hidden"><button id="signatureAButton"
+                                            class="btn btn-secondary text-center" type="button">Subir firma del
+                                            apoderado con
+                                            número de identificación (Formato de imagen. Ej: JPG, PNG,
+                                            etc.)</button><span id="signatureAText" class="file-name">Sin
+                                            archivo</span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br><br>
+                                <div class="form-row">
+                                    <div class="col"></div>
+                                    <div class="col text-center"><button id="print" class="btn btn-primary"
+                                            type="button" style="width: 90%;">Descargar</button></div>
+                                    <div class="col text-center"><button class="btn btn-primary" style="width: 90%;"
+                                            data-toggle="modal" data-target="#modal">Enviar
+                                            por correo electrónico</button></div>
+                                    <div class="col"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Correos electrónicos a enviar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Correo electrónico personal<input id="personalEmailToSend" class="form-control" type="email">
+                    Correo electrónico laboral<input id="laboralEmailToSend" class="form-control" type="email">
+                    Correo electrónico funcionario Fonsabana<input id="functionaryEmailToSend" class="form-control"
+                        type="email">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button id="sendEmailButton" type="button" class="btn btn-primary">Enviar formulario</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/javascript.js"></script>
+</body>
+
+</html>
