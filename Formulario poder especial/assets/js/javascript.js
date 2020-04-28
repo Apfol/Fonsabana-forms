@@ -103,20 +103,28 @@ function demoFromHTML(signatureImg, footprintImg) {
     doc.text(20, 60, "Chía,    " + $("#signDay").val() + " del " + $("#signMonth").val() + " 2020.");
     doc.text(20, 80, "Señores");
     doc.text(20, 90, "FONDO DE EMPLEADOS DE LA SABANA");
-    doc.text(20, 110, "YO " + $("#name").val() + " mayor de edad, domiciliado y residente en " + $("#residence").val() + " e identificado como aparece al pie de mi firma, obrando en mi carácter de asociado de FONSABANA, manifiesto a ustedes que por medio del presente escrito confiero poder especial, amplio y suficiente a " + $("#apoderado").val() + " también mayor de edad, e identificado con cédula de ciudadanía No. " + $("#identification").val() + " expedida en " + $("#expedition").val() + "para que me represente en la ASAMBLEA GENERAL ORDINARIA DE ASOCIADOS DE FONSABANA, que tendrá lugar el día 20 de Mayo de 2020, a partir de las 11:30 a.m. en el auditorio Álvaro del Portillo, Ad Portas de la Universidad de La Sabana, Campus Universidad de La Sabana, Autopista norte, Puente del común Chía - Cundinamarca. En caso de no celebrarse la Asamblea, en la fecha señalada, el presente poder se extiende a las nuevas convocatorias.", { maxWidth: 170, align: "justify" });
-    doc.text(20, 180, "Mi apoderado queda facultado para participar con voto en dicha Asamblea.");
-    doc.text(20, 200, "Se otorga este poder en la ciudad de " + $("#city").val() + " a los " + $("#power").val() + " días del mes de " + $("#powerMonth").val() + " de 2020", { maxWidth: 170, align: "justify" });
-    doc.text(20, 230, "Firma del poderante");
-    doc.text(60, 240, "ACEPTO EL ANTERIOR PODER");
-    doc.text(20, 270, "Firma del apoderado");
-
+    doc.text(20, 110, "YO " + $("#name").val() + " mayor de edad, domiciliado y residente en " + $("#residence").val() + " e identificado como aparece al pie de mi firma, obrando en mi carácter de asociado de FONSABANA, manifiesto a ustedes que por medio del presente escrito confiero poder especial, amplio y suficiente a " + $("#apoderado").val() + " también mayor de edad, e identificado con cédula de ciudadanía No. " + $("#identification").val() + " expedida en " + $("#expedition").val() + " para que me represente en la  ASAMBLEA GENERAL ORDINARIA DE ASOCIADOS DE FONSABANA, que tendra lugar el dia 28 de mayo de 2020 a las 3:00 pm.  Dadas las actuales circunstancias sanitarias, en aplicación del decreto 398 de 2020, la Asamblea General sesionará en forma no presencial, para lo que se dispondrá en modalidad virtual. En caso de no celebrarse la Asamblea, en la fecha señalada, el presente poder se extiende a las nuevas convocatorias.", { maxWidth: 170, align: "justify" });
+    doc.text(20, 170, "Mi apoderado queda facultado para participar con voto en dicha Asamblea.");
+    doc.text(20, 180, "Se otorga este poder en la ciudad de " + $("#city").val() + " a los " + $("#power").val() + " días del mes de " + $("#powerMonth").val() + " de 2020", { maxWidth: 170, align: "justify" });
+    doc.text(20, 210, "Firma del poderante");
+    doc.setFontSize(10);
+    doc.text(20, 215, "C.C No: " + $("#ccPower").val() + " de " + $("#expeditionPower").val());
+    doc.text(20, 220, "Correo: " + $("#emailPower").val());
+    doc.text(20, 225, "Celular: " + $("#phonePower").val());
+    doc.setFontSize(14);
+    doc.text(70, 230, "ACEPTO EL ANTERIOR PODER");
+    doc.text(20, 260, "Firma del apoderado");
+    doc.setFontSize(10);
+    doc.text(20, 265, "C.C No: " + $("#ccAPower").val() + " de " + $("#expeditionAPower").val());
+    doc.text(20, 270, "Correo: " + $("#emailAPower").val());
+    doc.text(20, 275, "Celular: " + $("#phoneAPower").val());
     var firmaImg = new Image();
     firmaImg.src = signatureImg;
-    doc.addImage(firmaImg, 'png', 20, 210, 50, 15);
+    doc.addImage(firmaImg, 'png', 20, 190, 50, 15);
 
     var firmaImg = new Image();
     firmaImg.src = signatureAImg;
-    doc.addImage(firmaImg, 'png', 20, 250, 50, 15);
+    doc.addImage(firmaImg, 'png', 20, 240, 50, 15);
 
     function getSelected(name) {
         var radios = $('input[name=' + name + ']');
