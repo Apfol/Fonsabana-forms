@@ -222,9 +222,9 @@ $("#sendEmailButton").click(function () {
         }
         getBase64(files[0]).then((data) => {
             Email.send({
-                SecureToken: "785ccc29-2210-4806-bc5e-3576e0d769e9",
+                SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
                 To: [$("#personalEmailToSend").val(), $("#laboralEmailToSend").val(), $("#functionaryEmailToSend").val()],
-                From: "andresfabi90@gmail.com",
+                From: "fonsabana@fonsabana.com.co",
                 Subject: "Formulario solicitud de crédito",
                 Body: 'Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de crédito al Fondo de Empleados de La Sabana pasará a estudio y análisis . Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ',
                 Attachments: [

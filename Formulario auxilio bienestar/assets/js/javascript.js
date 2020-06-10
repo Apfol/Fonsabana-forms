@@ -135,9 +135,9 @@ $("#sendEmailButton").click(function () {
         var doc = demoFromHTML(signatureImg, footprintImg);
         $("#sendEmailButton").text("Enviando...");
         Email.send({
-            SecureToken: "785ccc29-2210-4806-bc5e-3576e0d769e9",
+            SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
             To: [$("#personalEmailToSend").val(), $("#laboralEmailToSend").val(), $("#functionaryEmailToSend").val()],
-            From: "andresfabi90@gmail.com",
+            From: "fonsabana@fonsabana.com.co",
             Subject: "Formulario solicitud auxilio de bienestar ",
             Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de auxilio de bienestar al Fondo de Empleados de La Sabana pasará a comité de mercadeo. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva.",
             Attachments: [

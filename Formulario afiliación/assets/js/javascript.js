@@ -212,9 +212,9 @@ $("#sendEmailButton").click(function () {
         $("#sendEmailButton").text("Enviando...");
         getBase64(files[0]).then((data) => {
             Email.send({
-                SecureToken: "785ccc29-2210-4806-bc5e-3576e0d769e9",
+                SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
                 To: [$("#personalEmailToSend").val(), $("#laboralEmailToSend").val(), $("#functionaryEmailToSend").val()],
-                From: "andresfabi90@gmail.com",
+                From: "fonsabana@fonsabana.com.co",
                 Subject: "Formulario de afiliación de asociado",
                 Body: 'Apreciado(a) asociado(a):' + '\r\n\r\n' + 'Reciba un cordial saludo. Queremos informarle que su solicitud de afiliación al Fondo de Empleados de La Sabana pasará a Comité de nuestra Junta Directiva. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ',
                 Attachments: [
