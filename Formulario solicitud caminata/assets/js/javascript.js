@@ -115,7 +115,7 @@ $("#sendEmailButton").click(function () {
         $("#sendEmailButton").text("Enviando...");
         Email.send({
             SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
-            To: [$("#personalEmailToSend").val(), $("#laboralEmailToSend").val(), $("#functionaryEmailToSend").val()],
+            To: getEmailsTo(),
             From: "fonsabana@fonsabana.com.co",
             Subject: "Formulario Poder",
             Body: "",
@@ -135,6 +135,17 @@ $("#sendEmailButton").click(function () {
         alert("Error al generar el documento, verifica que subiste toda la información requerida.");
     }
 });
+
+function getEmailsTo() {
+    var emails = [];
+    if ($("#personalEmailToSend").val()) 
+        emails.push($("#personalEmailToSend").val());
+    if ($("#laboralEmailToSend").val()) 
+        emails.push($("#laboralEmailToSend").val());
+    if ($("#functionaryEmailToSend").val()) 
+        emails.push($("#functionaryEmailToSend").val());
+    return emails;
+}
 
 function getBase64(file) {
     return new Promise((resolve, reject) => {

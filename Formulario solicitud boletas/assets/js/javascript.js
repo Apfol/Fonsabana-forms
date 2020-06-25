@@ -106,8 +106,8 @@ $("#sendEmailButton").click(function () {
         var doc = demoFromHTML(signatureImg, footprintImg);
         $("#sendEmailButton").text("Enviando...");
         Email.send({
-            SecureToken: "396783f6-a017-417c-a5bf-f17b2ab6b137",
-            To: [$("#personalEmailToSend").val(), $("#laboralEmailToSend").val(), $("#functionaryEmailToSend").val()],
+            SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
+            To: getEmailsTo(),
             From: "fonsabana@fonsabana.com.co",
             Subject: "Formulario solicitud boletas",
             Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de boletas al Fondo de Empleados de La Sabana pasará a aprobación de descuento. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva.",
@@ -127,6 +127,17 @@ $("#sendEmailButton").click(function () {
         alert("Error al generar el documento, verifica que subiste toda la información requerida.");
     }
 });
+
+function getEmailsTo() {
+    var emails = [];
+    if ($("#personalEmailToSend").val()) 
+        emails.push($("#personalEmailToSend").val());
+    if ($("#laboralEmailToSend").val()) 
+        emails.push($("#laboralEmailToSend").val());
+    if ($("#functionaryEmailToSend").val()) 
+        emails.push($("#functionaryEmailToSend").val());
+    return emails;
+}
 
 function getBase64(file) {
     return new Promise((resolve, reject) => {

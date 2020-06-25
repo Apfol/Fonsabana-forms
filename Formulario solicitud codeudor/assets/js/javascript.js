@@ -209,7 +209,7 @@ $("#sendEmailButton").click(function () {
             getBase64(iFiles[0]).then((iden) => {
                 Email.send({
                     SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
-                    To: [$("#personalEmailToSend").val(), $("#laboralEmailToSend").val(), $("#functionaryEmailToSend").val()],
+                    To: getEmailsTo(),
                     From: "fonsabana@fonsabana.com.co",
                     Subject: "Formulario solicitud de crédito",
                     Body: 'Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de crédito al Fondo de Empleados de La Sabana pasará a estudio y análisis . Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ',
@@ -239,6 +239,17 @@ $("#sendEmailButton").click(function () {
         alert("Error al generar el documento, verifica que subiste toda la información requerida.");
     }
 });
+
+function getEmailsTo() {
+    var emails = [];
+    if ($("#personalEmailToSend").val()) 
+        emails.push($("#personalEmailToSend").val());
+    if ($("#laboralEmailToSend").val()) 
+        emails.push($("#laboralEmailToSend").val());
+    if ($("#functionaryEmailToSend").val()) 
+        emails.push($("#functionaryEmailToSend").val());
+    return emails;
+}
 
 function getBase64(file) {
     return new Promise((resolve, reject) => {
