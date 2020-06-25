@@ -117,8 +117,8 @@ $("#sendEmailButton").click(function () {
             SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
             To: getEmailsTo(),
             From: "fonsabana@fonsabana.com.co",
-            Subject: "Formulario Poder",
-            Body: "",
+            Subject: "Formulario solicitud caminatas",
+            Body: "Reciba un cordial saludo. Queremos informarle que su solicitud de caminata al Fondo de Empleados de La Sabana pasará a aprobación de descuento. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva.",
             Attachments: [
                 {
                     name: "Formulario.pdf",
