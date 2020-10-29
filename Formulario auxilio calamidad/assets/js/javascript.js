@@ -1,11 +1,15 @@
 var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
-    try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
-        doc.save('Formulario Auxilio Calamidad.pdf');
-    } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+    if ($('#policyCheckbox').is(":checked")) { 
+        try {
+            var doc = demoFromHTML(signatureImg, footprintImg);
+            doc.save('Formulario Auxilio Calamidad.pdf');
+        } catch (err) {
+            alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+        }
+    } else {
+        alert("Debes aceptar la política de protección de datos.");
     }
 };
 
@@ -70,7 +74,7 @@ function demoFromHTML(signatureImg, footprintImg) {
     doc.autoTable({
         theme: 'plain',
         styles: { lineColor: [142, 142, 142], lineWidth: 0.1, fontSize: 8 },
-        head: [[{ content: '', colSpan: 6, styles: { minCellHeight: 15 } }, { content: 'Formulario de afiliación Asociado', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Fecha de elaboración: Octubre 5 de 2010. Versión 1', colSpan: 4, styles: { valign: 'middle', halign: 'center' } }]],
+        head: [[{ content: '', colSpan: 6, styles: { minCellHeight: 15 } }, { content: 'SOLICITUD AUXILIO CALAMIDAD', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Fecha de elaboración: Octubre 5 de 2010. Versión 1', colSpan: 4, styles: { valign: 'middle', halign: 'center' } }]],
     });
 
     doc.autoTable({
@@ -112,6 +116,11 @@ function demoFromHTML(signatureImg, footprintImg) {
         [{ content: "Fecha de aprobación:", colSpan: 2, styles: { minCellHeight: 15 } }],]
     });
 
+    doc.setFontType("normal");
+    doc.setFontSize(9);
+    doc.text(14, 235, "Protección de Datos: En Cumplimiento del artículo 10 del Decreto 1377 de 2013, reglamentario de la Ley Estatutaria 1581 de 2012, FONSABANA, informa que previamente a la expedición del Decreto, ha recolectado información personal de nuestros asociados, la cual reposa en las bases de datos del Fondo, y es utilizada para los fines propios de nuestra institución, específicamente para mantener los lazos con todos los asociados y en general, para el ejercicio del objeto social. Los titulares de los datos podrán ejercer los derechos de acceso, corrección, supresión, revocación o reclamo, mediante escrito dirigido al FONDO DE EMPLEADOS DE LA SABANA - FONSABANA a la dirección de correo electrónico protecciondedatos@fonsabana.com.co, atendiendo los requisitos para el trámite de consultas y reclamos establecidos en la política de protección de datos del Fondo.",
+        { maxWidth: 180, align: "justify" });
+
     function getSelected(name) {
         var radios = $('input[name=' + name + ']');
         for (var i = 0; i < radios.length; i++) {
@@ -131,29 +140,33 @@ function demoFromHTML(signatureImg, footprintImg) {
 }
 
 $("#sendEmailButton").click(function () {
-    try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
-        $("#sendEmailButton").text("Enviando...");
-        Email.send({
-            SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
-            To: getEmailsTo(),
-            From: "fonsabana@fonsabana.com.co",
-            Subject: "Formulario solicitud auxilio de calamidad",
-            Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de auxilio de calamidad al Fondo de Empleados de La Sabana pasará a comité de mercadeo. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva.",
-            Attachments: [
-                {
-                    name: "Formulario.pdf",
-                    data: doc.output('datauri')
-                }]
-        }).then(
-            message => {
-                $("#sendEmailButton").text("Enviar por correo electrónico");
-                alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
-            }
-
-        );
-    } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+    if ($('#policyCheckbox').is(":checked")) {  
+        try {
+            var doc = demoFromHTML(signatureImg, footprintImg);
+            $("#sendEmailButton").text("Enviando...");
+            Email.send({
+                SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
+                To: getEmailsTo(),
+                From: "fonsabana@fonsabana.com.co",
+                Subject: "Formulario solicitud auxilio de calamidad",
+                Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de auxilio de calamidad al Fondo de Empleados de La Sabana pasará a comité de mercadeo. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva.",
+                Attachments: [
+                    {
+                        name: "Formulario.pdf",
+                        data: doc.output('datauri')
+                    }]
+            }).then(
+                message => {
+                    $("#sendEmailButton").text("Enviar por correo electrónico");
+                    alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
+                }
+    
+            );
+        } catch (err) {
+            alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+        }
+    } else {
+        alert("Debes aceptar la política de protección de datos.");
     }
 });
 

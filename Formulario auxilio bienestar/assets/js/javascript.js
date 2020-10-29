@@ -74,7 +74,7 @@ function demoFromHTML(signatureImg, footprintImg) {
     doc.autoTable({
         theme: 'plain',
         styles: { lineColor: [142, 142, 142], lineWidth: 0.1, fontSize: 8 },
-        head: [[{ content: '', colSpan: 6, styles: { minCellHeight: 15 } }, { content: 'Formulario de afiliación Asociado', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Fecha de elaboración: Octubre 5 de 2010. Versión 1', colSpan: 4, styles: { valign: 'middle', halign: 'center' } }]],
+        head: [[{ content: '', colSpan: 6, styles: { minCellHeight: 15 } }, { content: 'SOLICITUD AUXILIO BIENESTAR', colSpan: 6, styles: { valign: 'middle', halign: 'center' } }, { content: 'Fecha de elaboración: Octubre 5 de 2010. Versión 1', colSpan: 4, styles: { valign: 'middle', halign: 'center' } }]],
     });
 
     doc.autoTable({
