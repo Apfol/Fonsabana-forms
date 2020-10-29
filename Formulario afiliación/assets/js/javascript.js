@@ -1,11 +1,15 @@
 var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
-    try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
-        doc.save('Formulario Asociado.pdf');
-    } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+    if ($('#policyCheckbox').is(":checked")) {
+        try {
+            var doc = demoFromHTML(signatureImg, footprintImg);
+            doc.save('Formulario Asociado.pdf');
+        } catch (err) {
+            alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+        }
+    } else {
+        alert("Debes aceptar la política de protección de datos.");
     }
 };
 
@@ -164,18 +168,20 @@ function demoFromHTML(signatureImg, footprintImg) {
             [{ content: '1) Autorizo a FONSABANA a enviar los documentos correspondientes, ya sea extractos, rendimientos de cuentas, u otra información relacionada con el manejo de mis productos o servicios, o cualquier información que considere pertinente, por correo electrónico a la cuenta registrada en el formulario de afiliación o a la dirección de notificación registrada en el presente formulario o a la que indique por comunicación escrita. Manifiesto que estas son direcciones válidas, reales y me comprometo a actualizar la información de contacto aquí relacionada cada vez que cambie o cuando me sea solicitado. 2) Autorizo a todas las áreas de FONSABANA, para el desarrollo de su actividad comercial, a recolectar, recaudar, almacenar, usar, circular, suprimir, procesar, compilar, intercambiar, dar tratamiento, actualizar y disponer de los datos que han sido suministrados y que se han incorporado a distintas bases o bancos de datos, o en repositorios electrónicos de todo tipo con los que cuenta FONSABANA.3) Autorizo a FONSABANA, para que reporte, procese, solicite y consulte mi información comercial y financiera en las centrales de riesgo que para tales efectos cumplan con dicha labor, así como la de mi representante legal, apoderado y/u ordenante. 4) Autorizo a FONSABANA a compartir mi información comercial y financiera a terceros con los cuales posea un vínculo contractual de cualquier índole, siempre y cuando estos terceros cuenten con los medios electrónicos y controles idóneos para brindar seguridad a la información, y siempre que el tratamiento que estos terceros le den a la información esté relacionado con las actividades que correspondan a la gestión de la entidad. 5) Autorizo a cancelar los productos o servicios que mantenga en FONSABANA, en caso de infracción de cualquiera de los numerales contenidos en este documento, eximiendo a FONSABANA de toda responsabilidad que se derive por información errónea, falsa o inexacta que yo hubiere proporcionado en este documento o de violación del mismo. 6) Declaro que conozco y cumpliré las normas que obligan a actualizar mis datos personales e información financiera al menos una vez por año. 7) No admitiré que terceros efectúen depósitos a mis productos con recursos provenientes de actividades ilícitas contempladas en el Código Penal Colombiano o en cualquier norma que lo modifique o adicione, ni efectuaré transacciones o actividades a favor de personas relacionadas con las mismas. 8) Conozco que los canales establecidos para ejercer en cualquier momento los derechos que me asisten, en especial: conocer la información, solicitar la actualización, rectificación y/o supresión o revocar el consentimiento otorgado para el tratamiento de datos personales, será a través de: forma personal, comunicación escrita o al correo electrónico fonsabana@fonsabana.com.co. 9) Declaro que los recursos que se deriven de la relación comercial entre FONSABANA y yo no se destinarán a la financiación del terrorismo, grupos terroristas o actividades terroristas. 10) Declaro que no he sido declarado responsable jurídicamente por la comisión de delitos contra la administración pública cuya pena sea privación de la libertad o que afecten el patrimonio del estado o por delitos relacionados con la pertenencia, promoción o financiación de grupos ilegales, delitos de lesa humanidad, narcotráfico en Colombia o en el exterior, o soborno trasnacional. ', colSpan: 16 }],
             [{ content: 'DECLARACIÓN DE ORIGEN DE FONDOS', styles: { fillColor: [200, 200, 200], halign: 'center' }, colSpan: 16 }],
             [{ content: 'Declaro bajo la gravedad de juramento que los recursos que entrego no provienen de ninguna actividad ilícita de las contempladas en el Código Penal Colombiano o en cualquier norma que lo modifique o adicione. \nLos recursos que entrego provienen de las siguientes fuentes:\n\nSalarios y remuneraciones:' + getChecked("salaryAndRemunerations") + ' Honorarios:' + getChecked("fee") + ' Pensión:' + getChecked("pension") + ' Actividad Económica:' + getChecked("economicActivityFundOrigins") + ' Otros:' + getChecked("otherFundOrigins") + ' ¿Cuales? ' + $("#whichFundOrigins").val() + '\n\nSe hace constar que la presente autorización no constituye por parte de FONSABANA acto contrario a la ley y que, en su correcta utilización, de acuerdo con lo previsto en este documento, no es en ningún caso violatoria de mis derechos constitucionales o legales o de los cuales quiera de los autorizados u ordenantes registrados. ', colSpan: 16 }],
-            [{ content: 'Al presentar esta solicitud de ingreso al Fondo de Empleados, declaro que acepto y me someto a los Estatutos y Reglamentos del Fondo de Empleados de La Sabana\n\nPor ello firmo a los ' + $("#firmDay").val() + ' días del mes de ' + $("#firmMonth").val() + ' del año ' + $("#firmYear").val() + ' .\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\tFirma y No. C.C.\t\t\t\t\t\t\t\t\tHuella Indice derecho', colSpan: 16 }],
+            [{ content: 'Al presentar esta solicitud de ingreso al Fondo de Empleados, declaro que acepto y me someto a los Estatutos y Reglamentos del Fondo de Empleados de La Sabana\n\nPor ello firmo a los ' + $("#firmDay").val() + ' días del mes de ' + $("#firmMonth").val() + ' del año ' + $("#firmYear").val(), colSpan: 16 }],
+            [{ content: 'Protección de Datos: En Cumplimiento del artículo 10 del Decreto 1377 de 2013, reglamentario de la Ley Estatutaria 1581 de 2012, FONSABANA, informa que previamente a la expedición del Decreto, ha recolectado información personal de nuestros asociados, la cual reposa en las bases de datos del Fondo, y es utilizada para los fines propios de nuestra institución, específicamente para mantener los lazos con todos los asociados y en general, para el ejercicio del objeto social. Los titulares de los datos podrán ejercer los derechos de acceso, corrección, supresión, revocación o reclamo, mediante escrito dirigido al FONDO DE EMPLEADOS DE LA SABANA - FONSABANA a la dirección de correo electrónico protecciondedatos@fonsabana.com.co, atendiendo los requisitos para el trámite de consultas y reclamos establecidos en la política de protección de datos del Fondo.', colSpan: 16 }],
+            [{ content: ' .\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\tFirma y No. C.C.\t\t\t\t\t\t\t\t\tHuella Indice derecho', colSpan: 16 }],
             // ...
         ],
     });
 
     var firmaImg = new Image();
     firmaImg.src = signatureImg;
-    doc.addImage(firmaImg, 'png', 40, 155, 50, 15);
+    doc.addImage(firmaImg, 'png', 40, 185, 50, 15);
 
     var firmaImg = new Image();
     firmaImg.src = footprintImg;
-    doc.addImage(firmaImg, 'png', 130, 140, 30, 30);
+    doc.addImage(firmaImg, 'png', 130, 170, 30, 30);
 
     doc.setPage(2);
     doc.addImage(logoImg, 'png', 20, 14.2, 50, 14);
@@ -202,39 +208,43 @@ function demoFromHTML(signatureImg, footprintImg) {
 }
 
 $("#sendEmailButton").click(function () {
-    try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
-        var files = document.getElementById('identificationCardFile').files;
-        if (files.length == 0) {
-            $("#sendEmailButton").text("Enviar formulario");
-            alert(message);
+    if ($('#policyCheckbox').is(":checked")) {
+        try {
+            var doc = demoFromHTML(signatureImg, footprintImg);
+            var files = document.getElementById('identificationCardFile').files;
+            if (files.length == 0) {
+                $("#sendEmailButton").text("Enviar formulario");
+                alert(message);
+            }
+            $("#sendEmailButton").text("Enviando...");
+            getBase64(files[0]).then((data) => {
+                Email.send({
+                    SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
+                    To: getEmailsTo(),
+                    From: "fonsabana@fonsabana.com.co",
+                    Subject: "Formulario de afiliación de asociado",
+                    Body: 'Apreciado(a) asociado(a):' + '\r\n\r\n' + 'Reciba un cordial saludo. Queremos informarle que su solicitud de afiliación al Fondo de Empleados de La Sabana pasará a Comité de nuestra Junta Directiva. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ',
+                    Attachments: [
+                        {
+                            name: "Formulario Asociado.pdf",
+                            data: doc.output('datauri')
+                        },
+                        {
+                            name: "Cédula." + identificationCardFile.val().split('.').pop(),
+                            data: data
+                        }]
+                }).then(
+                    message => {
+                        $("#sendEmailButton").text("Enviar formulario");
+                        alert("¡Correo enviado! Comprueba en tu bandeja de entrada")
+                    }
+                );
+            });
+        } catch (err) {
+            alert("Error al generar el documento, verifica que subiste toda la información requerida.");
         }
-        $("#sendEmailButton").text("Enviando...");
-        getBase64(files[0]).then((data) => {
-            Email.send({
-                SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
-                To: getEmailsTo(),
-                From: "fonsabana@fonsabana.com.co",
-                Subject: "Formulario de afiliación de asociado",
-                Body: 'Apreciado(a) asociado(a):' + '\r\n\r\n' + 'Reciba un cordial saludo. Queremos informarle que su solicitud de afiliación al Fondo de Empleados de La Sabana pasará a Comité de nuestra Junta Directiva. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ',
-                Attachments: [
-                    {
-                        name: "Formulario Asociado.pdf",
-                        data: doc.output('datauri')
-                    },
-                    {
-                        name: "Cédula." + identificationCardFile.val().split('.').pop(),
-                        data: data
-                    }]
-            }).then(
-                message => {
-                    $("#sendEmailButton").text("Enviar formulario");
-                    alert("¡Correo enviado! Comprueba en tu bandeja de entrada")
-                }
-            );
-        });
-    } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+    } else {
+        alert("Debes aceptar la política de protección de datos.");
     }
 });
 
