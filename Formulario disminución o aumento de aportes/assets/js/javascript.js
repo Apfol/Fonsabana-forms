@@ -1,11 +1,15 @@
 var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
-    try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
-        doc.save('table.pdf');
-    } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+    if ($('#policyCheckbox').is(":checked")) {
+        try {
+            var doc = demoFromHTML(signatureImg, footprintImg);
+            doc.save('Disminución o aumento de aportes.pdf');
+        } catch (err) {
+            alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+        }
+    } else {
+        alert("Debes aceptar la política de protección de datos.");
     }
 };
 
@@ -92,12 +96,15 @@ function demoFromHTML(signatureImg, footprintImg) {
     }
     doc.text(20, 186, "Acepto de acuerdo con la ley, los descuentos por nómina que determine la\nAsamblea de la Entidad y los ajustes que correspondan a mis obligaciones\nadquiridas con el Fondo de empleados según las normas legales vigentes. ");
     doc.text(20, 216, "Atentamente,");
-    doc.text(20, 236, "NOMBRE: " + $("#name").val());
-    doc.text(20, 246, "FIRMA Y CÉDULA: ");
+    doc.text(20, 230, "NOMBRE: " + $("#name").val());
+    doc.text(20, 240, "FIRMA Y CÉDULA: ");
+    doc.setFontSize(7);
+    doc.text(20, 273, "Protección de Datos: En Cumplimiento del artículo 10 del Decreto 1377 de 2013, reglamentario de la Ley Estatutaria 1581 de 2012, FONSABANA, informa que previamente a la expedición del Decreto, ha recolectado información personal de nuestros asociados, la cual reposa en las bases de datos del Fondo, y es utilizada para los fines propios de nuestra institución, específicamente para mantener los lazos con todos los asociados y en general, para el ejercicio del objeto social. Los titulares de los datos podrán ejercer los derechos de acceso, corrección, supresión, revocación o reclamo, mediante escrito dirigido al FONDO DE EMPLEADOS DE LA SABANA - FONSABANA a la dirección de correo electrónico protecciondedatos@fonsabana.com.co, atendiendo los requisitos para el trámite de consultas y reclamos establecidos en la política de protección de datos del Fondo.",
+        { maxWidth: 170, align: "justify" });
 
     var firmaImg = new Image();
     firmaImg.src = signatureImg;
-    doc.addImage(firmaImg, 'png', 20, 253, 50, 15);
+    doc.addImage(firmaImg, 'png', 20, 247, 50, 15);
 
     function getSelected(name) {
         var radios = $('input[name=' + name + ']');
@@ -118,31 +125,34 @@ function demoFromHTML(signatureImg, footprintImg) {
 }
 
 $("#sendEmailButton").click(function () {
-    try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
-        $("#sendEmailButton").text("Enviando...");
-        Email.send({
-            SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
-            To: getEmailsTo(),
-            From: "fonsabana@fonsabana.com.co",
-            Subject: "Formulario de disminución o aumento de aporte",
-            Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de disminución o aumento de aporte al Fondo de Empleados de La Sabana pasará a aprobación de descuento. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva.",
-            Attachments: [
-                {
-                    name: "Formulario.pdf",
-                    data: doc.output('datauri')
-                }]
-        }).then(
-            message => {
-                $("#sendEmailButton").text("Enviar formulario");
-                alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
-            }
-
-        );
-    } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+    if ($('#policyCheckbox').is(":checked")) { 
+        try {
+            var doc = demoFromHTML(signatureImg, footprintImg);
+            $("#sendEmailButton").text("Enviando...");
+            Email.send({
+                SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
+                To: getEmailsTo(),
+                From: "fonsabana@fonsabana.com.co",
+                Subject: "Formulario de disminución o aumento de aporte",
+                Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de disminución o aumento de aporte al Fondo de Empleados de La Sabana pasará a aprobación de descuento. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva.",
+                Attachments: [
+                    {
+                        name: "Formulario.pdf",
+                        data: doc.output('datauri')
+                    }]
+            }).then(
+                message => {
+                    $("#sendEmailButton").text("Enviar formulario");
+                    alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
+                }
+    
+            );
+        } catch (err) {
+            alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+        }
+    } else {
+        alert("Debes aceptar la política de protección de datos.");
     }
-
 });
 
 function getEmailsTo() {
