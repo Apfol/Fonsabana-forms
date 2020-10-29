@@ -1,11 +1,15 @@
 var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
-    try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
-        doc.save('Formulario Solicitud Crédito.pdf');
-    } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+    if ($('#policyCheckbox').is(":checked")) { 
+        try {
+            var doc = demoFromHTML(signatureImg, footprintImg);
+            doc.save('Formulario Solicitud Crédito.pdf');
+        } catch (err) {
+            alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+        }
+    } else {
+        alert("Debes aceptar la política de protección de datos.");
     }
 };
 
@@ -184,14 +188,16 @@ function demoFromHTML(signatureImg, footprintImg) {
     doc.text(25, 149, "TIPO DE CUENTA: " + getSelected("titularAccountType"));
     doc.text(20, 156, "2.");
     doc.text(25, 156, "CHEQUE A FAVOR DE: " + $("#check").val() + "\tC.C o NIT " + $("#ccNitCheck").val());
-    doc.text(15, 210, "FIRMAR DEUDOR");
+    doc.text(15, 240, "FIRMAR DEUDOR");
 
     doc.setFontSize(8);
+    doc.text(20, 170, "Protección de Datos: En Cumplimiento del artículo 10 del Decreto 1377 de 2013, reglamentario de la Ley Estatutaria 1581 de 2012, FONSABANA, informa que previamente a la expedición del Decreto, ha recolectado información personal de nuestros asociados, la cual reposa en las bases de datos del Fondo, y es utilizada para los fines propios de nuestra institución, específicamente para mantener los lazos con todos los asociados y en general, para el ejercicio del objeto social. Los titulares de los datos podrán ejercer los derechos de acceso, corrección, supresión, revocación o reclamo, mediante escrito dirigido al FONDO DE EMPLEADOS DE LA SABANA - FONSABANA a la dirección de correo electrónico protecciondedatos@fonsabana.com.co, atendiendo los requisitos para el trámite de consultas y reclamos establecidos en la política de protección de datos del Fondo.",
+        { maxWidth: 170, align: "justify" });
     doc.text(180, 280, "Pag. 2 de 2");
 
     var firmaImg = new Image();
     firmaImg.src = signatureImg;
-    doc.addImage(firmaImg, 'png', 15, 190, 50, 15);
+    doc.addImage(firmaImg, 'png', 15, 220, 50, 15);
 
     function getSelected(name) {
         var radios = $('input[name=' + name + ']');
@@ -212,39 +218,43 @@ function demoFromHTML(signatureImg, footprintImg) {
 }
 
 $("#sendEmailButton").click(function () {
-    try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
-        var files = document.getElementById('incomeCertificationFile').files;
-        $("#sendEmailButton").text("Enviando...");
-        if (files.length == 0) {
-            $("#sendEmailButton").text("Enviar formulario");
-            alert(message);
+    if ($('#policyCheckbox').is(":checked")) { 
+        try {
+            var doc = demoFromHTML(signatureImg, footprintImg);
+            var files = document.getElementById('incomeCertificationFile').files;
+            $("#sendEmailButton").text("Enviando...");
+            if (files.length == 0) {
+                $("#sendEmailButton").text("Enviar formulario");
+                alert(message);
+            }
+            getBase64(files[0]).then((data) => {
+                Email.send({
+                    SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
+                    To: getEmailsTo(),
+                    From: "fonsabana@fonsabana.com.co",
+                    Subject: "Formulario solicitud de crédito",
+                    Body: 'Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de crédito al Fondo de Empleados de La Sabana pasará a estudio y análisis . Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ',
+                    Attachments: [
+                        {
+                            name: "Formulario Asociado.pdf",
+                            data: doc.output('datauri')
+                        },
+                        {
+                            name: "Certificación." + incomeCertificationFile.val().split('.').pop(),
+                            data: data
+                        }]
+                }).then(
+                    message => {
+                        $("#sendEmailButton").text("Enviar formulario");
+                        alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
+                    }
+                );
+            });
+        } catch (err) {
+            alert("Error al generar el documento, verifica que subiste toda la información requerida.");
         }
-        getBase64(files[0]).then((data) => {
-            Email.send({
-                SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
-                To: getEmailsTo(),
-                From: "fonsabana@fonsabana.com.co",
-                Subject: "Formulario solicitud de crédito",
-                Body: 'Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de crédito al Fondo de Empleados de La Sabana pasará a estudio y análisis . Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ',
-                Attachments: [
-                    {
-                        name: "Formulario Asociado.pdf",
-                        data: doc.output('datauri')
-                    },
-                    {
-                        name: "Certificación." + incomeCertificationFile.val().split('.').pop(),
-                        data: data
-                    }]
-            }).then(
-                message => {
-                    $("#sendEmailButton").text("Enviar formulario");
-                    alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
-                }
-            );
-        });
-    } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+    } else {
+        alert("Debes aceptar la política de protección de datos.");
     }
 });
 
