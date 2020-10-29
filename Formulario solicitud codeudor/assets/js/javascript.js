@@ -1,11 +1,15 @@
 var signatureImg, identificationCardImg, incomeCertificationDoc;
 
 document.getElementById('print').onclick = function () {
-    try {
-        var doc = demoFromHTML(signatureImg, identificationCardImg);
-        doc.save('Formulario Solicitud Crédito.pdf');
-    } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+    if ($('#policyCheckbox').is(":checked")) {
+        try {
+            var doc = demoFromHTML(signatureImg, identificationCardImg);
+            doc.save('Formulario Solicitud Crédito.pdf');
+        } catch (err) {
+            alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+        }
+    } else {
+        alert("Debes aceptar la política de protección de datos.");
     }
 };
 
@@ -170,6 +174,12 @@ function demoFromHTML(signatureImg, footprintImg) {
     doc.text(20, 105, "Certifico que la información suministrada es exacta y expresamente autorizamos a FONSABANA para que exclusivamente con fines de información financiera reporte, consulte, registre y circule información a las entidades de consulta de base de datos o cualquier entidad vigilada por las Superintendencias sobre los saldos a nuestro cargo, operaciones de crédito, estado de las obligaciones y manejo del crédito, que bajo cualquier modalidad nos hubieran otorgado o se otorgue en el futuro.",
         { maxWidth: 170, align: "justify" });
 
+    doc.text(20, 130, "Protección de Datos: En Cumplimiento del artículo 10 del Decreto 1377 de 2013, reglamentario de la Ley Estatutaria 1581 de 2012, FONSABANA, informa que previamente a la expedición del Decreto, ha recolectado información personal de nuestros asociados, la cual reposa en las bases de datos del Fondo, y es utilizada para los fines propios de nuestra institución, específicamente para mantener los lazos con todos los asociados y en general, para el ejercicio del objeto social. Los titulares de los datos podrán ejercer los derechos de acceso, corrección, supresión, revocación o reclamo, mediante escrito dirigido al FONDO DE EMPLEADOS DE LA SABANA - FONSABANA a la dirección de correo electrónico protecciondedatos@fonsabana.com.co, atendiendo los requisitos para el trámite de consultas y reclamos establecidos en la política de protección de datos del Fondo.",
+        { maxWidth: 170, align: "justify" });
+
+        doc.text(20, 210, "FIRMA CODEUDOR",
+        { maxWidth: 170, align: "justify" });
+
     doc.setFontSize(8);
     doc.text(180, 280, "Pag. 2 de 2");
 
@@ -196,57 +206,61 @@ function demoFromHTML(signatureImg, footprintImg) {
 }
 
 $("#sendEmailButton").click(function () {
-    try {
-        var doc = demoFromHTML(signatureImg, identificationCardImg);
-        var files = document.getElementById('incomeCertificationFile').files;
-        var iFiles = document.getElementById('identificationCardFile').files;
-        $("#sendEmailButton").text("Enviando...");
-        if (files.length == 0 || iFiles.length == 0) {
-            $("#sendEmailButton").text("Enviar formulario");
-            alert(message);
-        }
-        getBase64(files[0]).then((data) => {
-            getBase64(iFiles[0]).then((iden) => {
-                Email.send({
-                    SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
-                    To: getEmailsTo(),
-                    From: "fonsabana@fonsabana.com.co",
-                    Subject: "Formulario solicitud de crédito",
-                    Body: 'Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de crédito al Fondo de Empleados de La Sabana pasará a estudio y análisis . Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ',
-                    Attachments: [
-                        {
-                            name: "Formulario Asociado.pdf",
-                            data: doc.output('datauri')
-                        },
-                        {
-                            name: "Certificación." + incomeCertificationFile.val().split('.').pop(),
-                            data: data
-                        },
-                        {
-                            name: "Cédula." + identificationCardFile.val().split('.').pop(),
-                            data: iden
-                        },
-                    ]
-                }).then(
-                    message => {
-                        $("#sendEmailButton").text("Enviar formulario");
-                        alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
-                    }
-                );
+    if ($('#policyCheckbox').is(":checked")) {
+        try {
+            var doc = demoFromHTML(signatureImg, identificationCardImg);
+            var files = document.getElementById('incomeCertificationFile').files;
+            var iFiles = document.getElementById('identificationCardFile').files;
+            $("#sendEmailButton").text("Enviando...");
+            if (files.length == 0 || iFiles.length == 0) {
+                $("#sendEmailButton").text("Enviar formulario");
+                alert(message);
+            }
+            getBase64(files[0]).then((data) => {
+                getBase64(iFiles[0]).then((iden) => {
+                    Email.send({
+                        SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
+                        To: getEmailsTo(),
+                        From: "fonsabana@fonsabana.com.co",
+                        Subject: "Formulario solicitud de crédito",
+                        Body: 'Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de crédito al Fondo de Empleados de La Sabana pasará a estudio y análisis . Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ',
+                        Attachments: [
+                            {
+                                name: "Formulario Asociado.pdf",
+                                data: doc.output('datauri')
+                            },
+                            {
+                                name: "Certificación." + incomeCertificationFile.val().split('.').pop(),
+                                data: data
+                            },
+                            {
+                                name: "Cédula." + identificationCardFile.val().split('.').pop(),
+                                data: iden
+                            },
+                        ]
+                    }).then(
+                        message => {
+                            $("#sendEmailButton").text("Enviar formulario");
+                            alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
+                        }
+                    );
+                });
             });
-        });
-    } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+        } catch (err) {
+            alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+        }
+    } else {
+        alert("Debes aceptar la política de protección de datos.");
     }
 });
 
 function getEmailsTo() {
     var emails = [];
-    if ($("#personalEmailToSend").val()) 
+    if ($("#personalEmailToSend").val())
         emails.push($("#personalEmailToSend").val());
-    if ($("#laboralEmailToSend").val()) 
+    if ($("#laboralEmailToSend").val())
         emails.push($("#laboralEmailToSend").val());
-    if ($("#functionaryEmailToSend").val()) 
+    if ($("#functionaryEmailToSend").val())
         emails.push($("#functionaryEmailToSend").val());
     return emails;
 }
