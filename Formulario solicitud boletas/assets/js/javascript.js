@@ -1,11 +1,15 @@
 var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
-    try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
-        doc.save('Formulario Boletas.pdf');
-    } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+    if ($('#policyCheckbox').is(":checked")) {
+        try {
+            var doc = demoFromHTML(signatureImg, footprintImg);
+            doc.save('Formulario Boletas.pdf');
+        } catch (err) {
+            alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+        }
+    } else {
+        alert("Debes aceptar la política de protección de datos.");
     }
 };
 
@@ -78,6 +82,10 @@ function demoFromHTML(signatureImg, footprintImg) {
     doc.text(20, 60, "Yo " + $("#name").val() + " Identificado(a) con " + $("#identification").val() + " autorizo al señor pagador de " + $("#payer").val() + " para que descuente de mi sueldo con destino al FONDO DE EMPLEADOS DE LA SABANA, la suma total de $" + $("#discount").val() + " correspondiente a " + $("#correspondense").val() + ", descontando dicho valor en " + $("#dues").val() + " cuotas por valor de $" + $("#dueValue").val() + ", a partir del mes de " + $("#startMonth").val() + ".", { maxWidth: 170, align: "justify" });
     doc.text(20, 100, "Autorizo para que en el caso de retirarme de la empresa, el saldo de la presente obligaciónque contraigo por el presente documento, se me descuente de la liquidación final de mis prestaciones sociales, o de cualquier indemnización, bonificación o crédito laboral que en esa oportunidad se me reconozca.", { maxWidth: 170, align: "justify" });
     doc.text(20, 140, "Para constancia, se firma en Chía a los " + $("#signDay").val() + " del mes de " + $("#signMonth").val() + " de " + $("#signYear").val() + ".");
+    doc.setFontSize(12);
+    doc.text(20, 170, "Protección de Datos: En Cumplimiento del artículo 10 del Decreto 1377 de 2013, reglamentario de la Ley Estatutaria 1581 de 2012, FONSABANA, informa que previamente a la expedición del Decreto, ha recolectado información personal de nuestros asociados, la cual reposa en las bases de datos del Fondo, y es utilizada para los fines propios de nuestra institución, específicamente para mantener los lazos con todos los asociados y en general, para el ejercicio del objeto social. Los titulares de los datos podrán ejercer los derechos de acceso, corrección, supresión, revocación o reclamo, mediante escrito dirigido al FONDO DE EMPLEADOS DE LA SABANA - FONSABANA a la dirección de correo electrónico protecciondedatos@fonsabana.com.co, atendiendo los requisitos para el trámite de consultas y reclamos establecidos en la política de protección de datos del Fondo.",
+        { maxWidth: 170, align: "justify" });
+    doc.setFontSize(14);
     doc.text(20, 265, "Firma y No Identificación")
     var firmaImg = new Image();
     firmaImg.src = signatureImg;
@@ -102,39 +110,43 @@ function demoFromHTML(signatureImg, footprintImg) {
 }
 
 $("#sendEmailButton").click(function () {
-    try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
-        $("#sendEmailButton").text("Enviando...");
-        Email.send({
-            SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
-            To: getEmailsTo(),
-            From: "fonsabana@fonsabana.com.co",
-            Subject: "Formulario solicitud boletas",
-            Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de boletas al Fondo de Empleados de La Sabana pasará a aprobación de descuento. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva.",
-            Attachments: [
-                {
-                    name: "Formulario.pdf",
-                    data: doc.output('datauri')
-                }]
-        }).then(
-            message => {
-                $("#sendEmailButton").text("Enviar por correo electrónico");
-                alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
-            }
+    if ($('#policyCheckbox').is(":checked")) {
+        try {
+            var doc = demoFromHTML(signatureImg, footprintImg);
+            $("#sendEmailButton").text("Enviando...");
+            Email.send({
+                SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
+                To: getEmailsTo(),
+                From: "fonsabana@fonsabana.com.co",
+                Subject: "Formulario solicitud boletas",
+                Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de boletas al Fondo de Empleados de La Sabana pasará a aprobación de descuento. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva.",
+                Attachments: [
+                    {
+                        name: "Formulario.pdf",
+                        data: doc.output('datauri')
+                    }]
+            }).then(
+                message => {
+                    $("#sendEmailButton").text("Enviar por correo electrónico");
+                    alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
+                }
 
-        );
-    } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+            );
+        } catch (err) {
+            alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+        }
+    } else {
+        alert("Debes aceptar la política de protección de datos.");
     }
 });
 
 function getEmailsTo() {
     var emails = [];
-    if ($("#personalEmailToSend").val()) 
+    if ($("#personalEmailToSend").val())
         emails.push($("#personalEmailToSend").val());
-    if ($("#laboralEmailToSend").val()) 
+    if ($("#laboralEmailToSend").val())
         emails.push($("#laboralEmailToSend").val());
-    if ($("#functionaryEmailToSend").val()) 
+    if ($("#functionaryEmailToSend").val())
         emails.push($("#functionaryEmailToSend").val());
     return emails;
 }
