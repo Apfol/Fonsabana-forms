@@ -1,11 +1,15 @@
 var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
-    try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
-        doc.save('Formulario Fonsabanito.pdf');
-    } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+    if ($('#policyCheckbox').is(":checked")) {
+        try {
+            var doc = demoFromHTML(signatureImg, footprintImg);
+            doc.save('Formulario Fonsabanito.pdf');
+        } catch (err) {
+            alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+        }
+    } else {
+        alert("Debes aceptar la política de protección de datos.");
     }
 };
 
@@ -92,17 +96,18 @@ function demoFromHTML(signatureImg, footprintImg) {
             [{ content: 'Mis pasatiempos favoritos son: ' + $("#hobby1").val() + ", " + $("#hobby2").val() + ", " + $("#hobby3").val() + ".", colSpan: 12 }],
             [{ content: 'Asociado a Fonsabana: ' + $("#fonsabanaAssociate").val(), colSpan: 6 }, { content: 'Cédula: ' + $("#fonsabanaDocumentNumber").val(), colSpan: 6 }],
             [{ content: 'Empresa donde trabaja: ' + $("#fonsabanaBusiness").val(), colSpan: 6 }, { content: 'Parentesco: ' + $("#fonsabanaRelationship").val(), colSpan: 6 }],
+            [{ content: 'Protección de Datos: En Cumplimiento del artículo 10 del Decreto 1377 de 2013, reglamentario de la Ley Estatutaria 1581 de 2012, FONSABANA, informa que previamente a la expedición del Decreto, ha recolectado información personal de nuestros asociados, la cual reposa en las bases de datos del Fondo, y es utilizada para los fines propios de nuestra institución, específicamente para mantener los lazos con todos los asociados y en general, para el ejercicio del objeto social. Los titulares de los datos podrán ejercer los derechos de acceso, corrección, supresión, revocación o reclamo, mediante escrito dirigido al FONDO DE EMPLEADOS DE LA SABANA - FONSABANA a la dirección de correo electrónico protecciondedatos@fonsabana.com.co, atendiendo los requisitos para el trámite de consultas y reclamos establecidos en la política de protección de datos del Fondo.', colSpan: 16 }],
             [{ content: '\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\tFirma\t\t\t\t\t\t\t\t\t\t\t\t\tHuella', colSpan: 12 }],
         ],
     });
 
     var firmaImg = new Image();
     firmaImg.src = signatureImg;
-    doc.addImage(firmaImg, 'png', 36, 178, 50, 15);
+    doc.addImage(firmaImg, 'png', 36, 208, 50, 15);
 
     var firmaImg = new Image();
     firmaImg.src = footprintImg;
-    doc.addImage(firmaImg, 'png', 133, 163, 30, 30);
+    doc.addImage(firmaImg, 'png', 133, 193, 30, 30);
 
     doc.addPage();
     doc.setPage(2);
@@ -154,12 +159,16 @@ function demoFromHTML(signatureImg, footprintImg) {
     doc.setFontType("normal");
     doc.text(20, 185, "Declaro que: el origen de los fondos que manejaré en la cuenta solicitada provienen del giro ordinario de actividades lícitas, y mi ocupación económica no es ni se relaciona con la actividad profesional de compra o venta de divisas. Igualmente declaro que el origen de mis recursos proceden del desarrollo de la(s) siguiente (s) actividad (es), " + $("#activities").val() + ".",
         { maxWidth: 170, align: "justify" });
-    doc.text(20, 210, "Me obligo a no prestar mi cuenta y a no permitir que terceros efectúen depósitos o transferencias a mi cuenta y a no hacer pagos o transferencias desde mi cuenta a desconocidos. También declaro que la información que suministro es veraz, completa, la he proporcionado sin reticencia y si el Fondo lo solicita me obligo a entregar la información, documentos y explicaciones pertinentes. Cualquier inexactitud al respecto o al verme sindicado o involucrado por cualquier autoridad, en investigaciones relacionadas con el lavado de activos o enriquecimiento ilícito, faculta al Fondo para dar por terminado sin explicaciones el presente contrato.",
+    doc.text(20, 207, "Me obligo a no prestar mi cuenta y a no permitir que terceros efectúen depósitos o transferencias a mi cuenta y a no hacer pagos o transferencias desde mi cuenta a desconocidos. También declaro que la información que suministro es veraz, completa, la he proporcionado sin reticencia y si el Fondo lo solicita me obligo a entregar la información, documentos y explicaciones pertinentes. Cualquier inexactitud al respecto o al verme sindicado o involucrado por cualquier autoridad, en investigaciones relacionadas con el lavado de activos o enriquecimiento ilícito, faculta al Fondo para dar por terminado sin explicaciones el presente contrato.",
         { maxWidth: 170, align: "justify" });
-    doc.text(20, 265, "Firma y No Identificación")
+    doc.setFontSize(8);
+    doc.text(20, 240, "Protección de Datos: En Cumplimiento del artículo 10 del Decreto 1377 de 2013, reglamentario de la Ley Estatutaria 1581 de 2012, FONSABANA, informa que previamente a la expedición del Decreto, ha recolectado información personal de nuestros asociados, la cual reposa en las bases de datos del Fondo, y es utilizada para los fines propios de nuestra institución, específicamente para mantener los lazos con todos los asociados y en general, para el ejercicio del objeto social. Los titulares de los datos podrán ejercer los derechos de acceso, corrección, supresión, revocación o reclamo, mediante escrito dirigido al FONDO DE EMPLEADOS DE LA SABANA - FONSABANA a la dirección de correo electrónico protecciondedatos@fonsabana.com.co, atendiendo los requisitos para el trámite de consultas y reclamos establecidos en la política de protección de datos del Fondo.",
+        { maxWidth: 170, align: "justify" });
+    doc.setFontSize(11);
+    doc.text(20, 283, "Firma")
     var firmaImg = new Image();
     firmaImg.src = signatureImg;
-    doc.addImage(firmaImg, 'png', 20, 245, 50, 15);
+    doc.addImage(firmaImg, 'png', 20, 263, 50, 15);
 
     function getSelected(name) {
         var radios = $('input[name=' + name + ']');
@@ -180,29 +189,33 @@ function demoFromHTML(signatureImg, footprintImg) {
 }
 
 $("#sendEmailButton").click(function () {
-    try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
-        $("#sendEmailButton").text("Enviando...");
-        Email.send({
-            SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
-            To: getEmailsTo(),
-            From: "fonsabana@fonsabana.com.co",
-            Subject: "Formulario ahorro fonsabanito",
-            Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de ahorro fonsabanito al Fondo de Empleados de La Sabana pasará a aprobación de descuento. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ",
-            Attachments: [
-                {
-                    name: "Formulario.pdf",
-                    data: doc.output('datauri')
-                }]
-        }).then(
-            message => {
-                $("#sendEmailButton").text("Enviar por correo electrónico");
-                alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
-            }
-
-        );
-    } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+    if ($('#policyCheckbox').is(":checked")) {
+        try {
+            var doc = demoFromHTML(signatureImg, footprintImg);
+            $("#sendEmailButton").text("Enviando...");
+            Email.send({
+                SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
+                To: getEmailsTo(),
+                From: "fonsabana@fonsabana.com.co",
+                Subject: "Formulario ahorro fonsabanito",
+                Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de ahorro fonsabanito al Fondo de Empleados de La Sabana pasará a aprobación de descuento. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ",
+                Attachments: [
+                    {
+                        name: "Formulario.pdf",
+                        data: doc.output('datauri')
+                    }]
+            }).then(
+                message => {
+                    $("#sendEmailButton").text("Enviar por correo electrónico");
+                    alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
+                }
+    
+            );
+        } catch (err) {
+            alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+        }
+    } else {
+        alert("Debes aceptar la política de protección de datos.");
     }
 });
 
