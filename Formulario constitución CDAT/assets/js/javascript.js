@@ -1,11 +1,15 @@
 var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
-    try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
-        doc.save('Formulario Constitución CDAT.pdf');
-    } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+    if ($('#policyCheckbox').is(":checked")) {
+        try {
+            var doc = demoFromHTML(signatureImg, footprintImg);
+            doc.save('Formulario Constitución CDAT.pdf');
+        } catch (err) {
+            alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+        }
+    } else {
+        alert("Debes aceptar la política de protección de datos.");
     }
 };
 
@@ -73,7 +77,7 @@ function demoFromHTML(signatureImg, footprintImg) {
     });
 
     doc.setFont("arial");
-    doc.setFontSize(14);
+    doc.setFontSize(12);
 
     doc.setFontType("bold");
     doc.text(20, 55, "DATOS GENERALES");
@@ -93,14 +97,18 @@ function demoFromHTML(signatureImg, footprintImg) {
         + "\nFECHA DE CONSTITUCIÓN: " + $("#titularConstitutionDate").val()
         + "\nPlazo: " + getSelected("term")
         + "\nTASA DE INTERÉS PACTADA: " + $("#interestRate").val() + "% EA " + $("#ea").val() + "% Nominal");
-    doc.text(20, 148, "Declaro que he leído y acepto el reglamento para la constitución del CDAT en el Fondo de Empleados de La Sabana.", { maxWidth: 170, align: "justify" });
+    doc.text(20, 143, "Declaro que he leído y acepto el reglamento para la constitución del CDAT en el Fondo de Empleados de La Sabana.", { maxWidth: 170, align: "justify" });
     doc.setFontType("bold");
-    doc.text(20, 162, "DECLARACIÓN VOLUNTARIA DE ORIGEN DE FONDOS");
+    doc.text(20, 157, "DECLARACIÓN VOLUNTARIA DE ORIGEN DE FONDOS");
     doc.setFontType("normal");
-    doc.text(20, 169, "Declaro que: el origen de los fondos que manejaré en la cuenta solicitada provienen del giro ordinario de actividades lícitas, y mi ocupación económica no es ni se relaciona con la actividad profesional de compra o venta de divisas. Igualmente declaro que el origen de mis recursos proceden del desarrollo de la(s) siguiente (s) actividad (es), " + $("#activities").val() + ".",
+    doc.text(20, 166, "Declaro que: el origen de los fondos que manejaré en la cuenta solicitada provienen del giro ordinario de actividades lícitas, y mi ocupación económica no es ni se relaciona con la actividad profesional de compra o venta de divisas. Igualmente declaro que el origen de mis recursos proceden del desarrollo de la(s) siguiente (s) actividad (es), " + $("#activities").val() + ".",
         { maxWidth: 170, align: "justify" });
-    doc.text(20, 200, "Me obligo a no prestar mi cuenta y a no permitir que terceros efectúen depósitos o transferencias a mi cuenta y a no hacer pagos o transferencias desde mi cuenta a desconocidos. También declaro que la información que suministro es veraz, completa, la he proporcionado sin reticencia y si el Fondo lo solicita me obligo a entregar la información, documentos y explicaciones pertinentes. Cualquier inexactitud al respecto o al verme sindicado o involucrado por cualquier autoridad, en investigaciones relacionadas con el lavado de activos o enriquecimiento ilícito, faculta al Fondo para dar por terminado sin explicaciones el presente contrato.",
+    doc.text(20, 187, "Me obligo a no prestar mi cuenta y a no permitir que terceros efectúen depósitos o transferencias a mi cuenta y a no hacer pagos o transferencias desde mi cuenta a desconocidos. También declaro que la información que suministro es veraz, completa, la he proporcionado sin reticencia y si el Fondo lo solicita me obligo a entregar la información, documentos y explicaciones pertinentes. Cualquier inexactitud al respecto o al verme sindicado o involucrado por cualquier autoridad, en investigaciones relacionadas con el lavado de activos o enriquecimiento ilícito, faculta al Fondo para dar por terminado sin explicaciones el presente contrato.",
         { maxWidth: 170, align: "justify" });
+    doc.setFontSize(8);
+    doc.text(20, 225, "Protección de Datos: En Cumplimiento del artículo 10 del Decreto 1377 de 2013, reglamentario de la Ley Estatutaria 1581 de 2012, FONSABANA, informa que previamente a la expedición del Decreto, ha recolectado información personal de nuestros asociados, la cual reposa en las bases de datos del Fondo, y es utilizada para los fines propios de nuestra institución, específicamente para mantener los lazos con todos los asociados y en general, para el ejercicio del objeto social. Los titulares de los datos podrán ejercer los derechos de acceso, corrección, supresión, revocación o reclamo, mediante escrito dirigido al FONDO DE EMPLEADOS DE LA SABANA - FONSABANA a la dirección de correo electrónico protecciondedatos@fonsabana.com.co, atendiendo los requisitos para el trámite de consultas y reclamos establecidos en la política de protección de datos del Fondo.",
+        { maxWidth: 170, align: "justify" });
+    doc.setFontSize(12);
     doc.text(20, 280, "Firma y No Identificación")
     var firmaImg = new Image();
     firmaImg.src = signatureImg;
@@ -125,39 +133,43 @@ function demoFromHTML(signatureImg, footprintImg) {
 }
 
 $("#sendEmailButton").click(function () {
-    try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
-        $("#sendEmailButton").text("Enviando...");
-        Email.send({
-            SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
-            To: getEmailsTo(),
-            From: "fonsabana@fonsabana.com.co",
-            Subject: "Formulario constitución CDAT",
-            Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de constitución CDAT al Fondo de Empleados de La Sabana pasará a aprobación. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva.",
-            Attachments: [
-                {
-                    name: "Formulario.pdf",
-                    data: doc.output('datauri')
-                }]
-        }).then(
-            message => {
-                $("#sendEmailButton").text("Enviar por correo electrónico");
-                alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
-            }
+    if ($('#policyCheckbox').is(":checked")) {
+        try {
+            var doc = demoFromHTML(signatureImg, footprintImg);
+            $("#sendEmailButton").text("Enviando...");
+            Email.send({
+                SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
+                To: getEmailsTo(),
+                From: "fonsabana@fonsabana.com.co",
+                Subject: "Formulario constitución CDAT",
+                Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de constitución CDAT al Fondo de Empleados de La Sabana pasará a aprobación. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva.",
+                Attachments: [
+                    {
+                        name: "Formulario.pdf",
+                        data: doc.output('datauri')
+                    }]
+            }).then(
+                message => {
+                    $("#sendEmailButton").text("Enviar por correo electrónico");
+                    alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
+                }
 
-        );
-    } catch (err) {
-        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+            );
+        } catch (err) {
+            alert("Error al generar el documento, verifica que subiste toda la información requerida.");
+        }
+    } else {
+        alert("Debes aceptar la política de protección de datos.");
     }
 });
 
 function getEmailsTo() {
     var emails = [];
-    if ($("#personalEmailToSend").val()) 
+    if ($("#personalEmailToSend").val())
         emails.push($("#personalEmailToSend").val());
-    if ($("#laboralEmailToSend").val()) 
+    if ($("#laboralEmailToSend").val())
         emails.push($("#laboralEmailToSend").val());
-    if ($("#functionaryEmailToSend").val()) 
+    if ($("#functionaryEmailToSend").val())
         emails.push($("#functionaryEmailToSend").val());
     return emails;
 }
