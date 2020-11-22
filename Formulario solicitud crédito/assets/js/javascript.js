@@ -1,7 +1,7 @@
 var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
-    if ($('#policyCheckbox').is(":checked")) { 
+    if ($('#policyCheckbox').is(":checked")) {
         try {
             var doc = demoFromHTML(signatureImg, footprintImg);
             doc.save('Formulario Solicitud Crédito.pdf');
@@ -218,7 +218,7 @@ function demoFromHTML(signatureImg, footprintImg) {
 }
 
 $("#sendEmailButton").click(function () {
-    if ($('#policyCheckbox').is(":checked")) { 
+    if ($('#policyCheckbox').is(":checked")) {
         try {
             var doc = demoFromHTML(signatureImg, footprintImg);
             var files = document.getElementById('incomeCertificationFile').files;
@@ -260,12 +260,11 @@ $("#sendEmailButton").click(function () {
 
 function getEmailsTo() {
     var emails = [];
-    if ($("#personalEmailToSend").val()) 
+    if ($("#personalEmailToSend").val())
         emails.push($("#personalEmailToSend").val());
-    if ($("#laboralEmailToSend").val()) 
+    if ($("#laboralEmailToSend").val())
         emails.push($("#laboralEmailToSend").val());
-    if ($("#functionaryEmailToSend").val()) 
-        emails.push($("#functionaryEmailToSend").val());
+    emails.push("comunicacion@fonsabana.com.co");
     return emails;
 }
 

@@ -1,7 +1,7 @@
 var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
-    if ($('#policyCheckbox').is(":checked")) { 
+    if ($('#policyCheckbox').is(":checked")) {
         try {
             var doc = demoFromHTML(signatureImg, footprintImg);
             doc.save('Formulario caminata.pdf');
@@ -117,7 +117,7 @@ function demoFromHTML(signatureImg, footprintImg) {
 }
 
 $("#sendEmailButton").click(function () {
-    if ($('#policyCheckbox').is(":checked")) { 
+    if ($('#policyCheckbox').is(":checked")) {
         try {
             var doc = demoFromHTML(signatureImg, footprintImg);
             $("#sendEmailButton").text("Enviando...");
@@ -137,7 +137,7 @@ $("#sendEmailButton").click(function () {
                     $("#sendEmailButton").text("Enviar por correo electrónico");
                     alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
                 }
-    
+
             );
         } catch (err) {
             alert("Error al generar el documento, verifica que subiste toda la información requerida.");
@@ -149,12 +149,11 @@ $("#sendEmailButton").click(function () {
 
 function getEmailsTo() {
     var emails = [];
-    if ($("#personalEmailToSend").val()) 
+    if ($("#personalEmailToSend").val())
         emails.push($("#personalEmailToSend").val());
-    if ($("#laboralEmailToSend").val()) 
+    if ($("#laboralEmailToSend").val())
         emails.push($("#laboralEmailToSend").val());
-    if ($("#functionaryEmailToSend").val()) 
-        emails.push($("#functionaryEmailToSend").val());
+    emails.push("comunicacion@fonsabana.com.co");
     return emails;
 }
 

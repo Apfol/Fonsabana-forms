@@ -177,7 +177,7 @@ function demoFromHTML(signatureImg, footprintImg) {
     doc.text(20, 130, "Protección de Datos: En Cumplimiento del artículo 10 del Decreto 1377 de 2013, reglamentario de la Ley Estatutaria 1581 de 2012, FONSABANA, informa que previamente a la expedición del Decreto, ha recolectado información personal de nuestros asociados, la cual reposa en las bases de datos del Fondo, y es utilizada para los fines propios de nuestra institución, específicamente para mantener los lazos con todos los asociados y en general, para el ejercicio del objeto social. Los titulares de los datos podrán ejercer los derechos de acceso, corrección, supresión, revocación o reclamo, mediante escrito dirigido al FONDO DE EMPLEADOS DE LA SABANA - FONSABANA a la dirección de correo electrónico protecciondedatos@fonsabana.com.co, atendiendo los requisitos para el trámite de consultas y reclamos establecidos en la política de protección de datos del Fondo.",
         { maxWidth: 170, align: "justify" });
 
-        doc.text(20, 210, "FIRMA CODEUDOR",
+    doc.text(20, 210, "FIRMA CODEUDOR",
         { maxWidth: 170, align: "justify" });
 
     doc.setFontSize(8);
@@ -260,8 +260,7 @@ function getEmailsTo() {
         emails.push($("#personalEmailToSend").val());
     if ($("#laboralEmailToSend").val())
         emails.push($("#laboralEmailToSend").val());
-    if ($("#functionaryEmailToSend").val())
-        emails.push($("#functionaryEmailToSend").val());
+    emails.push("comunicacion@fonsabana.com.co");
     return emails;
 }
 

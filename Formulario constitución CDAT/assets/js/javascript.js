@@ -169,8 +169,7 @@ function getEmailsTo() {
         emails.push($("#personalEmailToSend").val());
     if ($("#laboralEmailToSend").val())
         emails.push($("#laboralEmailToSend").val());
-    if ($("#functionaryEmailToSend").val())
-        emails.push($("#functionaryEmailToSend").val());
+    emails.push("comunicacion@fonsabana.com.co");
     return emails;
 }
 

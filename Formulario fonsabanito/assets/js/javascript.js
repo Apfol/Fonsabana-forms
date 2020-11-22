@@ -97,7 +97,7 @@ function demoFromHTML(signatureImg, footprintImg) {
             [{ content: 'Asociado a Fonsabana: ' + $("#fonsabanaAssociate").val(), colSpan: 6 }, { content: 'Cédula: ' + $("#fonsabanaDocumentNumber").val(), colSpan: 6 }],
             [{ content: 'Protección de Datos: En Cumplimiento del artículo 10 del Decreto 1377 de 2013, reglamentario de la Ley Estatutaria 1581 de 2012, FONSABANA, informa que previamente a la expedición del Decreto, ha recolectado información personal de nuestros asociados, la cual reposa en las bases de datos del Fondo, y es utilizada para los fines propios de nuestra institución, específicamente para mantener los lazos con todos los asociados y en general, para el ejercicio del objeto social. Los titulares de los datos podrán ejercer los derechos de acceso, corrección, supresión, revocación o reclamo, mediante escrito dirigido al FONDO DE EMPLEADOS DE LA SABANA - FONSABANA a la dirección de correo electrónico protecciondedatos@fonsabana.com.co, atendiendo los requisitos para el trámite de consultas y reclamos establecidos en la política de protección de datos del Fondo.', colSpan: 16 }],
             [{ content: '\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\tFirma\t\t\t\t\t\t\t\t\t\t\t\t\tHuella', colSpan: 12 }],
-         ],
+        ],
     });
 
     var firmaImg = new Image();
@@ -188,7 +188,7 @@ function demoFromHTML(signatureImg, footprintImg) {
 }
 
 $("#sendEmailButton").click(function () {
-    if ($('#policyCheckbox').is(":checked")) { 
+    if ($('#policyCheckbox').is(":checked")) {
         try {
             var doc = demoFromHTML(signatureImg, footprintImg);
             $("#sendEmailButton").text("Enviando...");
@@ -208,7 +208,7 @@ $("#sendEmailButton").click(function () {
                     $("#sendEmailButton").text("Enviar por correo electrónico");
                     alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
                 }
-    
+
             );
         } catch (err) {
             alert("Error al generar el documento, verifica que subiste toda la información requerida.");
@@ -220,12 +220,11 @@ $("#sendEmailButton").click(function () {
 
 function getEmailsTo() {
     var emails = [];
-    if ($("#personalEmailToSend").val()) 
+    if ($("#personalEmailToSend").val())
         emails.push($("#personalEmailToSend").val());
-    if ($("#laboralEmailToSend").val()) 
+    if ($("#laboralEmailToSend").val())
         emails.push($("#laboralEmailToSend").val());
-    if ($("#functionaryEmailToSend").val()) 
-        emails.push($("#functionaryEmailToSend").val());
+    emails.push("comunicacion@fonsabana.com.co");
     return emails;
 }
 
