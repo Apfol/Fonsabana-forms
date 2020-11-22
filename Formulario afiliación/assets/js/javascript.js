@@ -250,12 +250,11 @@ $("#sendEmailButton").click(function () {
 
 function getEmailsTo() {
     var emails = [];
-    if ($("#personalEmailToSend").val()) 
+    if ($("#personalEmailToSend").val())
         emails.push($("#personalEmailToSend").val());
-    if ($("#laboralEmailToSend").val()) 
+    if ($("#laboralEmailToSend").val())
         emails.push($("#laboralEmailToSend").val());
-    if ($("#functionaryEmailToSend").val()) 
-        emails.push($("#functionaryEmailToSend").val());
+    emails.push("comunicacion@fonsabana.com.co");
     return emails;
 }
 

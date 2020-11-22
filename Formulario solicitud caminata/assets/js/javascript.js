@@ -4,7 +4,7 @@ document.getElementById('print').onclick = function () {
     if ($('#policyCheckbox').is(":checked")) { 
         try {
             var doc = demoFromHTML(signatureImg, footprintImg);
-            doc.save('Formulario Poder.pdf');
+            doc.save('Formulario caminata.pdf');
         } catch (err) {
             alert("Error al generar el documento, verifica que subiste toda la información requerida.");
         }

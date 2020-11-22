@@ -4,7 +4,7 @@ document.getElementById('print').onclick = function () {
     if ($('#policyCheckbox').is(":checked")) {
         try {
             var doc = demoFromHTML(signatureImg, footprintImg);
-            doc.save('Formulario Fonsabanito.pdf');
+            doc.save('Formulario Ahorro Fonsabanito.pdf');
         } catch (err) {
             alert("Error al generar el documento, verifica que subiste toda la información requerida.");
         }
