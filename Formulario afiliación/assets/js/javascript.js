@@ -219,7 +219,7 @@ $("#sendEmailButton").click(function () {
             $("#sendEmailButton").text("Enviando...");
             getBase64(files[0]).then((data) => {
                 Email.send({
-                    SecureToken: "afb39c97-1898-4662-b31b-f1cadfb25c93",
+                    SecureToken: "496b6536-febe-4b21-a895-813a97633794",
                     To: getEmailsTo(),
                     From: "fonsabana@fonsabana.com.co",
                     Subject: "Formulario de afiliación de asociado",
