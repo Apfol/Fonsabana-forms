@@ -1,15 +1,11 @@
 var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
-    if ($('#policyCheckbox').is(":checked")) {
-        try {
-            var doc = demoFromHTML(signatureImg, footprintImg);
-            doc.save('Formulario Boletas.pdf');
-        } catch (err) {
-            alert("Error al generar el documento, verifica que subiste toda la información requerida.");
-        }
-    } else {
-        alert("Debes aceptar la política de protección de datos.");
+    try {
+        var doc = demoFromHTML(signatureImg, footprintImg);
+        doc.save('Formulario Boletas.pdf');
+    } catch (err) {
+        alert("Error al generar el documento, verifica que subiste toda la información requerida.");
     }
 };
 
