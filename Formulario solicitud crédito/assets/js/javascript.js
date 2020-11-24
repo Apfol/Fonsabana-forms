@@ -2,7 +2,7 @@ var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
     try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
+        var doc = demoFromHTML(signatureImg, footprintImg, true);
         doc.save('Formulario Solicitud Crédito.pdf');
     } catch (err) {
         alert("Error al generar el documento, verifica que subiste toda la información requerida.");
@@ -84,7 +84,7 @@ incomeCertificationFile.change(function () {
     }
 });
 
-function demoFromHTML(signatureImg, footprintImg) {
+function demoFromHTML(signatureImg, footprintImg, isFromDownloadButton) {
     var doc = new jsPDF();
 
     var logoImg = new Image();
@@ -191,9 +191,11 @@ function demoFromHTML(signatureImg, footprintImg) {
         { maxWidth: 170, align: "justify" });
     doc.text(180, 280, "Pag. 2 de 2");
 
-    var firmaImg = new Image();
-    firmaImg.src = signatureImg;
-    doc.addImage(firmaImg, 'png', 15, 220, 50, 15);
+    if (signatureImg !== undefined || !isFromDownloadButton) {
+        var firmaImg = new Image();
+        firmaImg.src = signatureImg;
+        doc.addImage(firmaImg, 'png', 15, 220, 50, 15);
+    }
 
     function getSelected(name) {
         var radios = $('input[name=' + name + ']');
@@ -216,7 +218,7 @@ function demoFromHTML(signatureImg, footprintImg) {
 $("#sendEmailButton").click(function () {
     if ($('#policyCheckbox').is(":checked")) {
         try {
-            var doc = demoFromHTML(signatureImg, footprintImg);
+            var doc = demoFromHTML(signatureImg, footprintImg, false);
             var files = document.getElementById('incomeCertificationFile').files;
             $("#sendEmailButton").text("Enviando...");
             if (files.length == 0) {

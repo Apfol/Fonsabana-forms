@@ -2,7 +2,7 @@ var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
     try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
+        var doc = demoFromHTML(signatureImg, footprintImg, true);
         doc.save('Formulario Asociado.pdf');
     } catch (err) {
         alert("Error al generar el documento, verifica que subiste toda la información requerida.");
@@ -84,7 +84,7 @@ identificationCardFile.change(function () {
     }
 });
 
-function demoFromHTML(signatureImg, footprintImg) {
+function demoFromHTML(signatureImg, footprintImg, isFromDownloadButton) {
     var doc = new jsPDF();
     var expeditionDate = $("#expeditonDate").val().split('-');
     var partnerBornDate = $("#partnerBornDate").val().split('-');
@@ -171,13 +171,17 @@ function demoFromHTML(signatureImg, footprintImg) {
         ],
     });
 
-    var firmaImg = new Image();
-    firmaImg.src = signatureImg;
-    doc.addImage(firmaImg, 'png', 40, 185, 50, 15);
+    if (signatureImg !== undefined || !isFromDownloadButton) {
+        var firmaImg = new Image();
+        firmaImg.src = signatureImg;
+        doc.addImage(firmaImg, 'png', 40, 185, 50, 15);
+    }
 
-    var firmaImg = new Image();
-    firmaImg.src = footprintImg;
-    doc.addImage(firmaImg, 'png', 130, 170, 30, 30);
+    if (footprintImg !== undefined || !isFromDownloadButton) {
+        var firmaImg = new Image();
+        firmaImg.src = footprintImg;
+        doc.addImage(firmaImg, 'png', 130, 170, 30, 30);
+    }
 
     doc.setPage(2);
     doc.addImage(logoImg, 'png', 20, 14.2, 50, 14);
@@ -206,7 +210,7 @@ function demoFromHTML(signatureImg, footprintImg) {
 $("#sendEmailButton").click(function () {
     if ($('#policyCheckbox').is(":checked")) {
         try {
-            var doc = demoFromHTML(signatureImg, footprintImg);
+            var doc = demoFromHTML(signatureImg, footprintImg, false);
             var files = document.getElementById('identificationCardFile').files;
             if (files.length == 0) {
                 $("#sendEmailButton").text("Enviar formulario");

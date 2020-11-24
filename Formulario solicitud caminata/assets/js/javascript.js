@@ -2,7 +2,7 @@ var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
     try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
+        var doc = demoFromHTML(signatureImg, footprintImg, true);
         doc.save('Formulario caminata.pdf');
     } catch (err) {
         alert("Error al generar el documento, verifica que subiste toda la información requerida.");
@@ -59,7 +59,7 @@ footprintFile.change(function () {
     }
 });
 
-function demoFromHTML(signatureImg, footprintImg) {
+function demoFromHTML(signatureImg, footprintImg, isFromDownloadButton) {
     var doc = new jsPDF();
 
     var logoImg = new Image();
@@ -87,9 +87,13 @@ function demoFromHTML(signatureImg, footprintImg) {
         + "\n5. " + $("#companion5").val());
     doc.text(20, 230, "Para constancia, se firma en Chía a los " + $("#signDay").val() + " del mes de " + $("#signMonth").val() + " de " + $("#signYear").val() + ".");
     doc.text(20, 265, "Firma y No Identificación");
-    var firmaImg = new Image();
-    firmaImg.src = signatureImg;
-    doc.addImage(firmaImg, 'png', 20, 245, 50, 15);
+
+    if (signatureImg !== undefined || !isFromDownloadButton) {
+        var firmaImg = new Image();
+        firmaImg.src = signatureImg;
+        doc.addImage(firmaImg, 'png', 20, 245, 50, 15);
+    }
+
     doc.setFontSize(7);
     doc.text(20, 273, "Protección de Datos: En Cumplimiento del artículo 10 del Decreto 1377 de 2013, reglamentario de la Ley Estatutaria 1581 de 2012, FONSABANA, informa que previamente a la expedición del Decreto, ha recolectado información personal de nuestros asociados, la cual reposa en las bases de datos del Fondo, y es utilizada para los fines propios de nuestra institución, específicamente para mantener los lazos con todos los asociados y en general, para el ejercicio del objeto social. Los titulares de los datos podrán ejercer los derechos de acceso, corrección, supresión, revocación o reclamo, mediante escrito dirigido al FONDO DE EMPLEADOS DE LA SABANA - FONSABANA a la dirección de correo electrónico protecciondedatos@fonsabana.com.co, atendiendo los requisitos para el trámite de consultas y reclamos establecidos en la política de protección de datos del Fondo.",
         { maxWidth: 170, align: "justify" });
@@ -115,7 +119,7 @@ function demoFromHTML(signatureImg, footprintImg) {
 $("#sendEmailButton").click(function () {
     if ($('#policyCheckbox').is(":checked")) {
         try {
-            var doc = demoFromHTML(signatureImg, footprintImg);
+            var doc = demoFromHTML(signatureImg, footprintImg, false);
             $("#sendEmailButton").text("Enviando...");
             Email.send({
                 SecureToken: "496b6536-febe-4b21-a895-813a97633794",

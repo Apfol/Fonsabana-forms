@@ -2,7 +2,7 @@ var signatureImg, identificationCardImg, incomeCertificationDoc;
 
 document.getElementById('print').onclick = function () {
     try {
-        var doc = demoFromHTML(signatureImg, identificationCardImg);
+        var doc = demoFromHTML(signatureImg, identificationCardImg, true);
         doc.save('Formulario Codeudor.pdf');
     } catch (err) {
         alert("Error al generar el documento, verifica que subiste toda la información requerida.");
@@ -84,7 +84,7 @@ incomeCertificationFile.change(function () {
     }
 });
 
-function demoFromHTML(signatureImg, footprintImg) {
+function demoFromHTML(signatureImg, footprintImg, isFromDownloadButton) {
     var doc = new jsPDF();
 
     var logoImg = new Image();
@@ -179,9 +179,11 @@ function demoFromHTML(signatureImg, footprintImg) {
     doc.setFontSize(8);
     doc.text(180, 280, "Pag. 2 de 2");
 
-    var firmaImg = new Image();
-    firmaImg.src = signatureImg;
-    doc.addImage(firmaImg, 'png', 15, 190, 50, 15);
+    if (signatureImg !== undefined || !isFromDownloadButton) {
+        var firmaImg = new Image();
+        firmaImg.src = signatureImg;
+        doc.addImage(firmaImg, 'png', 15, 190, 50, 15);
+    }
 
     function getSelected(name) {
         var radios = $('input[name=' + name + ']');
@@ -204,7 +206,7 @@ function demoFromHTML(signatureImg, footprintImg) {
 $("#sendEmailButton").click(function () {
     if ($('#policyCheckbox').is(":checked")) {
         try {
-            var doc = demoFromHTML(signatureImg, identificationCardImg);
+            var doc = demoFromHTML(signatureImg, identificationCardImg, false);
             var files = document.getElementById('incomeCertificationFile').files;
             var iFiles = document.getElementById('identificationCardFile').files;
             $("#sendEmailButton").text("Enviando...");

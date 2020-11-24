@@ -2,7 +2,7 @@ var signatureImg, signatureAImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
     try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
+        var doc = demoFromHTML(signatureImg, footprintImg, true);
         doc.save('Formulario Caminata.pdf');
     } catch (err) {
         alert("Error al generar el documento, verifica que subiste toda la información requerida.");
@@ -84,7 +84,7 @@ footprintFile.change(function () {
     }
 });
 
-function demoFromHTML(signatureImg, footprintImg) {
+function demoFromHTML(signatureImg, footprintImg, isFromDownloadButton) {
     var doc = new jsPDF();
 
     var logoImg = new Image();
@@ -118,13 +118,20 @@ function demoFromHTML(signatureImg, footprintImg) {
     doc.text(20, 265, "C.C No: " + $("#ccAPower").val() + " de " + $("#expeditionAPower").val());
     doc.text(20, 270, "Correo: " + $("#emailAPower").val());
     doc.text(20, 275, "Celular: " + $("#phoneAPower").val());
-    var firmaImg = new Image();
-    firmaImg.src = signatureImg;
-    doc.addImage(firmaImg, 'png', 20, 190, 50, 15);
 
-    var firmaImg = new Image();
-    firmaImg.src = signatureAImg;
-    doc.addImage(firmaImg, 'png', 20, 240, 50, 15);
+    if (signatureImg !== undefined || !isFromDownloadButton) {
+        var firmaImg = new Image();
+        firmaImg.src = signatureImg;
+        doc.addImage(firmaImg, 'png', 20, 190, 50, 15);
+    }
+
+
+    if (signatureAImg !== undefined || !isFromDownloadButton) {
+        var firmaImg = new Image();
+        firmaImg.src = signatureAImg;
+        doc.addImage(firmaImg, 'png', 20, 240, 50, 15);
+    }
+
 
     function getSelected(name) {
         var radios = $('input[name=' + name + ']');
@@ -146,7 +153,7 @@ function demoFromHTML(signatureImg, footprintImg) {
 
 $("#sendEmailButton").click(function () {
     try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
+        var doc = demoFromHTML(signatureImg, footprintImg, false);
         $("#sendEmailButton").text("Enviando...");
         Email.send({
             SecureToken: "496b6536-febe-4b21-a895-813a97633794",

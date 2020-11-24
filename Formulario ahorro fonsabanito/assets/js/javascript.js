@@ -2,7 +2,7 @@ var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
     try {
-        var doc = demoFromHTML(signatureImg, footprintImg);
+        var doc = demoFromHTML(signatureImg, footprintImg, true);
         doc.save('Formulario Ahorro Fonsabanito.pdf');
     } catch (err) {
         alert("Error al generar el documento, verifica que subiste toda la información requerida.");
@@ -59,7 +59,7 @@ footprintFile.change(function () {
     }
 });
 
-function demoFromHTML(signatureImg, footprintImg) {
+function demoFromHTML(signatureImg, footprintImg, isFromDownloadButton) {
     var doc = new jsPDF();
 
     var logoImg = new Image();
@@ -97,13 +97,17 @@ function demoFromHTML(signatureImg, footprintImg) {
         ],
     });
 
-    var firmaImg = new Image();
-    firmaImg.src = signatureImg;
-    doc.addImage(firmaImg, 'png', 36, 208, 50, 15);
+    if (signatureImg !== undefined || !isFromDownloadButton) {
+        var firmaImg = new Image();
+        firmaImg.src = signatureImg;
+        doc.addImage(firmaImg, 'png', 36, 208, 50, 15);
+    }
 
-    var firmaImg = new Image();
-    firmaImg.src = footprintImg;
-    doc.addImage(firmaImg, 'png', 133, 193, 30, 30);
+    if (footprintImg !== undefined || !isFromDownloadButton) {
+        var firmaImg = new Image();
+        firmaImg.src = footprintImg;
+        doc.addImage(firmaImg, 'png', 133, 193, 30, 30);
+    }
 
     doc.addPage();
     doc.setPage(2);
@@ -162,9 +166,12 @@ function demoFromHTML(signatureImg, footprintImg) {
         { maxWidth: 170, align: "justify" });
     doc.setFontSize(11);
     doc.text(20, 283, "Firma y No Identificación");
-    var firmaImg = new Image();
-    firmaImg.src = signatureImg;
-    doc.addImage(firmaImg, 'png', 20, 263, 50, 15);
+
+    if (signatureImg !== undefined || !isFromDownloadButton) {
+        var firmaImg = new Image();
+        firmaImg.src = signatureImg;
+        doc.addImage(firmaImg, 'png', 20, 263, 50, 15);
+    }
 
     function getSelected(name) {
         var radios = $('input[name=' + name + ']');
@@ -187,7 +194,7 @@ function demoFromHTML(signatureImg, footprintImg) {
 $("#sendEmailButton").click(function () {
     if ($('#policyCheckbox').is(":checked")) {
         try {
-            var doc = demoFromHTML(signatureImg, footprintImg);
+            var doc = demoFromHTML(signatureImg, footprintImg, false);
             $("#sendEmailButton").text("Enviando...");
             Email.send({
                 SecureToken: "496b6536-febe-4b21-a895-813a97633794",
