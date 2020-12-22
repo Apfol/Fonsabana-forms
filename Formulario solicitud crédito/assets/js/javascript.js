@@ -262,7 +262,7 @@ function getEmailsTo() {
         emails.push($("#personalEmailToSend").val());
     if ($("#laboralEmailToSend").val())
         emails.push($("#laboralEmailToSend").val());
-    emails.push("comunicacion@fonsabana.com.co");
+    emails.push("credito@fonsabana.com.co");
     return emails;
 }
 
