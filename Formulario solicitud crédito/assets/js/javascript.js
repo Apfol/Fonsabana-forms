@@ -180,7 +180,7 @@ function demoFromHTML(signatureImg, footprintImg, isFromDownloadButton) {
     doc.text(15, 125, "Agradezco desembolsar el crédito en:", { maxWidth: 170, align: "justify" });
     doc.text(20, 135, "1.");
     doc.text(25, 135, "TITULAR " + $("#titular").val() + "\tC.C. O NIT " + $("#ccNit").val());
-    doc.text(25, 142, "BANCO " + $("#titular").val() + "\tCuenta No. " + $("#ccNit").val());
+    doc.text(25, 142, "BANCO " + $("#bank").val() + "\tCuenta No. " + $("#accountNum").val());
     doc.text(25, 149, "TIPO DE CUENTA: " + getSelected("titularAccountType"));
     doc.text(20, 156, "2.");
     doc.text(25, 156, "CHEQUE A FAVOR DE: " + $("#check").val() + "\tC.C o NIT " + $("#ccNitCheck").val());
