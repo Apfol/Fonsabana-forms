@@ -59,6 +59,31 @@ footprintFile.change(function () {
     }
 });
 
+const identificationCardFile = $("#identificationCardFile");
+const identificationCardButton = $("#identificationCardButton");
+const identificationCardText = $("#identificationCardText");
+
+identificationCardButton.click(function () {
+    identificationCardFile.click();
+});
+
+identificationCardFile.change(function () {
+    if (identificationCardFile.val()) {
+        identificationCardText.html("Documento de identidad." + identificationCardFile.val().split('.').pop());
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                identificationCardDoc = e.target.result;
+            }
+
+            reader.readAsDataURL(this.files[0]);
+        }
+    } else {
+        identificationCardText.html("Sin archivo");
+    }
+});
+
 function demoFromHTML(signatureImg, footprintImg, isFromDownloadButton) {
     var doc = new jsPDF();
 
@@ -194,25 +219,36 @@ $("#sendEmailButton").click(function () {
     if ($('#policyCheckbox').is(":checked")) {
         try {
             var doc = demoFromHTML(signatureImg, footprintImg, false);
+            var files = document.getElementById('identificationCardFile').files;
+            if (files.length == 0) {
+                $("#sendEmailButton").text("Enviar formulario");
+                alert(message);
+            }
             $("#sendEmailButton").text("Enviando...");
-            Email.send({
-                SecureToken: "496b6536-febe-4b21-a895-813a97633794",
-                To: getEmailsTo(),
-                From: "fonsabana@fonsabana.com.co",
-                Subject: "Formulario de afiliación fonsabanito",
-                Body: "Apreciado(a) fonsabanito: Reciba un cordial saludo. Queremos informarle que su solicitud de afiliación de fonsabanito al Fondo de Empleados de La Sabana pasará a aprobación de descuento del ahorro. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ",
-                Attachments: [
-                    {
-                        name: "Formulario Fonsabanito.pdf",
-                        data: doc.output('datauri')
-                    }]
-            }).then(
-                message => {
-                    $("#sendEmailButton").text("Enviar por correo electrónico");
-                    alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
-                }
-
-            );
+            getBase64(files[0]).then((data) => {
+                Email.send({
+                    SecureToken: "496b6536-febe-4b21-a895-813a97633794",
+                    To: getEmailsTo(),
+                    From: "fonsabana@fonsabana.com.co",
+                    Subject: "Formulario de afiliación fonsabanito",
+                    Body: "Apreciado(a) fonsabanito: Reciba un cordial saludo. Queremos informarle que su solicitud de afiliación de fonsabanito al Fondo de Empleados de La Sabana pasará a aprobación de descuento del ahorro. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ",
+                    Attachments: [
+                        {
+                            name: "Formulario Fonsabanito.pdf",
+                            data: doc.output('datauri')
+                        },
+                        {
+                            name: "Documento de identidad." + identificationCardFile.val().split('.').pop(),
+                            data: data
+                        }]
+                }).then(
+                    message => {
+                        $("#sendEmailButton").text("Enviar por correo electrónico");
+                        alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
+                    }
+    
+                );
+            });
         } catch (err) {
             alert("Error al generar el documento, verifica que subiste toda la información requerida.");
         }
