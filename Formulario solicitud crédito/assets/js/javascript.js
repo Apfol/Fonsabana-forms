@@ -173,21 +173,31 @@ function demoFromHTML(signatureImg, footprintImg, isFromDownloadButton) {
         ]
     });
 
-    doc.text(20, 105, "Certifico que la información suministrada es exacta y expresamente autorizamos a FONSABANA para que exclusivamente con fines de información financiera reporte, consulte, registre y circule información a las entidades de consulta de base de datos o cualquier entidad vigilada por las Superintendencias sobre los saldos a nuestro cargo, operaciones de crédito, estado de las obligaciones y manejo del crédito, que bajo cualquier modalidad nos hubieran otorgado o se otorgue en el futuro.",
+    doc.autoTable({
+        theme: 'plain',
+        styles: { lineColor: [142, 142, 142], lineWidth: 0.1, fontSize: 8 },
+        head: [[{ content: 'AGRADEZCO DESEMBOLSAR EL CRÉDITO EN:', colSpan: 5, styles: { halign: 'center', minCellWidth: 15, fillColor: [242, 242, 242] } }]],
+        body: [[{ content: "Titular", styles: { fontStyle: 'bold', halign: 'center' } }, { content: $("#titular").val(), styles: { halign: 'center' } }, { content: "C.C o NIT", styles: { fontStyle: 'bold', halign: 'center' } }, { content: $("#ccNit").val(), styles: { halign: 'center' } }, { content: "", styles: { fontStyle: 'bold', halign: 'center' } }],
+        [{ content: "Banco", styles: { fontStyle: 'bold', halign: 'center' } }, { content: $("#bank").val(), styles: { halign: 'center' } }, { content: "Cuenta No.", styles: { fontStyle: 'bold', halign: 'center' } }, { content: $("#accountNum").val(), styles: { halign: 'center' } }, { content: "Tipo de cuenta", styles: { fontStyle: 'bold', halign: 'center' } }],
+        [{ content: "Cheque a favor de: ", styles: { fontStyle: 'bold', halign: 'center' } }, { content: $("#check").val(), styles: { halign: 'center' } }, { content: "C.C o NIT", styles: { fontStyle: 'bold', halign: 'center' } }, { content: $("#ccNitCheck").val(), styles: { halign: 'center' } }, { content: getSelected("titularAccountType"), styles: { halign: 'center' } }]
+        ]
+    });
+
+    doc.text(20, 145, "Certifico que la información suministrada es exacta y expresamente autorizamos a FONSABANA para que exclusivamente con fines de información financiera reporte, consulte, registre y circule información a las entidades de consulta de base de datos o cualquier entidad vigilada por las Superintendencias sobre los saldos a nuestro cargo, operaciones de crédito, estado de las obligaciones y manejo del crédito, que bajo cualquier modalidad nos hubieran otorgado o se otorgue en el futuro.",
         { maxWidth: 170, align: "justify" });
 
-    doc.setFontSize(12);
+    /*doc.setFontSize(12);
     doc.text(15, 125, "Agradezco desembolsar el crédito en:", { maxWidth: 170, align: "justify" });
     doc.text(20, 135, "1.");
     doc.text(25, 135, "TITULAR " + $("#titular").val() + "\tC.C. O NIT " + $("#ccNit").val());
     doc.text(25, 142, "BANCO " + $("#bank").val() + "\tCuenta No. " + $("#accountNum").val());
     doc.text(25, 149, "TIPO DE CUENTA: " + getSelected("titularAccountType"));
     doc.text(20, 156, "2.");
-    doc.text(25, 156, "CHEQUE A FAVOR DE: " + $("#check").val() + "\tC.C o NIT " + $("#ccNitCheck").val());
+    doc.text(25, 156, "CHEQUE A FAVOR DE: " + $("#check").val() + "\tC.C o NIT " + $("#ccNitCheck").val());*/
     doc.text(15, 240, "FIRMAR DEUDOR");
 
     doc.setFontSize(8);
-    doc.text(20, 170, "Protección de Datos: En Cumplimiento del artículo 10 del Decreto 1377 de 2013, reglamentario de la Ley Estatutaria 1581 de 2012, FONSABANA, informa que previamente a la expedición del Decreto, ha recolectado información personal de nuestros asociados, la cual reposa en las bases de datos del Fondo, y es utilizada para los fines propios de nuestra institución, específicamente para mantener los lazos con todos los asociados y en general, para el ejercicio del objeto social. Los titulares de los datos podrán ejercer los derechos de acceso, corrección, supresión, revocación o reclamo, mediante escrito dirigido al FONDO DE EMPLEADOS DE LA SABANA - FONSABANA a la dirección de correo electrónico protecciondedatos@fonsabana.com.co, atendiendo los requisitos para el trámite de consultas y reclamos establecidos en la política de protección de datos del Fondo.",
+    doc.text(20, 165, "Protección de Datos: En Cumplimiento del artículo 10 del Decreto 1377 de 2013, reglamentario de la Ley Estatutaria 1581 de 2012, FONSABANA, informa que previamente a la expedición del Decreto, ha recolectado información personal de nuestros asociados, la cual reposa en las bases de datos del Fondo, y es utilizada para los fines propios de nuestra institución, específicamente para mantener los lazos con todos los asociados y en general, para el ejercicio del objeto social. Los titulares de los datos podrán ejercer los derechos de acceso, corrección, supresión, revocación o reclamo, mediante escrito dirigido al FONDO DE EMPLEADOS DE LA SABANA - FONSABANA a la dirección de correo electrónico protecciondedatos@fonsabana.com.co, atendiendo los requisitos para el trámite de consultas y reclamos establecidos en la política de protección de datos del Fondo.",
         { maxWidth: 170, align: "justify" });
     doc.text(180, 280, "Pag. 2 de 2");
 
