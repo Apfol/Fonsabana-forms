@@ -118,23 +118,61 @@
                                         <div class="col">
                                             <p>Nacimiento</p>
                                         </div>
-                                        <div class="col"><input value="Ahorros" type="radio" name="helpType"></div>
+                                        <div class="col"><input value="Nacimiento" type="radio" name="helpType"></div>
                                         <div class="col">
                                             <p>Matrimonio</p>
                                         </div>
-                                        <div class="col"><input value="Corriente" type="radio" name="helpType"></div>
+                                        <div class="col"><input value="Matrimonio" type="radio" name="helpType"></div>
                                         <div class="col">
                                             <p>Aniversario</p>
                                         </div>
-                                        <div class="col"><input value="Corriente" type="radio" name="helpType"></div>
+                                        <div class="col"><input value="Aniversario" type="radio" name="helpType"></div>
                                         <div class="col">
                                             <p>Calamidad</p>
                                         </div>
-                                        <div class="col"><input value="Corriente" type="radio" name="helpType"></div>
+                                        <div class="col"><input value="Calamidad" type="radio" name="helpType"></div>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
+                                <div style="text-align:center;">
+                                    <table border="1" style="margin: 0 auto;">
+                                        <tr>
+                                            <th>Tipo Auxilio</th>
+                                            <th>Documentación</th>
+                                
+                                        </tr>
+                                        <tr>
+                                            <td>Nacimiento</td>
+                                            <td>Registro civil de nacimiento</td>
+                                
+                                        </tr>
+                                        <tr>
+                                            <td>Matrimonio</td>
+                                            <td>Partida de matrimonio</td>
+                                
+                                        </tr>
+                                        <tr>
+                                            <td>Aniversario</td>
+                                            <td>Partida de matrimonio</td>
+                                
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="3">Calamidad y/o Fallecimiento</td>
+                                            <td>Soporte de gastos de calamidad</td>
+                                
+                                        </tr>
+                                        <tr>
+                                            <td>Registro civil nacimiento asociado </td>
+                                
+                                        </tr>
+                                        <tr>
+                                            <td>Acta de defunción </td>
+                                
+                                        </tr>
+                                
+                                    </table>
+                                </div>
                                 <td colspan="21">Observaciones
                                     <input id="observations" class="form-control" type="text">
                                 </td>
@@ -156,7 +194,18 @@
                                     de protección de datos del Fondo.
                                     <br>
                                 </td>
-                            </tr>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-row">
+                                            <div class="col text-center"><input id="documentFile" type="file" hidden="hidden"><button
+                                                    id="documentButton" class="btn btn-secondary text-center" type="button">Subir soporte dependiendo
+                                                    el tipo de auxilio (Formato de imagen. Ej: JPG, PNG, etc.)</button><span id="documentText"
+                                                    class="file-name">Sin
+                                                    archivo</span>
+                                            </div>
+                                    </td>
+                                </tr>
                         </tbody>
                     </table>
                 </div>

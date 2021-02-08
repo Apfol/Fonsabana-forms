@@ -1,4 +1,4 @@
-var signatureImg, footprintImg, identificationCardDoc;
+ var signatureImg, footprintImg, identificationCardDoc;
 
 document.getElementById('print').onclick = function () {
     try {
@@ -34,17 +34,17 @@ signatureFile.change(function () {
     }
 });
 
-const footprintFile = $("#footprintFile");
-const footprintButton = $("#footprintButton");
-const footprintText = $("#footprintText");
+const documentFile = $("#documentFile");
+const documentButton = $("#documentButton");
+const documentText = $("#documentText");
 
-footprintButton.click(function () {
-    footprintFile.click();
+documentButton.click(function () {
+    documentFile.click();
 });
 
-footprintFile.change(function () {
-    if (footprintFile.val()) {
-        footprintText.html("Huella." + footprintFile.val().split('.').pop());
+documentFile.change(function () {
+    if (documentFile.val()) {
+        documentText.html("Documento soporte." + documentFile.val().split('.').pop());
         if (this.files && this.files[0]) {
             var reader = new FileReader();
 
@@ -55,7 +55,7 @@ footprintFile.change(function () {
             reader.readAsDataURL(this.files[0]);
         }
     } else {
-        footprintText.html("Sin archivo");
+        documentText.html("Sin archivo");
     }
 });
 
@@ -138,25 +138,35 @@ $("#sendEmailButton").click(function () {
     if ($('#policyCheckbox').is(":checked")) {
         try {
             var doc = demoFromHTML(signatureImg, footprintImg);
+            var files = document.getElementById('documentFile').files;
+            if (files.length == 0) {
+                $("#sendEmailButton").text("Enviar formulario");
+                alert(message);
+            }
             $("#sendEmailButton").text("Enviando...");
-            Email.send({
-                SecureToken: "496b6536-febe-4b21-a895-813a97633794",
-                To: getEmailsTo(),
-                From: "fonsabana@fonsabana.com.co",
-                Subject: "Formulario solicitud auxilio de bienestar ",
-                Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de auxilio de bienestar al Fondo de Empleados de La Sabana pasará a comité de mercadeo. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva.",
-                Attachments: [
-                    {
-                        name: "Formulario.pdf",
-                        data: doc.output('datauri')
-                    }]
-            }).then(
-                message => {
-                    $("#sendEmailButton").text("Enviar por correo electrónico");
-                    alert("¡Correo enviado! Comprueba en tu bandeja de entrada")
-                }
-
-            );
+            getBase64(files[0]).then((data) => {
+                Email.send({
+                    SecureToken: "496b6536-febe-4b21-a895-813a97633794",
+                    To: getEmailsTo(),
+                    From: "fonsabana@fonsabana.com.co",
+                    Subject: "Formulario solicitud auxilio de bienestar ",
+                    Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de auxilio de bienestar al Fondo de Empleados de La Sabana pasará a comité de mercadeo. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva.",
+                    Attachments: [
+                        {
+                            name: "Formulario.pdf",
+                            data: doc.output('datauri')
+                        },
+                        {
+                            name: "Documento soporte." + documentFile.val().split('.').pop(),
+                            data: data
+                        }]
+                }).then(
+                    message => {
+                        $("#sendEmailButton").text("Enviar por correo electrónico");
+                        alert("¡Correo enviado! Comprueba en tu bandeja de entrada")
+                    }
+                );
+            });
         } catch (err) {
             alert("Error al generar el documento, verifica que subiste toda la información requerida.");
         }
