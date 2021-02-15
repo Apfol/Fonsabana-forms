@@ -109,35 +109,24 @@ $("#sendEmailButton").click(function () {
     if ($('#policyCheckbox').is(":checked")) {
         try {
             var doc = demoFromHTML(signatureImg, footprintImg, false);
-            var files = document.getElementById('consignmentFile').files;
-            if (files.length == 0) {
-                $("#sendEmailButton").text("Enviar formulario");
-                alert(message);
-            }
-            $("#sendEmailButton").text("Enviando...");
-            getBase64(files[0]).then((data) => {
-                Email.send({
+            $("#sendEmailButton").text("Enviando..."); 
+            Email.send({
                     SecureToken: "496b6536-febe-4b21-a895-813a97633794",
                     To: getEmailsTo(),
                     From: "fonsabana@fonsabana.com.co",
-                    Subject: "Formulario constitución cupo crece",
-                    Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de constitución cupo crece al Fondo de Empleados de La Sabana pasará a aprobación de comité de crédito y cartera. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ",
+                    Subject: "Formulario solicitud de retiro parcial o total de ahorro programado, Fonsabanito o Cupocrece",
+                Body: "Apreciado(a) asociado(a): Reciba un cordial saludo. Queremos informarle que su solicitud de retiro parcial o total de ahorro programado, Fonsabanito o Cupocrece al Fondo de Empleados de La Sabana pasará a aprobación de comité de crédito y cartera. Así mismo, en los próximos días le notificaremos por correo electrónico la respuesta respectiva. ",
                     Attachments: [
                         {
                             name: "Formulario.pdf",
                             data: doc.output('datauri')
-                        },
-                        {
-                            name: "Soporte consignación." + consignmentFile.val().split('.').pop(),
-                            data: data
                         }]
                 }).then(
                     message => {
                         $("#sendEmailButton").text("Enviar por correo electrónico");
                         alert("¡Correo enviado! Comprueba en tu bandeja de entrada");
                     }
-                );
-            });
+            );
         } catch (err) {
             alert("Error al generar el documento, verifica que subiste toda la información requerida.");
         }
