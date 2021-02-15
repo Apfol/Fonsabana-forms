@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Formulario Constitución CupoCrece - Fonsabana</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/jspdf.min.js"></script>
+    <script src="assets/js/jspdf.plugin.autotable.js"></script>
+    <script type="text/javascript" src="assets/js/mandrill.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+
+</head>
+
+<body>
+    <div class="table-responsive" style="padding: 1%;">
+        <div class="form-row">
+            <div class="col-md-3"><img class="img-fluid img-fluid" src="assets/img/logo-fonsabana.png"
+                    style="padding: 0;padding-right: 0;padding-left: 20%;"></div>
+            <div class="col-md-6">
+                <h2 class="text-center" style="padding-top: 40px; font-size: x-large;">SOLICITUD AUTORIZACIÓN
+                    SOLICITUD DE RETIRO PARCIAL O TOTAL DE AHORRO PROGRAMADO, FONSABANITO O CUPOCRECE
+                </h2>
+            </div>
+            <div class="col-md-3">
+                <div class="form-row">
+                    <div class="col">
+                        <p class="text-center"><br>Versión 1</p>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <p class="text-center">Enero 16 de 2017</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="3">FECHA DE SOLICITUD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>&nbsp;<input id="formDateSaving" class="form-control" type="date"></td>
+                            </tr>
+                            <tr></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col" style="padding: 0% 1% 0% 1%;">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td colspan="10">Nombre asociado<input id="associateName" class="form-control" type="text">
+                        </tr>
+                        <tr>
+                            <td colspan="5">N° Identificación<input id="identificationNumber" class="form-control"
+                                    type="text">
+                            <td colspan="5">Teléfono<input id="phone" class="form-control" type="text">
+                        </tr>
+                        <tr>
+                            <td colspan="10">Correo electrónico<input id="email" class="form-control" type="text">
+                        </tr>
+                        <tr>
+                            <td colspan="10">Entidad<input id="entity" class="form-control" type="text">
+                        </tr>
+                        <tr>
+                            <td colspan="10">
+                                <div style="padding-bottom: 16px;">
+                                    Me permito solicitar un retiro de mi ahorro constituido como:
+                                </div>
+                                <div class="form-row" style="padding-left: 30%; padding-right: 30%;">
+                                    <div class="col">
+                                        <p>Fonsabanito</p>
+                                    </div>
+                                    <div class="col"><input value="Fonsabanito" type="radio" name="savingType"></div>
+                                    <div class="col">
+                                        <p>Programado</p>
+                                    </div>
+                                    <div class="col"><input value="Programado" type="radio" name="savingType"></div>
+                                    <div class="col">
+                                        <p>Cupocrece</p>
+                                    </div>
+                                    <div class="col"><input value="Cupocrece" type="radio" name="savingType"></div>
+
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center" colspan="10">RETIRO PARCIAL O TOTAL DE AHORRO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="10">
+                                <div class="form-row" style="padding-left: 30%; padding-right: 30%;">
+                                    <div class="col">
+                                        <p>Retiro parcial</p>
+                                    </div>
+                                    <div class="col"><input value="Retiro parcial" type="radio" name="withdrawalType">
+                                    </div>
+                                    <div class="col">
+                                        <p>Retiro total</p>
+                                    </div>
+                                    <div class="col"><input value="Retiro total" type="radio" name="withdrawalType">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="10">Valor $<input id="withdrawalCount" class="form-control" type="text">
+                        </tr>
+                        <tr>
+                            <td colspan="5">Cuenta No.<input id="accountNumber" class="form-control" type="text">
+                            <td colspan="5">Banco<input id="bank" class="form-control" type="text">
+                        </tr>
+                        <tr>
+                            <td colspan="10">
+                                <div style="padding-bottom: 16px;">
+                                    Tipo de cuenta:
+                                </div>
+                                <div class="form-row" style="padding-left: 30%; padding-right: 30%;">
+                                    <div class="col">
+                                        <p>Ahorros</p>
+                                    </div>
+                                    <div class="col"><input value="Ahorros" type="radio" name="accountType"></div>
+                                    <div class="col">
+                                        <p>Corriente</p>
+                                    </div>
+                                    <div class="col"><input value="Corriente" type="radio" name="accountType"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">Titular<input id="accountName" class="form-control" type="text">
+                            <td colspan="5">Cédula<input id="documentNumber" class="form-control" type="text">
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table">
+                    <tbody>
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="10">OBSERVACIONES</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td colspan="10"><input id="observations" class="form-control" type="text">
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="policyCheckbox" name="vehicle1" value="Bike">
+                                <b>Protección de Datos:</b> En Cumplimiento del artículo 10 del
+                                Decreto 1377 de 2013, reglamentario de la Ley Estatutaria 1581 de 2012,
+                                FONSABANA, informa que previamente a la expedición del Decreto, ha recolectado
+                                información personal de nuestros asociados, la cual reposa en las bases de datos
+                                del Fondo, y es utilizada para los fines propios de nuestra institución,
+                                específicamente para mantener los lazos con todos los asociados y en general,
+                                para el ejercicio del objeto social. Los titulares de los datos podrán ejercer
+                                los derechos de acceso, corrección, supresión, revocación o reclamo, mediante
+                                escrito dirigido al FONDO DE EMPLEADOS DE LA SABANA - FONSABANA a la dirección
+                                de correo electrónico protecciondedatos@fonsabana.com.co, atendiendo los
+                                requisitos para el trámite de consultas y reclamos establecidos en la política
+                                de protección de datos del Fondo.
+                                <br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <div class="form-row">
+                                    <div class="col text-center"><input id="signatureFile" type="file"
+                                            hidden="hidden"><button id="signatureButton"
+                                            class="btn btn-secondary text-center" type="button">Subir firma con
+                                            número de identificación (Formato de imagen. Ej: JPG, PNG,
+                                            etc.)</button><span id="signatureText" class="file-name">Sin
+                                            archivo</span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br><br>
+                                <div class="form-row">
+                                    <div class="col"></div>
+                                    <div class="col text-center"><button id="print" class="btn btn-primary"
+                                            type="button" style="width: 90%;">Descargar</button></div>
+                                    <div class="col text-center"><button class="btn btn-primary" style="width: 90%;"
+                                            data-toggle="modal" data-target="#modal">Enviar
+                                            por correo electrónico</button></div>
+                                    <div class="col"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Digite sus correos aquí</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Correo electrónico personal<input id="personalEmailToSend" class="form-control" type="email">
+                    Correo electrónico laboral<input id="laboralEmailToSend" class="form-control" type="email">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button id="sendEmailButton" type="button" class="btn btn-primary">Enviar formulario</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/javascript.js"></script>
+</body>
+
+</html>
